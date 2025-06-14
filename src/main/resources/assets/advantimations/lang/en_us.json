@@ -1,4 +1,9 @@
 {
   "text.autoconfig.advantimations.title": "Advantimations Config",
-  "text.autoconfig.advantimations.option.cancelFirstPersonSwings": "Cancel First Person Swings"
+  "text.autoconfig.advantimations.option.cancelFirstPersonSwings": "Cancel First Person Swings",
+  "text.autoconfig.advantimations.option.cancelSwings": "Cancel Swings",
+  "text.autoconfig.advantimations.option.cancelSwings.enabled": "Enabled",
+  "text.autoconfig.advantimations.option.cancelSwings.enabledOnSelf": "Enabled on Self",
+  "text.autoconfig.advantimations.option.cancelSwings.enabledOnOtherPlayers": "Enabled on Other Players",
+  "text.autoconfig.advantimations.option.cancelSwings.enabledOnOtherEntities": "Enabled on Other Entities"
 }
