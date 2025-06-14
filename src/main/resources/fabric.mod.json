@@ -3,19 +3,18 @@
 	"id": "advantimations",
 	"version": "${version}",
 	"name": "Advantimations",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "Client-side mod to cancel animations",
 	"authors": [
-		"Me!"
+		"Yedel"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"issues": "https://github.com/Yedelo/Advantimations/issues",
+		"sources": "https://github.com/Yedelo/Advantimations"
 	},
-	"license": "CC0-1.0",
-	"icon": "assets/advantimations/icon.png",
-	"environment": "*",
+	"icon": "assets/advantimations/advantimations.png",
+	"environment": "client",
 	"entrypoints": {
-		"main": [
+		"client": [
 			"at.yedel.advantimations.Advantimations"
 		]
 	},
@@ -27,8 +26,5 @@
 		"minecraft": "~1.21.5",
 		"java": ">=21",
 		"fabric-api": "*"
-	},
-	"suggests": {
-		"another-mod": "*"
 	}
 }
