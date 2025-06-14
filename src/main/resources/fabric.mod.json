@@ -16,6 +16,9 @@
 	"entrypoints": {
 		"client": [
 			"at.yedel.advantimations.Advantimations"
+		],
+		"modmenu": [
+			"at.yedel.advantimations.utils.AdvantimationsModMenu"
 		]
 	},
 	"mixins": [
