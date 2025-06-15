@@ -3,6 +3,7 @@
   "text.autoconfig.advantimations.option.cancelFirstPersonSwings": "Cancel First Person Swings",
   "text.autoconfig.advantimations.option.cancelBlockInteractReset": "Cancel Block Interact Reset",
   "text.autoconfig.advantimations.option.cancelItemInteractReset": "Cancel Item Interact Reset",
+  "text.autoconfig.advantimations.option.alwaysSkipHandAnimationOnSwap": "Always Skip Hand Animation on Swap",
   "text.autoconfig.advantimations.option.cancelSwings": "Cancel Swings",
   "text.autoconfig.advantimations.option.cancelSwings.enabled": "Enabled",
   "text.autoconfig.advantimations.option.cancelSwings.enabledOnSelf": "Enabled on Self",

@@ -25,6 +25,8 @@ public class AdvantimationsConfig implements ConfigData {
 
     public boolean cancelItemInteractReset = true;
 
+    public boolean alwaysSkipHandAnimationOnSwap = true;
+
     @ConfigEntry.Gui.CollapsibleObject(startExpanded = true)
     public EntityApplicableOption cancelSwings = new EntityApplicableOption()
         .enabled()
