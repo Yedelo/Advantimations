@@ -21,6 +21,10 @@ public class AdvantimationsConfig implements ConfigData {
 
     public boolean cancelFirstPersonSwings = true;
 
+    public boolean cancelBlockInteractReset = true;
+
+    public boolean cancelItemInteractReset = true;
+
     @ConfigEntry.Gui.CollapsibleObject(startExpanded = true)
     public EntityApplicableOption cancelSwings = new EntityApplicableOption()
         .enabled()
