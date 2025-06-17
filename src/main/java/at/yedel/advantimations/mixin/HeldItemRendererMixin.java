@@ -6,6 +6,7 @@ import at.yedel.advantimations.config.AdvantimationsConfig;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import net.minecraft.client.render.item.HeldItemRenderer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.consume.UseAction;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -23,6 +24,14 @@ public abstract class HeldItemRendererMixin {
         else {
             return original;
         }
+    }
+
+    @ModifyExpressionValue(method = "renderFirstPersonItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;getUseAction()Lnet/minecraft/item/consume/UseAction;"))
+    private UseAction advantimations$cancelUseAnimations(UseAction original) {
+        if ((AdvantimationsConfig.getInstance().cancelEatAnimation && original == UseAction.EAT) || (AdvantimationsConfig.getInstance().cancelDrinkAnimation && original == UseAction.DRINK) || (AdvantimationsConfig.getInstance().cancelBlockAnimation && original == UseAction.BLOCK) || (AdvantimationsConfig.getInstance().cancelBowAnimation && original == UseAction.BOW) || (AdvantimationsConfig.getInstance().cancelSpearAnimation && original == UseAction.SPEAR) || (AdvantimationsConfig.getInstance().cancelBrushAnimation && original == UseAction.BRUSH) || (AdvantimationsConfig.getInstance().cancelBundleAnimation && original == UseAction.BUNDLE)) {
+            return UseAction.NONE;
+        }
+        return original;
     }
 
     @Inject(method = "shouldSkipHandAnimationOnSwap", at = @At("HEAD"), cancellable = true)

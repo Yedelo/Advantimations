@@ -5,7 +5,8 @@
   "client": [
     "BipedEntityRendererMixin",
     "HeldItemRendererMixin",
-    "MinecraftClientMixin"
+    "MinecraftClientMixin",
+    "UsingItemPropertyMixin"
   ],
   "injectors": {
     "defaultRequire": 1

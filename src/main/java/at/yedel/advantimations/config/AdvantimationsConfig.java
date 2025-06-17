@@ -19,18 +19,50 @@ public class AdvantimationsConfig implements ConfigData {
         return Advantimations.getInstance().getConfig();
     }
 
+    @ConfigEntry.Category("firstPerson")
     public boolean cancelFirstPersonSwings = true;
 
-    public boolean cancelBlockInteractReset = true;
+    @ConfigEntry.Category("firstPerson")
+    public boolean cancelEatAnimation = false;
 
-    public boolean cancelItemInteractReset = true;
+    @ConfigEntry.Category("firstPerson")
+    public boolean cancelDrinkAnimation = false;
 
-    public boolean alwaysSkipHandAnimationOnSwap = true;
+    @ConfigEntry.Category("firstPerson")
+    public boolean cancelBlockAnimation = false;
 
+    @ConfigEntry.Category("firstPerson")
+    public boolean cancelShieldAnimation = false;
+
+    @ConfigEntry.Category("firstPerson")
+    public boolean cancelBowAnimation = false;
+
+    @ConfigEntry.Category("firstPerson")
+    public boolean cancelArrowAnimation = false;
+
+    @ConfigEntry.Category("firstPerson")
+    public boolean cancelSpearAnimation = false;
+
+    @ConfigEntry.Category("firstPerson")
+    public boolean cancelBrushAnimation = false;
+
+    @ConfigEntry.Category("firstPerson")
+    public boolean cancelBundleAnimation = false;
+
+    @ConfigEntry.Category("swings")
     @ConfigEntry.Gui.CollapsibleObject(startExpanded = true)
     public EntityApplicableOption cancelSwings = new EntityApplicableOption()
         .enabled()
         .enabledOnSelf();
+
+    @ConfigEntry.Category("itemResets")
+    public boolean cancelBlockInteractReset = true;
+
+    @ConfigEntry.Category("itemResets")
+    public boolean cancelItemInteractReset = true;
+
+    @ConfigEntry.Category("itemResets")
+    public boolean alwaysSkipHandAnimationOnSwap = true;
 
     public static class EntityApplicableOption {
         public boolean enabled;
