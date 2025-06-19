@@ -71,6 +71,9 @@ public class AdvantimationsConfig {
     @SerialEntry
     public boolean alwaysSkipHandAnimationOnSwap = true;
 
+    @SerialEntry
+    public EntityApplicableOption cancelLimbMovements = new EntityApplicableOption(true, false, false);
+
     public static Screen getScreen(Screen parent) {
         return YetAnotherConfigLib.create(HANDLER, (defaults, config, builder) -> {
             return builder
@@ -261,6 +264,14 @@ public class AdvantimationsConfig {
                                 defaults.cancelSwings,
                                 () -> config.cancelSwings,
                                 (cancelSwings) -> config.cancelSwings.handleNewConfiguration(cancelSwings, defaults.cancelSwings)
+                            )
+                        )
+                        .option(
+                            EntityApplicableOption.createEntityApplicableOption(
+                                "Cancel Limb Movements",
+                                defaults.cancelLimbMovements,
+                                () -> config.cancelLimbMovements,
+                                (cancelLimbMovements) -> config.cancelLimbMovements.handleNewConfiguration(cancelLimbMovements, defaults.cancelLimbMovements)
                             )
                         )
                         .build()

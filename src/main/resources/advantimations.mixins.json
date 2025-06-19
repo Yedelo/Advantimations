@@ -5,6 +5,7 @@
   "client": [
     "BipedEntityRendererMixin",
     "HeldItemRendererMixin",
+    "LivingEntityRendererMixin",
     "MinecraftClientMixin",
     "UsingItemPropertyMixin"
   ],
