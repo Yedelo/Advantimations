@@ -27,7 +27,6 @@ dependencies {
 	modApi("com.terraformersmc:modmenu:$modMenuVersion")
 	modImplementation("dev.isxander:yet-another-config-lib:${yaclVersion}")
 	modRuntimeOnly("me.djtheredstoner:DevAuth-fabric:$devAuthVersion")
-
 }
 
 tasks {
