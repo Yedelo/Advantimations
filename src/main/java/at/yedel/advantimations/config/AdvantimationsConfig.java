@@ -74,27 +74,15 @@ public class AdvantimationsConfig {
     public static Screen getScreen(Screen parent) {
         return YetAnotherConfigLib.create(HANDLER, (defaults, config, builder) -> {
             return builder
-                .title(
-                    Text.literal("Advantimations Config")
-                )
+                .title(Text.literal("Advantimations Config"))
                 .category(
                     ConfigCategory.createBuilder()
-                        .name(
-                            Text.literal("First Person")
-                        )
-                        .tooltip(
-                            Text.literal("Options for canceling first person animations.")
-                        )
+                        .name(Text.literal("First Person"))
+                        .tooltip(Text.literal("Options for canceling first person animations."))
                         .option(
                             Option.<Boolean>createBuilder()
-                                .name(
-                                    Text.literal("Cancel First Person Swings")
-                                )
-                                .description(
-                                    OptionDescription.of(
-                                        Text.literal("")
-                                    )
-                                )
+                                .name(Text.literal("Cancel First Person Swings"))
+                                .description(OptionDescription.of(Text.literal("")))
                                 .binding(
                                     defaults.cancelFirstPersonSwings,
                                     () -> config.cancelFirstPersonSwings,
@@ -105,27 +93,13 @@ public class AdvantimationsConfig {
                         )
                         .group(
                             OptionGroup.createBuilder()
-                                .name(
-                                    Text.literal("Item Use Animations")
-                                )
-                                .description(
-                                    OptionDescription.of(
-                                        Text.literal("Options for cancelling item use animations such as eating and blocking.")
-                                    )
-                                )
-                                .collapsed(
-                                    false
-                                )
+                                .name(Text.literal("Item Use Animations"))
+                                .description(OptionDescription.of(Text.literal("Options for cancelling item use animations such as eating and blocking.")))
+                                .collapsed(false)
                                 .option(
                                     Option.<Boolean>createBuilder()
-                                        .name(
-                                            Text.literal("Cancel Eat Animation")
-                                        )
-                                        .description(
-                                            OptionDescription.of(
-                                                Text.literal("")
-                                            )
-                                        )
+                                        .name(Text.literal("Cancel Eat Animation"))
+                                        .description(OptionDescription.of(Text.literal("")))
                                         .binding(
                                             defaults.cancelEatAnimation,
                                             () -> config.cancelEatAnimation,
@@ -136,14 +110,8 @@ public class AdvantimationsConfig {
                                 )
                                 .option(
                                     Option.<Boolean>createBuilder()
-                                        .name(
-                                            Text.literal("Cancel Drink Animation")
-                                        )
-                                        .description(
-                                            OptionDescription.of(
-                                                Text.literal("")
-                                            )
-                                        )
+                                        .name(Text.literal("Cancel Drink Animation"))
+                                        .description(OptionDescription.of(Text.literal("")))
                                         .binding(
                                             defaults.cancelDrinkAnimation,
                                             () -> config.cancelDrinkAnimation,
@@ -154,14 +122,8 @@ public class AdvantimationsConfig {
                                 )
                                 .option(
                                     Option.<Boolean>createBuilder()
-                                        .name(
-                                            Text.literal("Cancel Block Animation")
-                                        )
-                                        .description(
-                                            OptionDescription.of(
-                                                Text.literal("")
-                                            )
-                                        )
+                                        .name(Text.literal("Cancel Block Animation"))
+                                        .description(OptionDescription.of(Text.literal("")))
                                         .binding(
                                             defaults.cancelBlockAnimation,
                                             () -> config.cancelBlockAnimation,
@@ -172,14 +134,8 @@ public class AdvantimationsConfig {
                                 )
                                 .option(
                                     Option.<Boolean>createBuilder()
-                                        .name(
-                                            Text.literal("Cancel Shield Animation")
-                                        )
-                                        .description(
-                                            OptionDescription.of(
-                                                Text.literal("")
-                                            )
-                                        )
+                                        .name(Text.literal("Cancel Shield Animation"))
+                                        .description(OptionDescription.of(Text.literal("")))
                                         .binding(
                                             defaults.cancelShieldAnimation,
                                             () -> config.cancelShieldAnimation,
@@ -190,14 +146,8 @@ public class AdvantimationsConfig {
                                 )
                                 .option(
                                     Option.<Boolean>createBuilder()
-                                        .name(
-                                            Text.literal("Cancel Bow Animation")
-                                        )
-                                        .description(
-                                            OptionDescription.of(
-                                                Text.literal("")
-                                            )
-                                        )
+                                        .name(Text.literal("Cancel Bow Animation"))
+                                        .description(OptionDescription.of(Text.literal("")))
                                         .binding(
                                             defaults.cancelBowAnimation,
                                             () -> config.cancelBowAnimation,
@@ -208,14 +158,8 @@ public class AdvantimationsConfig {
                                 )
                                 .option(
                                     Option.<Boolean>createBuilder()
-                                        .name(
-                                            Text.literal("Cancel Arrow Animation")
-                                        )
-                                        .description(
-                                            OptionDescription.of(
-                                                Text.literal("")
-                                            )
-                                        )
+                                        .name(Text.literal("Cancel Arrow Animation"))
+                                        .description(OptionDescription.of(Text.literal("")))
                                         .binding(
                                             defaults.cancelArrowAnimation,
                                             () -> config.cancelArrowAnimation,
@@ -226,14 +170,8 @@ public class AdvantimationsConfig {
                                 )
                                 .option(
                                     Option.<Boolean>createBuilder()
-                                        .name(
-                                            Text.literal("Cancel Spear Animation")
-                                        )
-                                        .description(
-                                            OptionDescription.of(
-                                                Text.literal("")
-                                            )
-                                        )
+                                        .name(Text.literal("Cancel Spear Animation"))
+                                        .description(OptionDescription.of(Text.literal("")))
                                         .binding(
                                             defaults.cancelSpearAnimation,
                                             () -> config.cancelSpearAnimation,
@@ -244,14 +182,8 @@ public class AdvantimationsConfig {
                                 )
                                 .option(
                                     Option.<Boolean>createBuilder()
-                                        .name(
-                                            Text.literal("Cancel Brush Animation")
-                                        )
-                                        .description(
-                                            OptionDescription.of(
-                                                Text.literal("")
-                                            )
-                                        )
+                                        .name(Text.literal("Cancel Brush Animation"))
+                                        .description(OptionDescription.of(Text.literal("")))
                                         .binding(
                                             defaults.cancelBrushAnimation,
                                             () -> config.cancelBrushAnimation,
@@ -262,14 +194,8 @@ public class AdvantimationsConfig {
                                 )
                                 .option(
                                     Option.<Boolean>createBuilder()
-                                        .name(
-                                            Text.literal("Cancel Bundle Animation")
-                                        )
-                                        .description(
-                                            OptionDescription.of(
-                                                Text.literal("")
-                                            )
-                                        )
+                                        .name(Text.literal("Cancel Bundle Animation"))
+                                        .description(OptionDescription.of(Text.literal("")))
                                         .binding(
                                             defaults.cancelBundleAnimation,
                                             () -> config.cancelBundleAnimation,
@@ -282,27 +208,13 @@ public class AdvantimationsConfig {
                         )
                         .group(
                             OptionGroup.createBuilder()
-                                .name(
-                                    Text.literal("Item Resets")
-                                )
-                                .description(
-                                    OptionDescription.of(
-                                        Text.literal("Options for cancelling item reset animations.")
-                                    )
-                                )
-                                .collapsed(
-                                    false
-                                )
+                                .name(Text.literal("Item Resets"))
+                                .description(OptionDescription.of(Text.literal("Options for cancelling item reset animations.")))
+                                .collapsed(false)
                                 .option(
                                     Option.<Boolean>createBuilder()
-                                        .name(
-                                            Text.literal("Cancel Block Interact Reset")
-                                        )
-                                        .description(
-                                            OptionDescription.of(
-                                                Text.literal("")
-                                            )
-                                        )
+                                        .name(Text.literal("Cancel Block Interact Reset"))
+                                        .description(OptionDescription.of(Text.literal("")))
                                         .binding(
                                             defaults.cancelBlockInteractReset,
                                             () -> config.cancelBlockInteractReset,
@@ -313,14 +225,8 @@ public class AdvantimationsConfig {
                                 )
                                 .option(
                                     Option.<Boolean>createBuilder()
-                                        .name(
-                                            Text.literal("Cancel Item Interact Reset")
-                                        )
-                                        .description(
-                                            OptionDescription.of(
-                                                Text.literal("")
-                                            )
-                                        )
+                                        .name(Text.literal("Cancel Item Interact Reset"))
+                                        .description(OptionDescription.of(Text.literal("")))
                                         .binding(
                                             defaults.cancelItemInteractReset,
                                             () -> config.cancelItemInteractReset,
@@ -331,14 +237,8 @@ public class AdvantimationsConfig {
                                 )
                                 .option(
                                     Option.<Boolean>createBuilder()
-                                        .name(
-                                            Text.literal("Always Skip Hand Animation on Swap")
-                                        )
-                                        .description(
-                                            OptionDescription.of(
-                                                Text.literal("")
-                                            )
-                                        )
+                                        .name(Text.literal("Always Skip Hand Animation on Swap"))
+                                        .description(OptionDescription.of(Text.literal("")))
                                         .binding(
                                             defaults.alwaysSkipHandAnimationOnSwap,
                                             () -> config.alwaysSkipHandAnimationOnSwap,
@@ -353,26 +253,12 @@ public class AdvantimationsConfig {
                 )
                 .category(
                     ConfigCategory.createBuilder()
-                        .name(
-                            Text.literal("Model")
-                        )
-                        .tooltip(
-                            Text.literal("Options for canceling entity model animations.")
-                        )
+                        .name(Text.literal("Model"))
+                        .tooltip(Text.literal("Options for canceling entity model animations."))
                         .option(
                             ListOption.<Boolean>createBuilder()
-                                .name(
-                                    Text.literal(
-                                        "Cancel Swings"
-                                    )
-                                )
-                                .description(
-                                    OptionDescription.of(
-                                        Text.literal(
-                                            ""
-                                        )
-                                    )
-                                )
+                                .name(Text.literal("Cancel Swings"))
+                                .description(OptionDescription.of(Text.literal("")))
                                 .binding(
                                     defaults.cancelSwings,
                                     () -> config.cancelSwings,
