@@ -4,7 +4,7 @@ val fabricLoaderVersion: String by project
 val fabricApiVersion: String by project
 
 val modMenuVersion: String by project
-val clothConfigVersion: String by project
+val yaclVersion: String by project
 val devAuthVersion: String by project
 
 plugins {
@@ -14,7 +14,7 @@ plugins {
 
 repositories {
 	maven("https://maven.terraformersmc.com/releases/")
-	maven("https://maven.shedaniel.me/")
+	maven("https://maven.isxander.dev/releases")
 	maven("https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1")
 }
 
@@ -25,7 +25,7 @@ dependencies {
 	modImplementation("net.fabricmc.fabric-api:fabric-api:$fabricApiVersion")
 
 	modApi("com.terraformersmc:modmenu:$modMenuVersion")
-	modApi("me.shedaniel.cloth:cloth-config-fabric:$clothConfigVersion")
+	modImplementation("dev.isxander:yet-another-config-lib:${yaclVersion}")
 	modRuntimeOnly("me.djtheredstoner:DevAuth-fabric:$devAuthVersion")
 
 }
@@ -33,7 +33,10 @@ dependencies {
 tasks {
 	processResources {
 		filesMatching("fabric.mod.json") {
-			expand(mapOf("version" to version))
+			expand(mapOf(
+				"version" to version,
+				"yaclVersion" to yaclVersion
+			))
 		}
 	}
 }

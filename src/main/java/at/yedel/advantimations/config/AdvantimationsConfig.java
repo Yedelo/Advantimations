@@ -2,108 +2,390 @@ package at.yedel.advantimations.config;
 
 
 
-import at.yedel.advantimations.Advantimations;
-import at.yedel.advantimations.utils.AdvantimationsConstants;
-import me.shedaniel.autoconfig.ConfigData;
-import me.shedaniel.autoconfig.annotation.Config;
-import me.shedaniel.autoconfig.annotation.ConfigEntry;
-import net.minecraft.client.network.ClientPlayerEntity;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
+import dev.isxander.yacl3.api.*;
+import dev.isxander.yacl3.api.controller.BooleanControllerBuilder;
+import dev.isxander.yacl3.config.v2.api.ConfigClassHandler;
+import dev.isxander.yacl3.config.v2.api.SerialEntry;
+import dev.isxander.yacl3.config.v2.api.serializer.GsonConfigSerializerBuilder;
+import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.text.Text;
+import net.minecraft.util.Identifier;
 
 
 
-@Config(name = AdvantimationsConstants.MOD_ID)
-public class AdvantimationsConfig implements ConfigData {
+public class AdvantimationsConfig {
+    public static final ConfigClassHandler<AdvantimationsConfig> HANDLER = ConfigClassHandler.createBuilder(AdvantimationsConfig.class)
+        .id(Identifier.of("advantimations", "advantimations-config"))
+        .serializer(
+            config -> GsonConfigSerializerBuilder.create(config)
+                .setPath(FabricLoader.getInstance().getConfigDir().resolve("advantimations.json"))
+                .setJson5(true)
+                .build()
+        )
+        .build();
+
     public static AdvantimationsConfig getInstance() {
-        return Advantimations.getInstance().getConfig();
+        return HANDLER.instance();
     }
 
-    @ConfigEntry.Category("firstPerson")
+    @SerialEntry
     public boolean cancelFirstPersonSwings = true;
 
-    @ConfigEntry.Category("firstPerson")
+    @SerialEntry
     public boolean cancelEatAnimation = false;
 
-    @ConfigEntry.Category("firstPerson")
+    @SerialEntry
     public boolean cancelDrinkAnimation = false;
 
-    @ConfigEntry.Category("firstPerson")
+    @SerialEntry
     public boolean cancelBlockAnimation = false;
 
-    @ConfigEntry.Category("firstPerson")
+    @SerialEntry
     public boolean cancelShieldAnimation = false;
 
-    @ConfigEntry.Category("firstPerson")
+    @SerialEntry
     public boolean cancelBowAnimation = false;
 
-    @ConfigEntry.Category("firstPerson")
+    @SerialEntry
     public boolean cancelArrowAnimation = false;
 
-    @ConfigEntry.Category("firstPerson")
+    @SerialEntry
     public boolean cancelSpearAnimation = false;
 
-    @ConfigEntry.Category("firstPerson")
+    @SerialEntry
     public boolean cancelBrushAnimation = false;
 
-    @ConfigEntry.Category("firstPerson")
+    @SerialEntry
     public boolean cancelBundleAnimation = false;
 
-    @ConfigEntry.Category("swings")
-    @ConfigEntry.Gui.CollapsibleObject(startExpanded = true)
-    public EntityApplicableOption cancelSwings = new EntityApplicableOption()
-        .enabled()
-        .enabledOnSelf();
+    @SerialEntry
+    public EntityApplicableOption cancelSwings = new EntityApplicableOption(true, false, false);
 
-    @ConfigEntry.Category("itemResets")
+    @SerialEntry
     public boolean cancelBlockInteractReset = true;
 
-    @ConfigEntry.Category("itemResets")
+    @SerialEntry
     public boolean cancelItemInteractReset = true;
 
-    @ConfigEntry.Category("itemResets")
+    @SerialEntry
     public boolean alwaysSkipHandAnimationOnSwap = true;
 
-    public static class EntityApplicableOption {
-        public boolean enabled;
-        public boolean enabledOnSelf;
-        public boolean enabledOnOtherPlayers;
-        public boolean enabledOnOtherEntities;
-
-        public <T> T getResult(Entity entity, T originalValue, T newValue) {
-            if (enabled) {
-                if (enabledOnSelf && entity instanceof ClientPlayerEntity) {
-                    return newValue;
-                }
-                if (enabledOnOtherPlayers && entity instanceof PlayerEntity player && !player.isMainPlayer()) {
-                    return newValue;
-                }
-                if (enabledOnOtherEntities && !(entity instanceof PlayerEntity)) {
-                    return newValue;
-                }
-                return originalValue;
-            }
-            return originalValue;
-        }
-
-        public EntityApplicableOption enabled() {
-            enabled = true;
-            return this;
-        }
-
-        public EntityApplicableOption enabledOnSelf() {
-            enabledOnSelf = true;
-            return this;
-        }
-
-        public EntityApplicableOption enabledOnOtherPlayers() {
-            enabledOnOtherPlayers = true;
-            return this;
-        }
-
-        public EntityApplicableOption enabledOnOtherEntities() {
-            enabledOnOtherEntities = true;
-            return this;
-        }
+    public static Screen getScreen(Screen parent) {
+        return YetAnotherConfigLib.create(HANDLER, (defaults, config, builder) -> {
+            return builder
+                .title(
+                    Text.literal("Advantimations Config")
+                )
+                .category(
+                    ConfigCategory.createBuilder()
+                        .name(
+                            Text.literal("First Person")
+                        )
+                        .tooltip(
+                            Text.literal("Options for canceling first person animations.")
+                        )
+                        .option(
+                            Option.<Boolean>createBuilder()
+                                .name(
+                                    Text.literal("Cancel First Person Swings")
+                                )
+                                .description(
+                                    OptionDescription.of(
+                                        Text.literal("")
+                                    )
+                                )
+                                .binding(
+                                    defaults.cancelFirstPersonSwings,
+                                    () -> config.cancelFirstPersonSwings,
+                                    (cancelFirstPersonSwings) -> config.cancelFirstPersonSwings = cancelFirstPersonSwings
+                                )
+                                .controller(BooleanControllerBuilder::create)
+                                .build()
+                        )
+                        .group(
+                            OptionGroup.createBuilder()
+                                .name(
+                                    Text.literal("Item Use Animations")
+                                )
+                                .description(
+                                    OptionDescription.of(
+                                        Text.literal("Options for cancelling item use animations such as eating and blocking.")
+                                    )
+                                )
+                                .collapsed(
+                                    false
+                                )
+                                .option(
+                                    Option.<Boolean>createBuilder()
+                                        .name(
+                                            Text.literal("Cancel Eat Animation")
+                                        )
+                                        .description(
+                                            OptionDescription.of(
+                                                Text.literal("")
+                                            )
+                                        )
+                                        .binding(
+                                            defaults.cancelEatAnimation,
+                                            () -> config.cancelEatAnimation,
+                                            (cancelEatAnimation) -> config.cancelEatAnimation = cancelEatAnimation
+                                        )
+                                        .controller(BooleanControllerBuilder::create)
+                                        .build()
+                                )
+                                .option(
+                                    Option.<Boolean>createBuilder()
+                                        .name(
+                                            Text.literal("Cancel Drink Animation")
+                                        )
+                                        .description(
+                                            OptionDescription.of(
+                                                Text.literal("")
+                                            )
+                                        )
+                                        .binding(
+                                            defaults.cancelDrinkAnimation,
+                                            () -> config.cancelDrinkAnimation,
+                                            (cancelDrinkAnimation) -> config.cancelDrinkAnimation = cancelDrinkAnimation
+                                        )
+                                        .controller(BooleanControllerBuilder::create)
+                                        .build()
+                                )
+                                .option(
+                                    Option.<Boolean>createBuilder()
+                                        .name(
+                                            Text.literal("Cancel Block Animation")
+                                        )
+                                        .description(
+                                            OptionDescription.of(
+                                                Text.literal("")
+                                            )
+                                        )
+                                        .binding(
+                                            defaults.cancelBlockAnimation,
+                                            () -> config.cancelBlockAnimation,
+                                            (cancelBlockAnimation) -> config.cancelBlockAnimation = cancelBlockAnimation
+                                        )
+                                        .controller(BooleanControllerBuilder::create)
+                                        .build()
+                                )
+                                .option(
+                                    Option.<Boolean>createBuilder()
+                                        .name(
+                                            Text.literal("Cancel Shield Animation")
+                                        )
+                                        .description(
+                                            OptionDescription.of(
+                                                Text.literal("")
+                                            )
+                                        )
+                                        .binding(
+                                            defaults.cancelShieldAnimation,
+                                            () -> config.cancelShieldAnimation,
+                                            (cancelShieldAnimation) -> config.cancelShieldAnimation = cancelShieldAnimation
+                                        )
+                                        .controller(BooleanControllerBuilder::create)
+                                        .build()
+                                )
+                                .option(
+                                    Option.<Boolean>createBuilder()
+                                        .name(
+                                            Text.literal("Cancel Bow Animation")
+                                        )
+                                        .description(
+                                            OptionDescription.of(
+                                                Text.literal("")
+                                            )
+                                        )
+                                        .binding(
+                                            defaults.cancelBowAnimation,
+                                            () -> config.cancelBowAnimation,
+                                            (cancelBowAnimation) -> config.cancelBowAnimation = cancelBowAnimation
+                                        )
+                                        .controller(BooleanControllerBuilder::create)
+                                        .build()
+                                )
+                                .option(
+                                    Option.<Boolean>createBuilder()
+                                        .name(
+                                            Text.literal("Cancel Arrow Animation")
+                                        )
+                                        .description(
+                                            OptionDescription.of(
+                                                Text.literal("")
+                                            )
+                                        )
+                                        .binding(
+                                            defaults.cancelArrowAnimation,
+                                            () -> config.cancelArrowAnimation,
+                                            (cancelArrowAnimation) -> config.cancelArrowAnimation = cancelArrowAnimation
+                                        )
+                                        .controller(BooleanControllerBuilder::create)
+                                        .build()
+                                )
+                                .option(
+                                    Option.<Boolean>createBuilder()
+                                        .name(
+                                            Text.literal("Cancel Spear Animation")
+                                        )
+                                        .description(
+                                            OptionDescription.of(
+                                                Text.literal("")
+                                            )
+                                        )
+                                        .binding(
+                                            defaults.cancelSpearAnimation,
+                                            () -> config.cancelSpearAnimation,
+                                            (cancelSpearAnimation) -> config.cancelSpearAnimation = cancelSpearAnimation
+                                        )
+                                        .controller(BooleanControllerBuilder::create)
+                                        .build()
+                                )
+                                .option(
+                                    Option.<Boolean>createBuilder()
+                                        .name(
+                                            Text.literal("Cancel Brush Animation")
+                                        )
+                                        .description(
+                                            OptionDescription.of(
+                                                Text.literal("")
+                                            )
+                                        )
+                                        .binding(
+                                            defaults.cancelBrushAnimation,
+                                            () -> config.cancelBrushAnimation,
+                                            (cancelBrushAnimation) -> config.cancelBrushAnimation = cancelBrushAnimation
+                                        )
+                                        .controller(BooleanControllerBuilder::create)
+                                        .build()
+                                )
+                                .option(
+                                    Option.<Boolean>createBuilder()
+                                        .name(
+                                            Text.literal("Cancel Bundle Animation")
+                                        )
+                                        .description(
+                                            OptionDescription.of(
+                                                Text.literal("")
+                                            )
+                                        )
+                                        .binding(
+                                            defaults.cancelBundleAnimation,
+                                            () -> config.cancelBundleAnimation,
+                                            (cancelBundleAnimation) -> config.cancelBundleAnimation = cancelBundleAnimation
+                                        )
+                                        .controller(BooleanControllerBuilder::create)
+                                        .build()
+                                )
+                                .build()
+                        )
+                        .group(
+                            OptionGroup.createBuilder()
+                                .name(
+                                    Text.literal("Item Resets")
+                                )
+                                .description(
+                                    OptionDescription.of(
+                                        Text.literal("Options for cancelling item reset animations.")
+                                    )
+                                )
+                                .collapsed(
+                                    false
+                                )
+                                .option(
+                                    Option.<Boolean>createBuilder()
+                                        .name(
+                                            Text.literal("Cancel Block Interact Reset")
+                                        )
+                                        .description(
+                                            OptionDescription.of(
+                                                Text.literal("")
+                                            )
+                                        )
+                                        .binding(
+                                            defaults.cancelBlockInteractReset,
+                                            () -> config.cancelBlockInteractReset,
+                                            (cancelBlockInteractReset) -> config.cancelBlockInteractReset = cancelBlockInteractReset
+                                        )
+                                        .controller(BooleanControllerBuilder::create)
+                                        .build()
+                                )
+                                .option(
+                                    Option.<Boolean>createBuilder()
+                                        .name(
+                                            Text.literal("Cancel Item Interact Reset")
+                                        )
+                                        .description(
+                                            OptionDescription.of(
+                                                Text.literal("")
+                                            )
+                                        )
+                                        .binding(
+                                            defaults.cancelItemInteractReset,
+                                            () -> config.cancelItemInteractReset,
+                                            (cancelItemInteractReset) -> config.cancelItemInteractReset = cancelItemInteractReset
+                                        )
+                                        .controller(BooleanControllerBuilder::create)
+                                        .build()
+                                )
+                                .option(
+                                    Option.<Boolean>createBuilder()
+                                        .name(
+                                            Text.literal("Always Skip Hand Animation on Swap")
+                                        )
+                                        .description(
+                                            OptionDescription.of(
+                                                Text.literal("")
+                                            )
+                                        )
+                                        .binding(
+                                            defaults.alwaysSkipHandAnimationOnSwap,
+                                            () -> config.alwaysSkipHandAnimationOnSwap,
+                                            (alwaysSkipHandAnimationOnSwap) -> config.alwaysSkipHandAnimationOnSwap = alwaysSkipHandAnimationOnSwap
+                                        )
+                                        .controller(BooleanControllerBuilder::create)
+                                        .build()
+                                )
+                                .build()
+                        )
+                        .build()
+                )
+                .category(
+                    ConfigCategory.createBuilder()
+                        .name(
+                            Text.literal("Model")
+                        )
+                        .tooltip(
+                            Text.literal("Options for canceling entity model animations.")
+                        )
+                        .option(
+                            ListOption.<Boolean>createBuilder()
+                                .name(
+                                    Text.literal(
+                                        "Cancel Swings"
+                                    )
+                                )
+                                .description(
+                                    OptionDescription.of(
+                                        Text.literal(
+                                            ""
+                                        )
+                                    )
+                                )
+                                .binding(
+                                    defaults.cancelSwings,
+                                    () -> config.cancelSwings,
+                                    (cancelSwings) -> config.cancelSwings.handleNewConfiguration(cancelSwings, defaults.cancelSwings)
+                                )
+                                .minimumNumberOfEntries(3)
+                                .maximumNumberOfEntries(3)
+                                .controller(BooleanControllerBuilder::create)
+                                .initial(true)
+                                .build()
+                        )
+                        .build()
+                );
+        }).generateScreen(parent);
     }
 }
