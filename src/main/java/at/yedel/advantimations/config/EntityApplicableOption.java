@@ -64,7 +64,7 @@ public class EntityApplicableOption extends ArrayList<Boolean> {
         set(2, enabledOnOtherEntities);
     }
 
-    public static Option createEntityApplicableOption(String title, EntityApplicableOption defaultValue, Supplier<List<Boolean>> getter, Consumer<List<Boolean>> setter) {
+    public static Option createOption(String title, EntityApplicableOption defaultValue, Supplier<List<Boolean>> getter, Consumer<List<Boolean>> setter) {
         return ListOption.<Boolean>createBuilder()
             .name(Text.literal(title))
             .description(OptionDescription.of(Text.literal("")))

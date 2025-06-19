@@ -262,7 +262,7 @@ public class AdvantimationsConfig {
                     .name(Text.literal("Model"))
                     .tooltip(Text.literal("Options for canceling entity model animations."))
                     .option(
-                        EntityApplicableOption.createEntityApplicableOption(
+                        EntityApplicableOption.createOption(
                             "Cancel Swings",
                             defaults.cancelSwings,
                             () -> config.cancelSwings,
@@ -270,7 +270,7 @@ public class AdvantimationsConfig {
                         )
                     )
                     .option(
-                        EntityApplicableOption.createEntityApplicableOption(
+                        EntityApplicableOption.createOption(
                             "Cancel Limb Movements",
                             defaults.cancelLimbMovements,
                             () -> config.cancelLimbMovements,
@@ -278,7 +278,7 @@ public class AdvantimationsConfig {
                         )
                     )
                     .option(
-                        EntityApplicableOption.createEntityApplicableOption(
+                        EntityApplicableOption.createOption(
                             "Weirder Limb Movements",
                             defaults.weirderLimbMovements,
                             () -> config.weirderLimbMovements,
