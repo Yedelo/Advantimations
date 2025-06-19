@@ -33,19 +33,19 @@ public class AdvantimationsConfig {
     public boolean cancelFirstPersonSwings = true;
 
     @SerialEntry
-    public boolean cancelEatAnimation = false;
+    public boolean cancelEatingAnimation = false;
 
     @SerialEntry
-    public boolean cancelDrinkAnimation = false;
+    public boolean cancelDrinkingAnimation = false;
 
     @SerialEntry
-    public boolean cancelBlockAnimation = false;
+    public boolean cancelBlockingAnimation = false;
 
     @SerialEntry
     public boolean cancelShieldAnimation = false;
 
     @SerialEntry
-    public boolean cancelBowAnimation = false;
+    public boolean cancelBowingAnimation = false;
 
     @SerialEntry
     public boolean cancelArrowAnimation = false;
@@ -54,19 +54,19 @@ public class AdvantimationsConfig {
     public boolean cancelSpearAnimation = false;
 
     @SerialEntry
-    public boolean cancelBrushAnimation = false;
+    public boolean cancelBrushingAnimation = false;
 
     @SerialEntry
     public boolean cancelBundleAnimation = false;
 
     @SerialEntry
-    public boolean cancelBlockInteractReset = true;
+    public boolean cancelBlockInteractResets = true;
 
     @SerialEntry
-    public boolean cancelItemInteractReset = true;
+    public boolean cancelItemInteractResets = true;
 
     @SerialEntry
-    public boolean alwaysSkipHandAnimationOnSwap = true;
+    public boolean cancelAllItemResets = true;
 
     @SerialEntry
     public EntityApplicableOption cancelSwings = new EntityApplicableOption(true, false, false);
@@ -101,36 +101,36 @@ public class AdvantimationsConfig {
                             .collapsed(false)
                             .option(
                                 Option.<Boolean>createBuilder()
-                                    .name(Text.literal("Cancel Eat Animation"))
+                                    .name(Text.literal("Cancel Eating Animation"))
                                     .description(OptionDescription.of(Text.literal("")))
                                     .binding(
-                                        defaults.cancelEatAnimation,
-                                        () -> config.cancelEatAnimation,
-                                        (cancelEatAnimation) -> config.cancelEatAnimation = cancelEatAnimation
+                                        defaults.cancelEatingAnimation,
+                                        () -> config.cancelEatingAnimation,
+                                        (cancelEatingAnimation) -> config.cancelEatingAnimation = cancelEatingAnimation
                                     )
                                     .controller(BooleanControllerBuilder::create)
                                     .build()
                             )
                             .option(
                                 Option.<Boolean>createBuilder()
-                                    .name(Text.literal("Cancel Drink Animation"))
+                                    .name(Text.literal("Cancel Drinking Animation"))
                                     .description(OptionDescription.of(Text.literal("")))
                                     .binding(
-                                        defaults.cancelDrinkAnimation,
-                                        () -> config.cancelDrinkAnimation,
-                                        (cancelDrinkAnimation) -> config.cancelDrinkAnimation = cancelDrinkAnimation
+                                        defaults.cancelDrinkingAnimation,
+                                        () -> config.cancelDrinkingAnimation,
+                                        (cancelDrinkingAnimation) -> config.cancelDrinkingAnimation = cancelDrinkingAnimation
                                     )
                                     .controller(BooleanControllerBuilder::create)
                                     .build()
                             )
                             .option(
                                 Option.<Boolean>createBuilder()
-                                    .name(Text.literal("Cancel Block Animation"))
+                                    .name(Text.literal("Cancel Blocking Animation"))
                                     .description(OptionDescription.of(Text.literal("")))
                                     .binding(
-                                        defaults.cancelBlockAnimation,
-                                        () -> config.cancelBlockAnimation,
-                                        (cancelBlockAnimation) -> config.cancelBlockAnimation = cancelBlockAnimation
+                                        defaults.cancelBlockingAnimation,
+                                        () -> config.cancelBlockingAnimation,
+                                        (cancelBlockingAnimation) -> config.cancelBlockingAnimation = cancelBlockingAnimation
                                     )
                                     .controller(BooleanControllerBuilder::create)
                                     .build()
@@ -149,12 +149,12 @@ public class AdvantimationsConfig {
                             )
                             .option(
                                 Option.<Boolean>createBuilder()
-                                    .name(Text.literal("Cancel Bow Animation"))
+                                    .name(Text.literal("Cancel Bowing Animation"))
                                     .description(OptionDescription.of(Text.literal("")))
                                     .binding(
-                                        defaults.cancelBowAnimation,
-                                        () -> config.cancelBowAnimation,
-                                        (cancelBowAnimation) -> config.cancelBowAnimation = cancelBowAnimation
+                                        defaults.cancelBowingAnimation,
+                                        () -> config.cancelBowingAnimation,
+                                        (cancelBowingAnimation) -> config.cancelBowingAnimation = cancelBowingAnimation
                                     )
                                     .controller(BooleanControllerBuilder::create)
                                     .build()
@@ -185,12 +185,12 @@ public class AdvantimationsConfig {
                             )
                             .option(
                                 Option.<Boolean>createBuilder()
-                                    .name(Text.literal("Cancel Brush Animation"))
+                                    .name(Text.literal("Cancel Brushing Animation"))
                                     .description(OptionDescription.of(Text.literal("")))
                                     .binding(
-                                        defaults.cancelBrushAnimation,
-                                        () -> config.cancelBrushAnimation,
-                                        (cancelBrushAnimation) -> config.cancelBrushAnimation = cancelBrushAnimation
+                                        defaults.cancelBrushingAnimation,
+                                        () -> config.cancelBrushingAnimation,
+                                        (cancelBrushingAnimation) -> config.cancelBrushingAnimation = cancelBrushingAnimation
                                     )
                                     .controller(BooleanControllerBuilder::create)
                                     .build()
@@ -216,36 +216,36 @@ public class AdvantimationsConfig {
                             .collapsed(false)
                             .option(
                                 Option.<Boolean>createBuilder()
-                                    .name(Text.literal("Cancel Block Interact Reset"))
+                                    .name(Text.literal("Cancel Block Interact Resets"))
                                     .description(OptionDescription.of(Text.literal("")))
                                     .binding(
-                                        defaults.cancelBlockInteractReset,
-                                        () -> config.cancelBlockInteractReset,
-                                        (cancelBlockInteractReset) -> config.cancelBlockInteractReset = cancelBlockInteractReset
+                                        defaults.cancelBlockInteractResets,
+                                        () -> config.cancelBlockInteractResets,
+                                        (cancelBlockInteractResets) -> config.cancelBlockInteractResets = cancelBlockInteractResets
                                     )
                                     .controller(BooleanControllerBuilder::create)
                                     .build()
                             )
                             .option(
                                 Option.<Boolean>createBuilder()
-                                    .name(Text.literal("Cancel Item Interact Reset"))
+                                    .name(Text.literal("Cancel Item Interact Resets"))
                                     .description(OptionDescription.of(Text.literal("")))
                                     .binding(
-                                        defaults.cancelItemInteractReset,
-                                        () -> config.cancelItemInteractReset,
-                                        (cancelItemInteractReset) -> config.cancelItemInteractReset = cancelItemInteractReset
+                                        defaults.cancelItemInteractResets,
+                                        () -> config.cancelItemInteractResets,
+                                        (cancelItemInteractResets) -> config.cancelItemInteractResets = cancelItemInteractResets
                                     )
                                     .controller(BooleanControllerBuilder::create)
                                     .build()
                             )
                             .option(
                                 Option.<Boolean>createBuilder()
-                                    .name(Text.literal("Always Skip Hand Animation on Swap"))
+                                    .name(Text.literal("Cancel All Item Resets"))
                                     .description(OptionDescription.of(Text.literal("")))
                                     .binding(
-                                        defaults.alwaysSkipHandAnimationOnSwap,
-                                        () -> config.alwaysSkipHandAnimationOnSwap,
-                                        (alwaysSkipHandAnimationOnSwap) -> config.alwaysSkipHandAnimationOnSwap = alwaysSkipHandAnimationOnSwap
+                                        defaults.cancelAllItemResets,
+                                        () -> config.cancelAllItemResets,
+                                        (cancelAllItemResets) -> config.cancelAllItemResets = cancelAllItemResets
                                     )
                                     .controller(BooleanControllerBuilder::create)
                                     .build()

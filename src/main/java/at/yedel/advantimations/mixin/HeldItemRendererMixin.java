@@ -28,7 +28,7 @@ public abstract class HeldItemRendererMixin {
 
     @ModifyExpressionValue(method = "renderFirstPersonItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;getUseAction()Lnet/minecraft/item/consume/UseAction;"))
     private UseAction advantimations$cancelUseAnimations(UseAction original) {
-        if ((AdvantimationsConfig.getInstance().cancelEatAnimation && original == UseAction.EAT) || (AdvantimationsConfig.getInstance().cancelDrinkAnimation && original == UseAction.DRINK) || (AdvantimationsConfig.getInstance().cancelBlockAnimation && original == UseAction.BLOCK) || (AdvantimationsConfig.getInstance().cancelBowAnimation && original == UseAction.BOW) || (AdvantimationsConfig.getInstance().cancelSpearAnimation && original == UseAction.SPEAR) || (AdvantimationsConfig.getInstance().cancelBrushAnimation && original == UseAction.BRUSH) || (AdvantimationsConfig.getInstance().cancelBundleAnimation && original == UseAction.BUNDLE)) {
+        if ((AdvantimationsConfig.getInstance().cancelEatingAnimation && original == UseAction.EAT) || (AdvantimationsConfig.getInstance().cancelDrinkingAnimation && original == UseAction.DRINK) || (AdvantimationsConfig.getInstance().cancelBlockingAnimation && original == UseAction.BLOCK) || (AdvantimationsConfig.getInstance().cancelBowingAnimation && original == UseAction.BOW) || (AdvantimationsConfig.getInstance().cancelSpearAnimation && original == UseAction.SPEAR) || (AdvantimationsConfig.getInstance().cancelBrushingAnimation && original == UseAction.BRUSH) || (AdvantimationsConfig.getInstance().cancelBundleAnimation && original == UseAction.BUNDLE)) {
             return UseAction.NONE;
         }
         return original;
@@ -36,7 +36,7 @@ public abstract class HeldItemRendererMixin {
 
     @Inject(method = "shouldSkipHandAnimationOnSwap", at = @At("HEAD"), cancellable = true)
     private void advantimations$alwaysSkipHandAnimationOnSwap(ItemStack from, ItemStack to, CallbackInfoReturnable<Boolean> cir) {
-        if (AdvantimationsConfig.getInstance().alwaysSkipHandAnimationOnSwap) {
+        if (AdvantimationsConfig.getInstance().cancelAllItemResets) {
             cir.setReturnValue(true);
         }
     }
