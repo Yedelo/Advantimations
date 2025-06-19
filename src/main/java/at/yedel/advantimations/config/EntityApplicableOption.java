@@ -2,12 +2,19 @@ package at.yedel.advantimations.config;
 
 
 
+import dev.isxander.yacl3.api.ListOption;
+import dev.isxander.yacl3.api.Option;
+import dev.isxander.yacl3.api.OptionDescription;
+import dev.isxander.yacl3.api.controller.BooleanControllerBuilder;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.text.Text;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 
 
@@ -55,5 +62,21 @@ public class EntityApplicableOption extends ArrayList<Boolean> {
         set(0, enabledOnSelf);
         set(1, enabledOnOtherPlayers);
         set(2, enabledOnOtherEntities);
+    }
+
+    public static Option createEntityApplicableOption(String title, EntityApplicableOption defaultValue, Supplier<List<Boolean>> getter, Consumer<List<Boolean>> setter) {
+        return ListOption.<Boolean>createBuilder()
+            .name(Text.literal(title))
+            .description(OptionDescription.of(Text.literal("")))
+            .binding(
+                defaultValue,
+                getter,
+                setter
+            )
+            .minimumNumberOfEntries(3)
+            .maximumNumberOfEntries(3)
+            .controller(BooleanControllerBuilder::create)
+            .initial(true)
+            .build();
     }
 }

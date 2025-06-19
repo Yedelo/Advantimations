@@ -256,26 +256,15 @@ public class AdvantimationsConfig {
                         .name(Text.literal("Model"))
                         .tooltip(Text.literal("Options for canceling entity model animations."))
                         .option(
-                            createCancelSwingsOption(defaults, config)
+                            EntityApplicableOption.createEntityApplicableOption(
+                                "Cancel Swings",
+                                defaults.cancelSwings,
+                                () -> config.cancelSwings,
+                                (cancelSwings) -> config.cancelSwings.handleNewConfiguration(cancelSwings, defaults.cancelSwings)
+                            )
                         )
                         .build()
                 );
         }).generateScreen(parent);
-    }
-
-    private static Option createCancelSwingsOption(AdvantimationsConfig defaults, AdvantimationsConfig config) {
-        return ListOption.<Boolean>createBuilder()
-            .name(Text.literal("Cancel Swings"))
-            .description(OptionDescription.of(Text.literal("")))
-            .binding(
-                defaults.cancelSwings,
-                () -> config.cancelSwings,
-                (cancelSwings) -> config.cancelSwings.handleNewConfiguration(cancelSwings, defaults.cancelSwings)
-            )
-            .minimumNumberOfEntries(3)
-            .maximumNumberOfEntries(3)
-            .controller(BooleanControllerBuilder::create)
-            .initial(true)
-            .build();
     }
 }
