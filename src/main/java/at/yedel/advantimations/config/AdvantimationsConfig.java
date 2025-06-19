@@ -60,9 +60,6 @@ public class AdvantimationsConfig {
     public boolean cancelBundleAnimation = false;
 
     @SerialEntry
-    public EntityApplicableOption cancelSwings = new EntityApplicableOption(true, false, false);
-
-    @SerialEntry
     public boolean cancelBlockInteractReset = true;
 
     @SerialEntry
@@ -70,6 +67,9 @@ public class AdvantimationsConfig {
 
     @SerialEntry
     public boolean alwaysSkipHandAnimationOnSwap = true;
+
+    @SerialEntry
+    public EntityApplicableOption cancelSwings = new EntityApplicableOption(true, false, false);
 
     @SerialEntry
     public EntityApplicableOption cancelLimbMovements = new EntityApplicableOption(true, false, false);
