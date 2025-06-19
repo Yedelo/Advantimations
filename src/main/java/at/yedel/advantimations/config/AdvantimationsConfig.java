@@ -74,6 +74,9 @@ public class AdvantimationsConfig {
     @SerialEntry
     public EntityApplicableOption cancelLimbMovements = new EntityApplicableOption(true, false, false);
 
+    @SerialEntry
+    public EntityApplicableOption weirderLimbMovements = new EntityApplicableOption(false, false, false);
+
     public static Screen getScreen(Screen parent) {
         return YetAnotherConfigLib.create(HANDLER, (defaults, config, builder) ->
             builder
@@ -272,6 +275,14 @@ public class AdvantimationsConfig {
                             defaults.cancelLimbMovements,
                             () -> config.cancelLimbMovements,
                             (cancelLimbMovements) -> config.cancelLimbMovements.handleNewConfiguration(cancelLimbMovements, defaults.cancelLimbMovements)
+                        )
+                    )
+                    .option(
+                        EntityApplicableOption.createEntityApplicableOption(
+                            "Weirder Limb Movements",
+                            defaults.weirderLimbMovements,
+                            () -> config.weirderLimbMovements,
+                            (weirderLimbMovements) -> config.weirderLimbMovements.handleNewConfiguration(weirderLimbMovements, defaults.weirderLimbMovements)
                         )
                     )
                     .build()
