@@ -64,6 +64,12 @@ public class AdvantimationsConfig {
     public boolean cancelBundleAnimation = false;
 
     @SerialEntry
+    public boolean cancelCrossbowingAnimation = false;
+
+    @SerialEntry
+    public boolean cancelChargedCrossbowAnimation = false;
+
+    @SerialEntry
     public boolean cancelBlockInteractResets = true;
 
     @SerialEntry
@@ -214,6 +220,36 @@ public class AdvantimationsConfig {
                                             defaults.cancelBundleAnimation,
                                             () -> config.cancelBundleAnimation,
                                             (cancelBundleAnimation) -> config.cancelBundleAnimation = cancelBundleAnimation
+                                        )
+                                        .controller(BooleanControllerBuilder::create)
+                                        .build()
+                                )
+                                .build()
+                        )
+                        .group(
+                            OptionGroup.createBuilder()
+                                .name(Text.literal("Crossbow Animations"))
+                                .description(OptionDescription.of(Text.literal("Options for cancelling crossbow animations.")))
+                                .option(
+                                    Option.<Boolean>createBuilder()
+                                        .name(Text.literal("Cancel Crossbowing Animation"))
+                                        .description(OptionDescription.of(Text.literal("")))
+                                        .binding(
+                                            defaults.cancelCrossbowingAnimation,
+                                            () -> config.cancelCrossbowingAnimation,
+                                            (cancelCrossbowingAnimation) -> config.cancelCrossbowingAnimation = cancelCrossbowingAnimation
+                                        )
+                                        .controller(BooleanControllerBuilder::create)
+                                        .build()
+                                )
+                                .option(
+                                    Option.<Boolean>createBuilder()
+                                        .name(Text.literal("Cancel Charged Crossbow Animation"))
+                                        .description(OptionDescription.of(Text.literal("")))
+                                        .binding(
+                                            defaults.cancelChargedCrossbowAnimation,
+                                            () -> config.cancelChargedCrossbowAnimation,
+                                            (cancelChargedCrossbowAnimation) -> config.cancelChargedCrossbowAnimation = cancelChargedCrossbowAnimation
                                         )
                                         .controller(BooleanControllerBuilder::create)
                                         .build()

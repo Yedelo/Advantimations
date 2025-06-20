@@ -34,6 +34,22 @@ public abstract class HeldItemRendererMixin {
         return original;
     }
 
+    @ModifyExpressionValue(method = "renderFirstPersonItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/network/AbstractClientPlayerEntity;isUsingItem()Z", ordinal = 0))
+    private boolean advantimations$cancelCrossbowingAnimation(boolean original) {
+        if (AdvantimationsConfig.getInstance().cancelCrossbowingAnimation) {
+            return false;
+        }
+        return original;
+    }
+
+    @ModifyExpressionValue(method = "renderFirstPersonItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/CrossbowItem;isCharged(Lnet/minecraft/item/ItemStack;)Z"))
+    private boolean advantimations$cancelChargedCrossbowAnimation(boolean original) {
+        if (AdvantimationsConfig.getInstance().cancelChargedCrossbowAnimation) {
+            return false;
+        }
+        return original;
+    }
+
     @Inject(method = "shouldSkipHandAnimationOnSwap", at = @At("HEAD"), cancellable = true)
     private void advantimations$alwaysSkipHandAnimationOnSwap(ItemStack from, ItemStack to, CallbackInfoReturnable<Boolean> cir) {
         if (AdvantimationsConfig.getInstance().cancelAllItemResets) {
