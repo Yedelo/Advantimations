@@ -52,7 +52,7 @@ public class AdvantimationsConfig {
     public boolean cancelBowingAnimation = false;
 
     @SerialEntry
-    public boolean cancelArrowAnimation = false;
+    public boolean cancelBowArrowModel = false;
 
     @SerialEntry
     public boolean cancelSpearAnimation = false;
@@ -178,12 +178,12 @@ public class AdvantimationsConfig {
                                 )
                                 .option(
                                     Option.<Boolean>createBuilder()
-                                        .name(Text.literal("Cancel Arrow Animation"))
+                                        .name(Text.literal("Cancel Bow Arrow Model"))
                                         .description(OptionDescription.of(Text.literal("")))
                                         .binding(
-                                            defaults.cancelArrowAnimation,
-                                            () -> config.cancelArrowAnimation,
-                                            (cancelArrowAnimation) -> config.cancelArrowAnimation = cancelArrowAnimation
+                                            defaults.cancelBowArrowModel,
+                                            () -> config.cancelBowArrowModel,
+                                            (cancelArrowAnimation) -> config.cancelBowArrowModel = cancelArrowAnimation
                                         )
                                         .controller(BooleanControllerBuilder::create)
                                         .build()
