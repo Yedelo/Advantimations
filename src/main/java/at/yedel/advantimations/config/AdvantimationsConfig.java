@@ -20,13 +20,17 @@ public class AdvantimationsConfig {
         .serializer(
             config -> GsonConfigSerializerBuilder.create(config)
                 .setPath(FabricLoader.getInstance().getConfigDir().resolve("advantimations.json"))
-                .setJson5(true)
+                .setJson5(false)
                 .build()
         )
         .build();
 
     public static AdvantimationsConfig getInstance() {
         return HANDLER.instance();
+    }
+
+    public static void init() {
+        HANDLER.load();
     }
 
     @SerialEntry
