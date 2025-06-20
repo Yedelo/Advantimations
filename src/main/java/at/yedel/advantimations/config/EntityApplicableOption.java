@@ -73,6 +73,7 @@ public class EntityApplicableOption {
             .option(
                 Option.<Boolean>createBuilder()
                     .name(Text.literal("Enabled on Self"))
+                    .description(OptionDescription.of(Text.literal("Enable this option for yourself.")))
                     .binding(
                         defaultValue.isEnabledOnSelf(),
                         configValue::isEnabledOnSelf,
@@ -84,6 +85,7 @@ public class EntityApplicableOption {
             .option(
                 Option.<Boolean>createBuilder()
                     .name(Text.literal("Enabled on Other Players"))
+                    .description(OptionDescription.of(Text.literal("Enable this option for other players.")))
                     .binding(
                         defaultValue.isEnabledOnOtherPlayers(),
                         configValue::isEnabledOnOtherPlayers,
@@ -95,6 +97,7 @@ public class EntityApplicableOption {
             .option(
                 Option.<Boolean>createBuilder()
                     .name(Text.literal("Enabled on Other Entities"))
+                    .description(OptionDescription.of(Text.literal("Enable this option for other non-player entities, such as zombies.")))
                     .binding(
                         defaultValue.isEnabledOnOtherEntities(),
                         configValue::isEnabledOnOtherEntities,

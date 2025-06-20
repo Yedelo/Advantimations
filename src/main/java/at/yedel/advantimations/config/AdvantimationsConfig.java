@@ -10,6 +10,7 @@ import dev.isxander.yacl3.config.v2.api.serializer.GsonConfigSerializerBuilder;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 
 
@@ -102,11 +103,11 @@ public class AdvantimationsConfig {
                 .category(
                     ConfigCategory.createBuilder()
                         .name(Text.literal("First Person"))
-                        .tooltip(Text.literal("Options for canceling first person animations."))
+                        .tooltip(Text.literal("Options for cancelling first person animations."))
                         .option(
                             Option.<Boolean>createBuilder()
                                 .name(Text.literal("Cancel First Person Swings"))
-                                .description(OptionDescription.of(Text.literal("")))
+                                .description(OptionDescription.of(Text.literal("Cancel all swing animations in first person.")))
                                 .binding(
                                     defaults.cancelFirstPersonSwings,
                                     () -> config.cancelFirstPersonSwings,
@@ -122,7 +123,7 @@ public class AdvantimationsConfig {
                                 .option(
                                     Option.<Boolean>createBuilder()
                                         .name(Text.literal("Cancel Eating Animation"))
-                                        .description(OptionDescription.of(Text.literal("")))
+                                        .description(OptionDescription.of(Text.literal("Cancel first person eating animations of items with").append(Text.literal("\nconsumable={animation:'eat'}.").formatted(Formatting.ITALIC))))
                                         .binding(
                                             defaults.cancelEatingAnimation,
                                             () -> config.cancelEatingAnimation,
@@ -134,7 +135,7 @@ public class AdvantimationsConfig {
                                 .option(
                                     Option.<Boolean>createBuilder()
                                         .name(Text.literal("Cancel Drinking Animation"))
-                                        .description(OptionDescription.of(Text.literal("")))
+                                        .description(OptionDescription.of(Text.literal("Cancel first person drinking animations of items with").append(Text.literal("\nconsumable={animation:'drink'}.").formatted(Formatting.ITALIC))))
                                         .binding(
                                             defaults.cancelDrinkingAnimation,
                                             () -> config.cancelDrinkingAnimation,
@@ -146,7 +147,7 @@ public class AdvantimationsConfig {
                                 .option(
                                     Option.<Boolean>createBuilder()
                                         .name(Text.literal("Cancel Blocking Animation"))
-                                        .description(OptionDescription.of(Text.literal("")))
+                                        .description(OptionDescription.of(Text.literal("Cancel first person blocking animations of items with").append(Text.literal("\nconsumable={animation:'block'}.").formatted(Formatting.ITALIC))))
                                         .binding(
                                             defaults.cancelBlockingAnimation,
                                             () -> config.cancelBlockingAnimation,
@@ -158,7 +159,7 @@ public class AdvantimationsConfig {
                                 .option(
                                     Option.<Boolean>createBuilder()
                                         .name(Text.literal("Cancel Shield Animation"))
-                                        .description(OptionDescription.of(Text.literal("")))
+                                        .description(OptionDescription.of(Text.literal("Cancel first person shield animations of items that use the shield model.")))
                                         .binding(
                                             defaults.cancelShieldAnimation,
                                             () -> config.cancelShieldAnimation,
@@ -170,7 +171,7 @@ public class AdvantimationsConfig {
                                 .option(
                                     Option.<Boolean>createBuilder()
                                         .name(Text.literal("Cancel Bowing Animation"))
-                                        .description(OptionDescription.of(Text.literal("")))
+                                        .description(OptionDescription.of(Text.literal("Cancel first person bowing animations of items with").append(Text.literal("\nconsumable={animation:'bow'}.").formatted(Formatting.ITALIC))))
                                         .binding(
                                             defaults.cancelBowingAnimation,
                                             () -> config.cancelBowingAnimation,
@@ -182,7 +183,7 @@ public class AdvantimationsConfig {
                                 .option(
                                     Option.<Boolean>createBuilder()
                                         .name(Text.literal("Cancel Bow Arrow Model"))
-                                        .description(OptionDescription.of(Text.literal("")))
+                                        .description(OptionDescription.of(Text.literal("Cancel the model of the arrow being charged in a bow.")))
                                         .binding(
                                             defaults.cancelBowArrowModel,
                                             () -> config.cancelBowArrowModel,
@@ -194,7 +195,7 @@ public class AdvantimationsConfig {
                                 .option(
                                     Option.<Boolean>createBuilder()
                                         .name(Text.literal("Cancel Spear Animation"))
-                                        .description(OptionDescription.of(Text.literal("")))
+                                        .description(OptionDescription.of(Text.literal("Cancel first person spear animations of items with").append(Text.literal("\nconsumable={animation:'spear'},").formatted(Formatting.ITALIC).append(Text.literal("\nmainly tridents.")))))
                                         .binding(
                                             defaults.cancelSpearAnimation,
                                             () -> config.cancelSpearAnimation,
@@ -206,7 +207,7 @@ public class AdvantimationsConfig {
                                 .option(
                                     Option.<Boolean>createBuilder()
                                         .name(Text.literal("Cancel Brushing Animation"))
-                                        .description(OptionDescription.of(Text.literal("")))
+                                        .description(OptionDescription.of(Text.literal("Cancel first person brushing animations of items with").append(Text.literal("\nconsumable={animation:'brush'}.").formatted(Formatting.ITALIC))))
                                         .binding(
                                             defaults.cancelBrushingAnimation,
                                             () -> config.cancelBrushingAnimation,
@@ -218,7 +219,7 @@ public class AdvantimationsConfig {
                                 .option(
                                     Option.<Boolean>createBuilder()
                                         .name(Text.literal("Cancel Bundle Animation"))
-                                        .description(OptionDescription.of(Text.literal("")))
+                                        .description(OptionDescription.of(Text.literal("Cancel the first person swinging animation of using bundles.")))
                                         .binding(
                                             defaults.cancelBundleAnimation,
                                             () -> config.cancelBundleAnimation,
@@ -236,7 +237,7 @@ public class AdvantimationsConfig {
                                 .option(
                                     Option.<Boolean>createBuilder()
                                         .name(Text.literal("Cancel Crossbowing Animation"))
-                                        .description(OptionDescription.of(Text.literal("")))
+                                        .description(OptionDescription.of(Text.literal("Cancel the first person crossbowing animation of items with").append(Text.literal("\nconsumable={animation:'crossbow'}.").formatted(Formatting.ITALIC))))
                                         .binding(
                                             defaults.cancelCrossbowingAnimation,
                                             () -> config.cancelCrossbowingAnimation,
@@ -248,7 +249,7 @@ public class AdvantimationsConfig {
                                 .option(
                                     Option.<Boolean>createBuilder()
                                         .name(Text.literal("Cancel Charged Crossbow Animation"))
-                                        .description(OptionDescription.of(Text.literal("")))
+                                        .description(OptionDescription.of(Text.literal("Cancel the first person charged crossbow animation when holding a charged crossbow.")))
                                         .binding(
                                             defaults.cancelChargedCrossbowAnimation,
                                             () -> config.cancelChargedCrossbowAnimation,
@@ -260,7 +261,7 @@ public class AdvantimationsConfig {
                                 .option(
                                     Option.<Boolean>createBuilder()
                                         .name(Text.literal("Cancel Crossbow Arrow Model"))
-                                        .description(OptionDescription.of(Text.literal("")))
+                                        .description(OptionDescription.of(Text.literal("Cancel the model of the arrow being charged in a crossbow.")))
                                         .binding(
                                             defaults.cancelCrossbowArrowModel,
                                             () -> config.cancelCrossbowArrowModel,
@@ -278,7 +279,7 @@ public class AdvantimationsConfig {
                                 .option(
                                     Option.<Boolean>createBuilder()
                                         .name(Text.literal("Cancel Block Interact Resets"))
-                                        .description(OptionDescription.of(Text.literal("")))
+                                        .description(OptionDescription.of(Text.literal("Cancel item reset animations when interacting with a block, such as eating a cake.")))
                                         .binding(
                                             defaults.cancelBlockInteractResets,
                                             () -> config.cancelBlockInteractResets,
@@ -290,7 +291,7 @@ public class AdvantimationsConfig {
                                 .option(
                                     Option.<Boolean>createBuilder()
                                         .name(Text.literal("Cancel Item Interact Resets"))
-                                        .description(OptionDescription.of(Text.literal("")))
+                                        .description(OptionDescription.of(Text.literal("Cancel item reset animations when interacting with an item, such as casting a fishing rod.")))
                                         .binding(
                                             defaults.cancelItemInteractResets,
                                             () -> config.cancelItemInteractResets,
@@ -302,7 +303,7 @@ public class AdvantimationsConfig {
                                 .option(
                                     Option.<Boolean>createBuilder()
                                         .name(Text.literal("Cancel All Item Resets"))
-                                        .description(OptionDescription.of(Text.literal("")))
+                                        .description(OptionDescription.of(Text.literal("Cancel all item reset animations, including swapping slots or experiencing item changes like with durability.")))
                                         .binding(
                                             defaults.cancelAllItemResets,
                                             () -> config.cancelAllItemResets,
@@ -320,16 +321,32 @@ public class AdvantimationsConfig {
                         .name(Text.literal("Model"))
                         .tooltip(Text.literal("Options for canceling entity model animations."))
                         .group(
-                            EntityApplicableOption.createGroup("Cancel Swings", "", defaults.cancelSwings, config.cancelSwings)
+                            EntityApplicableOption.createGroup(
+                                "Cancel Swings",
+                                "Cancel swinging animations on entities.",
+                                defaults.cancelSwings, config.cancelSwings
+                            )
                         )
                         .group(
-                            EntityApplicableOption.createGroup("Cancel Limb Movements", "", defaults.cancelLimbMovements, config.cancelLimbMovements)
+                            EntityApplicableOption.createGroup(
+                                "Cancel Limb Movements",
+                                "Cancel limb movements on entities.",
+                                defaults.cancelLimbMovements, config.cancelLimbMovements
+                            )
                         )
                         .group(
-                            EntityApplicableOption.createGroup("Weirder Limb Movements", "", defaults.weirderLimbMovements, config.weirderLimbMovements)
+                            EntityApplicableOption.createGroup(
+                                "Weirder Limb Movements",
+                                "Somewhat cancel limb movements on entities. Limbs will look normal until an entity is fully moving, to which point they will stay still.",
+                                defaults.weirderLimbMovements, config.weirderLimbMovements
+                            )
                         )
                         .group(
-                            EntityApplicableOption.createGroup("Cancel Sneaking", "", defaults.cancelSneaking, config.cancelSneaking)
+                            EntityApplicableOption.createGroup(
+                                "Cancel Sneaking",
+                                "Cancel sneaking animations on entities.",
+                                defaults.cancelSneaking, config.cancelSneaking
+                            )
                         )
                         .build()
                 )).generateScreen(parent);
