@@ -29,7 +29,7 @@ public abstract class UsingItemPropertyMixin {
     private boolean advantimations$cancelItemUseCondition(boolean original, @Share("stack") LocalRef<ItemStack> stackRef, @Share("displayContext") LocalRef<ItemDisplayContext> displayContextRef) {
         Item item = stackRef.get().getItem();
         ItemDisplayContext displayContext = displayContextRef.get();
-        if ((displayContext == ItemDisplayContext.FIRST_PERSON_LEFT_HAND || displayContext == ItemDisplayContext.FIRST_PERSON_RIGHT_HAND) & (AdvantimationsConfig.getInstance().cancelShieldAnimation && item instanceof ShieldItem) || (AdvantimationsConfig.getInstance().cancelBowArrowModel && item instanceof BowItem)) {
+        if ((displayContext == ItemDisplayContext.FIRST_PERSON_LEFT_HAND || displayContext == ItemDisplayContext.FIRST_PERSON_RIGHT_HAND) && ((AdvantimationsConfig.getInstance().cancelShieldAnimation && item instanceof ShieldItem) || (AdvantimationsConfig.getInstance().cancelBowArrowModel && item instanceof BowItem) || (AdvantimationsConfig.getInstance().cancelCrossbowArrowModel && item instanceof CrossbowItem))) {
             return false;
         }
         return original;

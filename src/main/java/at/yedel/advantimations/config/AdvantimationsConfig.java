@@ -70,6 +70,9 @@ public class AdvantimationsConfig {
     public boolean cancelChargedCrossbowAnimation = false;
 
     @SerialEntry
+    public boolean cancelCrossbowArrowModel = false;
+
+    @SerialEntry
     public boolean cancelBlockInteractResets = true;
 
     @SerialEntry
@@ -250,6 +253,18 @@ public class AdvantimationsConfig {
                                             defaults.cancelChargedCrossbowAnimation,
                                             () -> config.cancelChargedCrossbowAnimation,
                                             (cancelChargedCrossbowAnimation) -> config.cancelChargedCrossbowAnimation = cancelChargedCrossbowAnimation
+                                        )
+                                        .controller(BooleanControllerBuilder::create)
+                                        .build()
+                                )
+                                .option(
+                                    Option.<Boolean>createBuilder()
+                                        .name(Text.literal("Cancel Crossbow Arrow Model"))
+                                        .description(OptionDescription.of(Text.literal("")))
+                                        .binding(
+                                            defaults.cancelCrossbowArrowModel,
+                                            () -> config.cancelCrossbowArrowModel,
+                                            (cancelCrossbowArrowModel) -> config.cancelCrossbowArrowModel = cancelCrossbowArrowModel
                                         )
                                         .controller(BooleanControllerBuilder::create)
                                         .build()
