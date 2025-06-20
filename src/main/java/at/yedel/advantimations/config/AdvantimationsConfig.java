@@ -79,7 +79,7 @@ public class AdvantimationsConfig {
     public boolean cancelItemInteractResets = true;
 
     @SerialEntry
-    public boolean cancelAllItemResets = true;
+    public boolean cancelAllItemResets = false;
 
     @SerialEntry
     public EntityApplicableOption cancelSwings = new EntityApplicableOption()
