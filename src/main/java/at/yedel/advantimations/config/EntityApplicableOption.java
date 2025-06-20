@@ -2,9 +2,15 @@ package at.yedel.advantimations.config;
 
 
 
+import dev.isxander.yacl3.api.Option;
+import dev.isxander.yacl3.api.OptionDescription;
+import dev.isxander.yacl3.api.OptionGroup;
+import dev.isxander.yacl3.api.controller.BooleanControllerBuilder;
+import dev.isxander.yacl3.api.controller.TickBoxControllerBuilder;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.text.Text;
 
 
 
@@ -47,6 +53,57 @@ public class EntityApplicableOption {
             }
         }
         return originalValue;
+    }
+
+    public static OptionGroup createGroup(String groupName, String groupDescription, EntityApplicableOption defaultValue, EntityApplicableOption configValue) {
+        return OptionGroup.createBuilder()
+            .name(Text.literal(groupName))
+            .description(OptionDescription.of(Text.literal(groupDescription)))
+            .option(
+                Option.<Boolean>createBuilder()
+                    .name(Text.literal("Enabled"))
+                    .binding(
+                        defaultValue.isEnabled(),
+                        configValue::isEnabled,
+                        configValue::setEnabled
+                    )
+                    .controller(BooleanControllerBuilder::create)
+                    .build()
+            )
+            .option(
+                Option.<Boolean>createBuilder()
+                    .name(Text.literal("Enabled on Self"))
+                    .binding(
+                        defaultValue.isEnabledOnSelf(),
+                        configValue::isEnabledOnSelf,
+                        configValue::setEnabledOnSelf
+                    )
+                    .controller(TickBoxControllerBuilder::create)
+                    .build()
+            )
+            .option(
+                Option.<Boolean>createBuilder()
+                    .name(Text.literal("Enabled on Other Players"))
+                    .binding(
+                        defaultValue.isEnabledOnOtherPlayers(),
+                        configValue::isEnabledOnOtherPlayers,
+                        configValue::setEnabledOnOtherPlayers
+                    )
+                    .controller(TickBoxControllerBuilder::create)
+                    .build()
+            )
+            .option(
+                Option.<Boolean>createBuilder()
+                    .name(Text.literal("Enabled on Other Entities"))
+                    .binding(
+                        defaultValue.isEnabledOnOtherEntities(),
+                        configValue::isEnabledOnOtherEntities,
+                        configValue::setEnabledOnOtherEntities
+                    )
+                    .controller(TickBoxControllerBuilder::create)
+                    .build()
+            )
+            .build();
     }
 
     public boolean isEnabled() {

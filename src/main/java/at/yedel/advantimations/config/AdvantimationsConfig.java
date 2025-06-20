@@ -4,7 +4,6 @@ package at.yedel.advantimations.config;
 
 import dev.isxander.yacl3.api.*;
 import dev.isxander.yacl3.api.controller.BooleanControllerBuilder;
-import dev.isxander.yacl3.api.controller.TickBoxControllerBuilder;
 import dev.isxander.yacl3.config.v2.api.ConfigClassHandler;
 import dev.isxander.yacl3.config.v2.api.SerialEntry;
 import dev.isxander.yacl3.config.v2.api.serializer.GsonConfigSerializerBuilder;
@@ -266,200 +265,16 @@ public class AdvantimationsConfig {
                         .name(Text.literal("Model"))
                         .tooltip(Text.literal("Options for canceling entity model animations."))
                         .group(
-                            OptionGroup.createBuilder()
-                                .name(Text.literal("Cancel Swings"))
-                                .option(
-                                    Option.<Boolean>createBuilder()
-                                        .name(Text.literal("Enabled"))
-                                        .binding(
-                                            defaults.cancelSwings.isEnabled(),
-                                            () -> config.cancelSwings.isEnabled(),
-                                            (enabled) -> config.cancelSwings.setEnabled(enabled)
-                                        )
-                                        .controller(BooleanControllerBuilder::create)
-                                        .build()
-                                )
-                                .option(
-                                    Option.<Boolean>createBuilder()
-                                        .name(Text.literal("Enabled on Self"))
-                                        .binding(
-                                            defaults.cancelSwings.isEnabledOnSelf(),
-                                            () -> config.cancelSwings.isEnabledOnSelf(),
-                                            (enabledOnSelf) -> config.cancelSwings.setEnabledOnSelf(enabledOnSelf)
-                                        )
-                                        .controller(TickBoxControllerBuilder::create)
-                                        .build()
-                                )
-                                .option(
-                                    Option.<Boolean>createBuilder()
-                                        .name(Text.literal("Enabled on Other Players"))
-                                        .binding(
-                                            defaults.cancelSwings.isEnabledOnOtherPlayers(),
-                                            () -> config.cancelSwings.isEnabledOnOtherPlayers(),
-                                            (enabledOnOtherPlayers) -> config.cancelSwings.setEnabledOnOtherPlayers(enabledOnOtherPlayers)
-                                        )
-                                        .controller(TickBoxControllerBuilder::create)
-                                        .build()
-                                )
-                                .option(
-                                    Option.<Boolean>createBuilder()
-                                        .name(Text.literal("Enabled on Other Entities"))
-                                        .binding(
-                                            defaults.cancelSwings.isEnabledOnOtherEntities(),
-                                            () -> config.cancelSwings.isEnabledOnOtherEntities(),
-                                            (enabledOnOtherEntities) -> config.cancelSwings.setEnabledOnOtherEntities(enabledOnOtherEntities)
-                                        )
-                                        .controller(TickBoxControllerBuilder::create)
-                                        .build()
-                                )
-                                .build()
+                            EntityApplicableOption.createGroup("Cancel Swings", "", defaults.cancelSwings, config.cancelSwings)
                         )
                         .group(
-                            OptionGroup.createBuilder()
-                                .name(Text.literal("Cancel Limb Movements"))
-                                .option(
-                                    Option.<Boolean>createBuilder()
-                                        .name(Text.literal("Enabled"))
-                                        .binding(
-                                            defaults.cancelLimbMovements.isEnabled(),
-                                            () -> config.cancelLimbMovements.isEnabled(),
-                                            (enabled) -> config.cancelLimbMovements.setEnabled(enabled)
-                                        )
-                                        .controller(BooleanControllerBuilder::create)
-                                        .build()
-                                )
-                                .option(
-                                    Option.<Boolean>createBuilder()
-                                        .name(Text.literal("Enabled on Self"))
-                                        .binding(
-                                            defaults.cancelLimbMovements.isEnabledOnSelf(),
-                                            () -> config.cancelLimbMovements.isEnabledOnSelf(),
-                                            (enabledOnSelf) -> config.cancelLimbMovements.setEnabledOnSelf(enabledOnSelf)
-                                        )
-                                        .controller(TickBoxControllerBuilder::create)
-                                        .build()
-                                )
-                                .option(
-                                    Option.<Boolean>createBuilder()
-                                        .name(Text.literal("Enabled on Other Players"))
-                                        .binding(
-                                            defaults.cancelLimbMovements.isEnabledOnOtherPlayers(),
-                                            () -> config.cancelLimbMovements.isEnabledOnOtherPlayers(),
-                                            (enabledOnOtherPlayers) -> config.cancelLimbMovements.setEnabledOnOtherPlayers(enabledOnOtherPlayers)
-                                        )
-                                        .controller(TickBoxControllerBuilder::create)
-                                        .build()
-                                )
-                                .option(
-                                    Option.<Boolean>createBuilder()
-                                        .name(Text.literal("Enabled on Other Entities"))
-                                        .binding(
-                                            defaults.cancelLimbMovements.isEnabledOnOtherEntities(),
-                                            () -> config.cancelLimbMovements.isEnabledOnOtherEntities(),
-                                            (enabledOnOtherEntities) -> config.cancelLimbMovements.setEnabledOnOtherEntities(enabledOnOtherEntities)
-                                        )
-                                        .controller(TickBoxControllerBuilder::create)
-                                        .build()
-                                )
-                                .build()
+                            EntityApplicableOption.createGroup("Cancel Limb Movements", "", defaults.cancelLimbMovements, config.cancelLimbMovements)
                         )
                         .group(
-                            OptionGroup.createBuilder()
-                                .name(Text.literal("Weirder Limb Movements"))
-                                .option(
-                                    Option.<Boolean>createBuilder()
-                                        .name(Text.literal("Enabled"))
-                                        .binding(
-                                            defaults.weirderLimbMovements.isEnabled(),
-                                            () -> config.weirderLimbMovements.isEnabled(),
-                                            (enabled) -> config.weirderLimbMovements.setEnabled(enabled)
-                                        )
-                                        .controller(BooleanControllerBuilder::create)
-                                        .build()
-                                )
-                                .option(
-                                    Option.<Boolean>createBuilder()
-                                        .name(Text.literal("Enabled on Self"))
-                                        .binding(
-                                            defaults.weirderLimbMovements.isEnabledOnSelf(),
-                                            () -> config.weirderLimbMovements.isEnabledOnSelf(),
-                                            (enabledOnSelf) -> config.weirderLimbMovements.setEnabledOnSelf(enabledOnSelf)
-                                        )
-                                        .controller(TickBoxControllerBuilder::create)
-                                        .build()
-                                )
-                                .option(
-                                    Option.<Boolean>createBuilder()
-                                        .name(Text.literal("Enabled on Other Players"))
-                                        .binding(
-                                            defaults.weirderLimbMovements.isEnabledOnOtherPlayers(),
-                                            () -> config.weirderLimbMovements.isEnabledOnOtherPlayers(),
-                                            (enabledOnOtherPlayers) -> config.weirderLimbMovements.setEnabledOnOtherPlayers(enabledOnOtherPlayers)
-                                        )
-                                        .controller(TickBoxControllerBuilder::create)
-                                        .build()
-                                )
-                                .option(
-                                    Option.<Boolean>createBuilder()
-                                        .name(Text.literal("Enabled on Other Entities"))
-                                        .binding(
-                                            defaults.weirderLimbMovements.isEnabledOnOtherEntities(),
-                                            () -> config.weirderLimbMovements.isEnabledOnOtherEntities(),
-                                            (enabledOnOtherEntities) -> config.weirderLimbMovements.setEnabledOnOtherEntities(enabledOnOtherEntities)
-                                        )
-                                        .controller(TickBoxControllerBuilder::create)
-                                        .build()
-                                )
-                                .build()
+                            EntityApplicableOption.createGroup("Weirder Limb Movements", "", defaults.weirderLimbMovements, config.weirderLimbMovements)
                         )
                         .group(
-                            OptionGroup.createBuilder()
-                                .name(Text.literal("Cancel Sneaking"))
-                                .option(
-                                    Option.<Boolean>createBuilder()
-                                        .name(Text.literal("Enabled"))
-                                        .binding(
-                                            defaults.cancelSneaking.isEnabled(),
-                                            () -> config.cancelSneaking.isEnabled(),
-                                            (enabled) -> config.cancelSneaking.setEnabled(enabled)
-                                        )
-                                        .controller(BooleanControllerBuilder::create)
-                                        .build()
-                                )
-                                .option(
-                                    Option.<Boolean>createBuilder()
-                                        .name(Text.literal("Enabled on Self"))
-                                        .binding(
-                                            defaults.cancelSneaking.isEnabledOnSelf(),
-                                            () -> config.cancelSneaking.isEnabledOnSelf(),
-                                            (enabledOnSelf) -> config.cancelSneaking.setEnabledOnSelf(enabledOnSelf)
-                                        )
-                                        .controller(TickBoxControllerBuilder::create)
-                                        .build()
-                                )
-                                .option(
-                                    Option.<Boolean>createBuilder()
-                                        .name(Text.literal("Enabled on Other Players"))
-                                        .binding(
-                                            defaults.cancelSneaking.isEnabledOnOtherPlayers(),
-                                            () -> config.cancelSneaking.isEnabledOnOtherPlayers(),
-                                            (enabledOnOtherPlayers) -> config.cancelSneaking.setEnabledOnOtherPlayers(enabledOnOtherPlayers)
-                                        )
-                                        .controller(TickBoxControllerBuilder::create)
-                                        .build()
-                                )
-                                .option(
-                                    Option.<Boolean>createBuilder()
-                                        .name(Text.literal("Enabled on Other Entities"))
-                                        .binding(
-                                            defaults.cancelSneaking.isEnabledOnOtherEntities(),
-                                            () -> config.cancelSneaking.isEnabledOnOtherEntities(),
-                                            (enabledOnOtherEntities) -> config.cancelSneaking.setEnabledOnOtherEntities(enabledOnOtherEntities)
-                                        )
-                                        .controller(TickBoxControllerBuilder::create)
-                                        .build()
-                                )
-                                .build()
+                            EntityApplicableOption.createGroup("Cancel Sneaking", "", defaults.cancelSneaking, config.cancelSneaking)
                         )
                         .build()
                 )).generateScreen(parent);
