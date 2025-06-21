@@ -55,7 +55,10 @@ public class AdvantimationsConfig {
     public PerspectiveIndependentEntityOption cancelBowingAnimation = new PerspectiveIndependentEntityOption();
 
     @SerialEntry
-    public PerspectiveIndependentEntityOption cancelBowArrowModel = new PerspectiveIndependentEntityOption();
+    public PerspectiveIndependentEntityOption cancelCrossbowingAnimation = new PerspectiveIndependentEntityOption();
+
+    @SerialEntry
+    public PerspectiveIndependentEntityOption cancelChargedCrossbowAnimation = new PerspectiveIndependentEntityOption();
 
     @SerialEntry
     public PerspectiveIndependentEntityOption cancelSpearAnimation = new PerspectiveIndependentEntityOption();
@@ -67,10 +70,7 @@ public class AdvantimationsConfig {
     public PerspectiveIndependentEntityOption cancelBundleAnimation = new PerspectiveIndependentEntityOption();
 
     @SerialEntry
-    public PerspectiveIndependentEntityOption cancelCrossbowingAnimation = new PerspectiveIndependentEntityOption();
-
-    @SerialEntry
-    public PerspectiveIndependentEntityOption cancelChargedCrossbowAnimation = new PerspectiveIndependentEntityOption();
+    public PerspectiveIndependentEntityOption cancelBowArrowModel = new PerspectiveIndependentEntityOption();
 
     @SerialEntry
     public PerspectiveIndependentEntityOption cancelCrossbowArrowModel = new PerspectiveIndependentEntityOption();
@@ -135,16 +135,10 @@ public class AdvantimationsConfig {
                         "Cancel Bowing Animation", "Cancel the bow drawing animation.", defaults.cancelBowingAnimation, config.cancelBowingAnimation
                     ))
                     .group(PerspectiveIndependentEntityOption.createGroup(
-                        "Cancel Bow Arrow Model", "Cancel the arrow in a bow being rendered.", defaults.cancelBowArrowModel, config.cancelBowArrowModel
-                    ))
-                    .group(PerspectiveIndependentEntityOption.createGroup(
                         "Cancel Crossbowing Animation", "Cancel the crossbow drawing animation.", defaults.cancelCrossbowingAnimation, config.cancelCrossbowingAnimation
                     ))
                     .group(PerspectiveIndependentEntityOption.createGroup(
                         "Cancel Charged Crossbow Animation", "Cancel the charged crossbow model.", defaults.cancelChargedCrossbowAnimation, config.cancelChargedCrossbowAnimation
-                    ))
-                    .group(PerspectiveIndependentEntityOption.createGroup(
-                        "Cancel Crossbow Arrow Model", "Cancel the arrow in a crossbow being rendered", defaults.cancelCrossbowArrowModel, config.cancelCrossbowArrowModel
                     ))
                     .group(PerspectiveIndependentEntityOption.createGroup(
                         "Cancel Spear Animation", "Cancel the spear drawing animation.", defaults.cancelSpearAnimation, config.cancelSpearAnimation
@@ -154,6 +148,12 @@ public class AdvantimationsConfig {
                     ))
                     .group(PerspectiveIndependentEntityOption.createGroup(
                         "Cancel Bundle Animation", "Cancel the bundle use swing animation.", defaults.cancelBundleAnimation, config.cancelBundleAnimation
+                    ))
+                    .group(PerspectiveIndependentEntityOption.createGroup(
+                        "Cancel Bow Arrow Model", "Cancel the arrow in a bow being rendered.", defaults.cancelBowArrowModel, config.cancelBowArrowModel
+                    ))
+                    .group(PerspectiveIndependentEntityOption.createGroup(
+                        "Cancel Crossbow Arrow Model", "Cancel the arrow in a crossbow being rendered", defaults.cancelCrossbowArrowModel, config.cancelCrossbowArrowModel
                     ))
                     .group(OptionGroup.createBuilder()
                         .name(Text.literal("Item Resets"))
