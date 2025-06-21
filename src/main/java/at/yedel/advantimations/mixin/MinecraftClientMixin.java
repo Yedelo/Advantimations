@@ -15,12 +15,12 @@ import org.spongepowered.asm.mixin.injection.At;
 @Mixin(MinecraftClient.class)
 public abstract class MinecraftClientMixin {
     @WrapWithCondition(method = "doItemUse", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/item/HeldItemRenderer;resetEquipProgress(Lnet/minecraft/util/Hand;)V", ordinal = 0))
-    private boolean advantimations$cancelBlockInteractReset(HeldItemRenderer instance, Hand hand) {
+    private boolean advantimations$cancelBlockInteractResets(HeldItemRenderer instance, Hand hand) {
         return !AdvantimationsConfig.getInstance().cancelBlockInteractResets;
     }
 
     @WrapWithCondition(method = "doItemUse", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/item/HeldItemRenderer;resetEquipProgress(Lnet/minecraft/util/Hand;)V", ordinal = 1))
-    private boolean advantimations$cancelItemInteractReset(HeldItemRenderer instance, Hand hand) {
+    private boolean advantimations$cancelItemInteractResets(HeldItemRenderer instance, Hand hand) {
         return !AdvantimationsConfig.getInstance().cancelItemInteractResets;
     }
 }

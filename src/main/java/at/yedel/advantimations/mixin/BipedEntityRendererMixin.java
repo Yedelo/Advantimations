@@ -20,7 +20,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(BipedEntityRenderer.class)
 public abstract class BipedEntityRendererMixin {
     @Inject(method = "updateBipedRenderState", at = @At("HEAD"))
-    private static void advantimations$storeBipedEntity(LivingEntity entity, BipedEntityRenderState state, float tickProgress, ItemModelManager itemModelResolver, CallbackInfo ci, @Share("entity") LocalRef<LivingEntity> entityRef) {
+    private static void advantimations$storeEntity(LivingEntity entity, BipedEntityRenderState state, float tickProgress, ItemModelManager itemModelResolver, CallbackInfo ci, @Share("entity") LocalRef<LivingEntity> entityRef) {
         entityRef.set(entity);
     }
 
@@ -30,7 +30,7 @@ public abstract class BipedEntityRendererMixin {
     }
 
     @ModifyExpressionValue(method = "updateBipedRenderState", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;isInSneakingPose()Z"))
-    private static boolean advantimations$cancelSneaking2(boolean original, @Share("entity") LocalRef<LivingEntity> entityRef) {
+    private static boolean advantimations$cancelSneaking(boolean original, @Share("entity") LocalRef<LivingEntity> entityRef) {
         return AdvantimationsConfig.getInstance().cancelSneaking.getResult(entityRef.get(), original, false);
     }
 }
