@@ -12,33 +12,15 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.text.Text;
 
+import java.util.ArrayList;
+
 
 
 public class EntityApplicableOption {
-    private boolean enabled;
-    private boolean enabledOnSelf;
-    private boolean enabledOnOtherPlayers;
-    private boolean enabledOnOtherEntities;
-
-    public EntityApplicableOption enabled() {
-        this.enabled = true;
-        return this;
-    }
-
-    public EntityApplicableOption enabledOnSelf() {
-        this.enabledOnSelf = true;
-        return this;
-    }
-
-    public EntityApplicableOption enabledOnOtherPlayers() {
-        this.enabledOnOtherPlayers = true;
-        return this;
-    }
-
-    public EntityApplicableOption enabledOnOtherEntities() {
-        this.enabledOnOtherEntities = true;
-        return this;
-    }
+    protected boolean enabled;
+    protected boolean enabledOnSelf;
+    protected boolean enabledOnOtherPlayers;
+    protected boolean enabledOnOtherEntities;
 
     public <T> T getResult(Entity entity, T originalValue, T newValue) {
         if (enabled) {
@@ -59,54 +41,80 @@ public class EntityApplicableOption {
         return OptionGroup.createBuilder()
             .name(Text.literal(groupName))
             .description(OptionDescription.of(Text.literal(groupDescription)))
-            .option(
-                Option.<Boolean>createBuilder()
-                    .name(Text.literal("Enabled"))
-                    .binding(
-                        defaultValue.isEnabled(),
-                        configValue::isEnabled,
-                        configValue::setEnabled
-                    )
-                    .controller(BooleanControllerBuilder::create)
-                    .build()
-            )
-            .option(
-                Option.<Boolean>createBuilder()
-                    .name(Text.literal("Enabled on Self"))
-                    .description(OptionDescription.of(Text.literal("Enable this option for yourself.")))
-                    .binding(
-                        defaultValue.isEnabledOnSelf(),
-                        configValue::isEnabledOnSelf,
-                        configValue::setEnabledOnSelf
-                    )
-                    .controller(TickBoxControllerBuilder::create)
-                    .build()
-            )
-            .option(
-                Option.<Boolean>createBuilder()
-                    .name(Text.literal("Enabled on Other Players"))
-                    .description(OptionDescription.of(Text.literal("Enable this option for other players.")))
-                    .binding(
-                        defaultValue.isEnabledOnOtherPlayers(),
-                        configValue::isEnabledOnOtherPlayers,
-                        configValue::setEnabledOnOtherPlayers
-                    )
-                    .controller(TickBoxControllerBuilder::create)
-                    .build()
-            )
-            .option(
-                Option.<Boolean>createBuilder()
-                    .name(Text.literal("Enabled on Other Entities"))
-                    .description(OptionDescription.of(Text.literal("Enable this option for other non-player entities, such as zombies.")))
-                    .binding(
-                        defaultValue.isEnabledOnOtherEntities(),
-                        configValue::isEnabledOnOtherEntities,
-                        configValue::setEnabledOnOtherEntities
-                    )
-                    .controller(TickBoxControllerBuilder::create)
-                    .build()
-            )
+            .options(createOptions(defaultValue, configValue))
             .build();
+    }
+
+    protected static ArrayList<Option<Boolean>> createOptions(EntityApplicableOption defaultValue, EntityApplicableOption configValue) {
+        ArrayList<Option<Boolean>> options = new ArrayList<>();
+        options.add(
+            Option.<Boolean>createBuilder()
+                .name(Text.literal("Enabled"))
+                .binding(
+                    defaultValue.isEnabled(),
+                    configValue::isEnabled,
+                    configValue::setEnabled
+                )
+                .controller(BooleanControllerBuilder::create)
+                .build()
+        );
+        options.add(
+            Option.<Boolean>createBuilder()
+                .name(Text.literal("Enabled on Self"))
+                .description(OptionDescription.of(Text.literal("Enable this option for yourself.")))
+                .binding(
+                    defaultValue.isEnabledOnSelf(),
+                    configValue::isEnabledOnSelf,
+                    configValue::setEnabledOnSelf
+                )
+                .controller(TickBoxControllerBuilder::create)
+                .build()
+        );
+        options.add(
+            Option.<Boolean>createBuilder()
+                .name(Text.literal("Enabled on Other Players"))
+                .description(OptionDescription.of(Text.literal("Enable this option for other players.")))
+                .binding(
+                    defaultValue.isEnabledOnOtherPlayers(),
+                    configValue::isEnabledOnOtherPlayers,
+                    configValue::setEnabledOnOtherPlayers
+                )
+                .controller(TickBoxControllerBuilder::create)
+                .build()
+        );
+        options.add(
+            Option.<Boolean>createBuilder()
+                .name(Text.literal("Enabled on Other Entities"))
+                .description(OptionDescription.of(Text.literal("Enable this option for other non-player entities, such as zombies.")))
+                .binding(
+                    defaultValue.isEnabledOnOtherEntities(),
+                    configValue::isEnabledOnOtherEntities,
+                    configValue::setEnabledOnOtherEntities
+                )
+                .controller(TickBoxControllerBuilder::create)
+                .build()
+        );
+        return options;
+    }
+
+    public EntityApplicableOption enabled() {
+        this.enabled = true;
+        return this;
+    }
+
+    public EntityApplicableOption enabledOnSelf() {
+        this.enabledOnSelf = true;
+        return this;
+    }
+
+    public EntityApplicableOption enabledOnOtherPlayers() {
+        this.enabledOnOtherPlayers = true;
+        return this;
+    }
+
+    public EntityApplicableOption enabledOnOtherEntities() {
+        this.enabledOnOtherEntities = true;
+        return this;
     }
 
     public boolean isEnabled() {

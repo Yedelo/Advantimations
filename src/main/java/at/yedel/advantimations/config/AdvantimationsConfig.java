@@ -96,6 +96,12 @@ public class AdvantimationsConfig {
     @SerialEntry
     public EntityApplicableOption cancelSneaking = new EntityApplicableOption();
 
+    @SerialEntry
+    public EntityAndFirstPersonApplicableOption testOption = new EntityAndFirstPersonApplicableOption()
+        .enabled()
+        .enabledInFirstPerson()
+        .enabledOnSelf();
+
     public static Screen getScreen(Screen parent) {
         return YetAnotherConfigLib.create(HANDLER, (defaults, config, builder) ->
             builder
@@ -346,6 +352,14 @@ public class AdvantimationsConfig {
                                 "Cancel Sneaking",
                                 "Cancel sneaking animations on entities.",
                                 defaults.cancelSneaking, config.cancelSneaking
+                            )
+                        )
+                        .group(
+                            EntityAndFirstPersonApplicableOption.createGroup(
+                                "Test Option",
+                                "Test! Expected order:\n- Enabled\n- Enabled in First Person\n- Enabled on Self\n- Enabled on Other Players\n- Enabled on Other Entities",
+                                defaults.testOption,
+                                config.testOption
                             )
                         )
                         .build()
