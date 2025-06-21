@@ -34,7 +34,7 @@ public class AdvantimationsConfig {
     }
 
     @SerialEntry
-    public PerspectiveIndependentOption cancelSwings = new PerspectiveIndependentOption()
+    public PerspectiveIndependentEntityOption cancelSwings = new PerspectiveIndependentEntityOption()
         .enabled()
         .enabledInFirstPerson()
         .enabledOnSelf();
@@ -46,34 +46,34 @@ public class AdvantimationsConfig {
     public boolean cancelDrinkingAnimation = false;
 
     @SerialEntry
-    public PerspectiveIndependentOption cancelBlockingAnimation = new PerspectiveIndependentOption();
+    public PerspectiveIndependentEntityOption cancelBlockingAnimation = new PerspectiveIndependentEntityOption();
 
     @SerialEntry
-    public PerspectiveIndependentOption cancelShieldAnimation = new PerspectiveIndependentOption();
+    public PerspectiveIndependentEntityOption cancelShieldAnimation = new PerspectiveIndependentEntityOption();
 
     @SerialEntry
-    public PerspectiveIndependentOption cancelBowingAnimation = new PerspectiveIndependentOption();
+    public PerspectiveIndependentEntityOption cancelBowingAnimation = new PerspectiveIndependentEntityOption();
 
     @SerialEntry
-    public PerspectiveIndependentOption cancelBowArrowModel = new PerspectiveIndependentOption();
+    public PerspectiveIndependentEntityOption cancelBowArrowModel = new PerspectiveIndependentEntityOption();
 
     @SerialEntry
-    public PerspectiveIndependentOption cancelSpearAnimation = new PerspectiveIndependentOption();
+    public PerspectiveIndependentEntityOption cancelSpearAnimation = new PerspectiveIndependentEntityOption();
 
     @SerialEntry
-    public PerspectiveIndependentOption cancelBrushingAnimation = new PerspectiveIndependentOption();
+    public PerspectiveIndependentEntityOption cancelBrushingAnimation = new PerspectiveIndependentEntityOption();
 
     @SerialEntry
-    public PerspectiveIndependentOption cancelBundleAnimation = new PerspectiveIndependentOption();
+    public PerspectiveIndependentEntityOption cancelBundleAnimation = new PerspectiveIndependentEntityOption();
 
     @SerialEntry
-    public PerspectiveIndependentOption cancelCrossbowingAnimation = new PerspectiveIndependentOption();
+    public PerspectiveIndependentEntityOption cancelCrossbowingAnimation = new PerspectiveIndependentEntityOption();
 
     @SerialEntry
-    public PerspectiveIndependentOption cancelChargedCrossbowAnimation = new PerspectiveIndependentOption();
+    public PerspectiveIndependentEntityOption cancelChargedCrossbowAnimation = new PerspectiveIndependentEntityOption();
 
     @SerialEntry
-    public PerspectiveIndependentOption cancelCrossbowArrowModel = new PerspectiveIndependentOption();
+    public PerspectiveIndependentEntityOption cancelCrossbowArrowModel = new PerspectiveIndependentEntityOption();
 
     @SerialEntry
     public boolean cancelBlockInteractResets = true;
@@ -85,13 +85,13 @@ public class AdvantimationsConfig {
     public boolean cancelAllItemResets = false;
 
     @SerialEntry
-    public EntityApplicableOption cancelLimbMovements = new EntityApplicableOption();
+    public ThirdPersonEntityOption cancelLimbMovements = new ThirdPersonEntityOption();
 
     @SerialEntry
-    public EntityApplicableOption weirderLimbMovements = new EntityApplicableOption();
+    public ThirdPersonEntityOption weirderLimbMovements = new ThirdPersonEntityOption();
 
     @SerialEntry
-    public EntityApplicableOption cancelSneaking = new EntityApplicableOption();
+    public ThirdPersonEntityOption cancelSneaking = new ThirdPersonEntityOption();
 
     public static Screen getScreen(Screen parent) {
         return YetAnotherConfigLib.create(HANDLER, (defaults, config, builder) ->
@@ -100,7 +100,7 @@ public class AdvantimationsConfig {
                 .category(ConfigCategory.createBuilder()
                     .name(Text.literal("Item Model"))
                     .tooltip(Text.literal("Options for cancelling item models and animations."))
-                    .group(PerspectiveIndependentOption.createGroup(
+                    .group(PerspectiveIndependentEntityOption.createGroup(
                         "Cancel Swings", "Cancel hand and item swing animations.", defaults.cancelSwings, config.cancelSwings
                     ))
                     .option(Option.<Boolean>createBuilder()
@@ -125,34 +125,34 @@ public class AdvantimationsConfig {
                         .controller(BooleanControllerBuilder::create)
                         .build()
                     )
-                    .group(PerspectiveIndependentOption.createGroup(
+                    .group(PerspectiveIndependentEntityOption.createGroup(
                         "Cancel Blocking Animation", "Cancel the item blocking animation.", defaults.cancelBlockingAnimation, config.cancelBlockingAnimation
                     ))
-                    .group(PerspectiveIndependentOption.createGroup(
+                    .group(PerspectiveIndependentEntityOption.createGroup(
                         "Cancel Shield Animation", "Cancel the shield blocking animation.", defaults.cancelShieldAnimation, config.cancelShieldAnimation
                     ))
-                    .group(PerspectiveIndependentOption.createGroup(
+                    .group(PerspectiveIndependentEntityOption.createGroup(
                         "Cancel Bowing Animation", "Cancel the bow drawing animation.", defaults.cancelBowingAnimation, config.cancelBowingAnimation
                     ))
-                    .group(PerspectiveIndependentOption.createGroup(
+                    .group(PerspectiveIndependentEntityOption.createGroup(
                         "Cancel Bow Arrow Model", "Cancel the arrow in a bow being rendered.", defaults.cancelBowArrowModel, config.cancelBowArrowModel
                     ))
-                    .group(PerspectiveIndependentOption.createGroup(
+                    .group(PerspectiveIndependentEntityOption.createGroup(
                         "Cancel Crossbowing Animation", "Cancel the crossbow drawing animation.", defaults.cancelCrossbowingAnimation, config.cancelCrossbowingAnimation
                     ))
-                    .group(PerspectiveIndependentOption.createGroup(
+                    .group(PerspectiveIndependentEntityOption.createGroup(
                         "Cancel Charged Crossbow Animation", "Cancel the charged crossbow model.", defaults.cancelChargedCrossbowAnimation, config.cancelChargedCrossbowAnimation
                     ))
-                    .group(PerspectiveIndependentOption.createGroup(
+                    .group(PerspectiveIndependentEntityOption.createGroup(
                         "Cancel Crossbow Arrow Model", "Cancel the arrow in a crossbow being rendered", defaults.cancelCrossbowArrowModel, config.cancelCrossbowArrowModel
                     ))
-                    .group(PerspectiveIndependentOption.createGroup(
+                    .group(PerspectiveIndependentEntityOption.createGroup(
                         "Cancel Spear Animation", "Cancel the spear drawing animation.", defaults.cancelSpearAnimation, config.cancelSpearAnimation
                     ))
-                    .group(PerspectiveIndependentOption.createGroup(
+                    .group(PerspectiveIndependentEntityOption.createGroup(
                         "Cancel Brushing Animation", "Cancel the brushing animation.", defaults.cancelBrushingAnimation, config.cancelBrushingAnimation
                     ))
-                    .group(PerspectiveIndependentOption.createGroup(
+                    .group(PerspectiveIndependentEntityOption.createGroup(
                         "Cancel Bundle Animation", "Cancel the bundle use swing animation.", defaults.cancelBundleAnimation, config.cancelBundleAnimation
                     ))
                     .group(OptionGroup.createBuilder()
@@ -198,13 +198,13 @@ public class AdvantimationsConfig {
                 .category(ConfigCategory.createBuilder()
                     .name(Text.literal("Entity Model"))
                     .tooltip(Text.literal("Options for cancelling entity model animations."))
-                    .group(EntityApplicableOption.createGroup(
+                    .group(ThirdPersonEntityOption.createGroup(
                         "Cancel Limb Movements", "Cancel entity limb movements.", defaults.cancelLimbMovements, config.cancelLimbMovements
                     ))
-                    .group(EntityApplicableOption.createGroup(
+                    .group(ThirdPersonEntityOption.createGroup(
                         "Weirder Limb Movements", "Somewhat cancel entity limb movements.", defaults.weirderLimbMovements, config.weirderLimbMovements
                     ))
-                    .group(EntityApplicableOption.createGroup(
+                    .group(ThirdPersonEntityOption.createGroup(
                         "Cancel Sneaking", "Cancel the sneaking animation.", defaults.cancelSneaking, config.cancelSneaking
                     ))
                     .build()

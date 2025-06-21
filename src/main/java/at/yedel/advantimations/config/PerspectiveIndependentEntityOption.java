@@ -12,11 +12,11 @@ import java.util.ArrayList;
 
 
 
-public class PerspectiveIndependentOption extends EntityApplicableOption {
+public class PerspectiveIndependentEntityOption extends ThirdPersonEntityOption {
     private boolean enabledInFirstPerson;
 
-    public static OptionGroup createGroup(String groupName, String groupDescription, PerspectiveIndependentOption defaultValue, PerspectiveIndependentOption configValue) {
-        ArrayList<Option<Boolean>> options = EntityApplicableOption.createOptions(defaultValue, configValue);
+    public static OptionGroup createGroup(String groupName, String groupDescription, PerspectiveIndependentEntityOption defaultValue, PerspectiveIndependentEntityOption configValue) {
+        ArrayList<Option<Boolean>> options = ThirdPersonEntityOption.createOptions(defaultValue, configValue);
         options.add(
             1,
             Option.<Boolean>createBuilder()
@@ -37,27 +37,27 @@ public class PerspectiveIndependentOption extends EntityApplicableOption {
             .build();
     }
 
-    public PerspectiveIndependentOption enabled() {
+    public PerspectiveIndependentEntityOption enabled() {
         this.enabled = true;
         return this;
     }
 
-    public PerspectiveIndependentOption enabledInFirstPerson() {
+    public PerspectiveIndependentEntityOption enabledInFirstPerson() {
         this.enabledInFirstPerson = true;
         return this;
     }
 
-    public PerspectiveIndependentOption enabledOnSelf() {
+    public PerspectiveIndependentEntityOption enabledOnSelf() {
         this.enabledOnSelf = true;
         return this;
     }
 
-    public PerspectiveIndependentOption enabledOnOtherPlayers() {
+    public PerspectiveIndependentEntityOption enabledOnOtherPlayers() {
         this.enabledOnOtherPlayers = true;
         return this;
     }
 
-    public PerspectiveIndependentOption enabledOnOtherEntities() {
+    public PerspectiveIndependentEntityOption enabledOnOtherEntities() {
         this.enabledOnOtherEntities = true;
         return this;
     }

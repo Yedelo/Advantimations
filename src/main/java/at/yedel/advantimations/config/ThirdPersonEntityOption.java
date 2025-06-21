@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 
 
-public class EntityApplicableOption {
+public class ThirdPersonEntityOption {
     protected boolean enabled;
     protected boolean enabledOnSelf;
     protected boolean enabledOnOtherPlayers;
@@ -37,7 +37,7 @@ public class EntityApplicableOption {
         return originalValue;
     }
 
-    public static OptionGroup createGroup(String groupName, String groupDescription, EntityApplicableOption defaultValue, EntityApplicableOption configValue) {
+    public static OptionGroup createGroup(String groupName, String groupDescription, ThirdPersonEntityOption defaultValue, ThirdPersonEntityOption configValue) {
         return OptionGroup.createBuilder()
             .name(Text.literal(groupName))
             .description(OptionDescription.of(Text.literal(groupDescription)))
@@ -45,7 +45,7 @@ public class EntityApplicableOption {
             .build();
     }
 
-    protected static ArrayList<Option<Boolean>> createOptions(EntityApplicableOption defaultValue, EntityApplicableOption configValue) {
+    protected static ArrayList<Option<Boolean>> createOptions(ThirdPersonEntityOption defaultValue, ThirdPersonEntityOption configValue) {
         ArrayList<Option<Boolean>> options = new ArrayList<>();
         options.add(
             Option.<Boolean>createBuilder()
@@ -97,22 +97,22 @@ public class EntityApplicableOption {
         return options;
     }
 
-    public EntityApplicableOption enabled() {
+    public ThirdPersonEntityOption enabled() {
         this.enabled = true;
         return this;
     }
 
-    public EntityApplicableOption enabledOnSelf() {
+    public ThirdPersonEntityOption enabledOnSelf() {
         this.enabledOnSelf = true;
         return this;
     }
 
-    public EntityApplicableOption enabledOnOtherPlayers() {
+    public ThirdPersonEntityOption enabledOnOtherPlayers() {
         this.enabledOnOtherPlayers = true;
         return this;
     }
 
-    public EntityApplicableOption enabledOnOtherEntities() {
+    public ThirdPersonEntityOption enabledOnOtherEntities() {
         this.enabledOnOtherEntities = true;
         return this;
     }
