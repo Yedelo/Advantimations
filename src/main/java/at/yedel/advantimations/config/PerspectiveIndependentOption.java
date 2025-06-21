@@ -12,10 +12,10 @@ import java.util.ArrayList;
 
 
 
-public class EntityAndFirstPersonApplicableOption extends EntityApplicableOption {
+public class PerspectiveIndependentOption extends EntityApplicableOption {
     private boolean enabledInFirstPerson;
 
-    public static OptionGroup createGroup(String groupName, String groupDescription, EntityAndFirstPersonApplicableOption defaultValue, EntityAndFirstPersonApplicableOption configValue) {
+    public static OptionGroup createGroup(String groupName, String groupDescription, PerspectiveIndependentOption defaultValue, PerspectiveIndependentOption configValue) {
         ArrayList<Option<Boolean>> options = EntityApplicableOption.createOptions(defaultValue, configValue);
         options.add(
             1,
@@ -37,27 +37,27 @@ public class EntityAndFirstPersonApplicableOption extends EntityApplicableOption
             .build();
     }
 
-    public EntityAndFirstPersonApplicableOption enabled() {
+    public PerspectiveIndependentOption enabled() {
         this.enabled = true;
         return this;
     }
 
-    public EntityAndFirstPersonApplicableOption enabledInFirstPerson() {
+    public PerspectiveIndependentOption enabledInFirstPerson() {
         this.enabledInFirstPerson = true;
         return this;
     }
 
-    public EntityAndFirstPersonApplicableOption enabledOnSelf() {
+    public PerspectiveIndependentOption enabledOnSelf() {
         this.enabledOnSelf = true;
         return this;
     }
 
-    public EntityAndFirstPersonApplicableOption enabledOnOtherPlayers() {
+    public PerspectiveIndependentOption enabledOnOtherPlayers() {
         this.enabledOnOtherPlayers = true;
         return this;
     }
 
-    public EntityAndFirstPersonApplicableOption enabledOnOtherEntities() {
+    public PerspectiveIndependentOption enabledOnOtherEntities() {
         this.enabledOnOtherEntities = true;
         return this;
     }

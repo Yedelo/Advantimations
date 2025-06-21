@@ -97,7 +97,7 @@ public class AdvantimationsConfig {
     public EntityApplicableOption cancelSneaking = new EntityApplicableOption();
 
     @SerialEntry
-    public EntityAndFirstPersonApplicableOption testOption = new EntityAndFirstPersonApplicableOption()
+    public PerspectiveIndependentOption testOption = new PerspectiveIndependentOption()
         .enabled()
         .enabledInFirstPerson()
         .enabledOnSelf();
@@ -355,7 +355,7 @@ public class AdvantimationsConfig {
                             )
                         )
                         .group(
-                            EntityAndFirstPersonApplicableOption.createGroup(
+                            PerspectiveIndependentOption.createGroup(
                                 "Test Option",
                                 "Test! Expected order:\n- Enabled\n- Enabled in First Person\n- Enabled on Self\n- Enabled on Other Players\n- Enabled on Other Entities",
                                 defaults.testOption,
