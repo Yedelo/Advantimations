@@ -52,10 +52,10 @@ public class AdvantimationsConfig {
     public PerspectiveIndependentEntityOption cancelShieldAnimation = new PerspectiveIndependentEntityOption();
 
     @SerialEntry
-    public PerspectiveIndependentEntityOption cancelBowingAnimation = new PerspectiveIndependentEntityOption();
+    public PerspectiveIndependentEntityOption cancelBowAnimation = new PerspectiveIndependentEntityOption();
 
     @SerialEntry
-    public PerspectiveIndependentEntityOption cancelCrossbowingAnimation = new PerspectiveIndependentEntityOption();
+    public PerspectiveIndependentEntityOption cancelCrossbowAnimation = new PerspectiveIndependentEntityOption();
 
     @SerialEntry
     public PerspectiveIndependentEntityOption cancelChargedCrossbowAnimation = new PerspectiveIndependentEntityOption();
@@ -82,7 +82,7 @@ public class AdvantimationsConfig {
     public boolean cancelItemInteractResets = true;
 
     @SerialEntry
-    public boolean cancelAllItemResets = false;
+    public boolean cancelSlotSwappingResets = false;
 
     @SerialEntry
     public ThirdPersonEntityOption cancelLimbMovements = new ThirdPersonEntityOption();
@@ -132,10 +132,10 @@ public class AdvantimationsConfig {
                         "Cancel Shield Animation", "Cancel the shield blocking animation.", defaults.cancelShieldAnimation, config.cancelShieldAnimation
                     ))
                     .group(PerspectiveIndependentEntityOption.createGroup(
-                        "Cancel Bowing Animation", "Cancel the bow drawing animation.", defaults.cancelBowingAnimation, config.cancelBowingAnimation
+                        "Cancel Bow Animation", "Cancel the bow drawing animation.", defaults.cancelBowAnimation, config.cancelBowAnimation
                     ))
                     .group(PerspectiveIndependentEntityOption.createGroup(
-                        "Cancel Crossbowing Animation", "Cancel the crossbow drawing animation.", defaults.cancelCrossbowingAnimation, config.cancelCrossbowingAnimation
+                        "Cancel Crossbow Animation", "Cancel the crossbow drawing animation.", defaults.cancelCrossbowAnimation, config.cancelCrossbowAnimation
                     ))
                     .group(PerspectiveIndependentEntityOption.createGroup(
                         "Cancel Charged Crossbow Animation", "Cancel the charged crossbow model.", defaults.cancelChargedCrossbowAnimation, config.cancelChargedCrossbowAnimation
@@ -153,7 +153,7 @@ public class AdvantimationsConfig {
                         "Cancel Bow Arrow Model", "Cancel the arrow in a bow being rendered.", defaults.cancelBowArrowModel, config.cancelBowArrowModel
                     ))
                     .group(PerspectiveIndependentEntityOption.createGroup(
-                        "Cancel Crossbow Arrow Model", "Cancel the arrow in a crossbow being rendered", defaults.cancelCrossbowArrowModel, config.cancelCrossbowArrowModel
+                        "Cancel Crossbow Arrow Model", "Cancel the arrow in a crossbow being rendered.", defaults.cancelCrossbowArrowModel, config.cancelCrossbowArrowModel
                     ))
                     .group(OptionGroup.createBuilder()
                         .name(Text.literal("Item Resets"))
@@ -181,12 +181,12 @@ public class AdvantimationsConfig {
                             .build()
                         )
                         .option(Option.<Boolean>createBuilder()
-                            .name(Text.literal("Cancel All Item Resets"))
-                            .description(OptionDescription.of(Text.literal("Always cancel the item reset animation when swapping items.")))
+                            .name(Text.literal("Cancel Slot Swapping Resets"))
+                            .description(OptionDescription.of(Text.literal("Cancel the item reset animation when swapping items.")))
                             .binding(
-                                defaults.cancelAllItemResets,
-                                () -> config.cancelAllItemResets,
-                                (cancelAllItemResets) -> config.cancelAllItemResets = cancelAllItemResets
+                                defaults.cancelSlotSwappingResets,
+                                () -> config.cancelSlotSwappingResets,
+                                (cancelAllItemResets) -> config.cancelSlotSwappingResets = cancelAllItemResets
                             )
                             .controller(BooleanControllerBuilder::create)
                             .build()
