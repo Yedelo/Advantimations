@@ -18,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class HeldItemRendererMixin {
     @ModifyExpressionValue(method = "renderItem(FLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider$Immediate;Lnet/minecraft/client/network/ClientPlayerEntity;I)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/network/ClientPlayerEntity;getHandSwingProgress(F)F"))
     private float advantimations$cancelFirstPersonSwings(float original) {
-        if (AdvantimationsConfig.getInstance().cancelFirstPersonSwings) {
+        if (AdvantimationsConfig.getInstance().cancelSwings.isEnabledInFirstPerson()) {
             return 0;
         }
         else {
@@ -28,15 +28,24 @@ public abstract class HeldItemRendererMixin {
 
     @ModifyExpressionValue(method = "renderFirstPersonItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;getUseAction()Lnet/minecraft/item/consume/UseAction;"))
     private UseAction advantimations$cancelUseAnimations(UseAction original) {
-        if ((AdvantimationsConfig.getInstance().cancelEatingAnimation && original == UseAction.EAT) || (AdvantimationsConfig.getInstance().cancelDrinkingAnimation && original == UseAction.DRINK) || (AdvantimationsConfig.getInstance().cancelBlockingAnimation && original == UseAction.BLOCK) || (AdvantimationsConfig.getInstance().cancelBowAnimation && original == UseAction.BOW) || (AdvantimationsConfig.getInstance().cancelSpearAnimation && original == UseAction.SPEAR) || (AdvantimationsConfig.getInstance().cancelBrushingAnimation && original == UseAction.BRUSH) || (AdvantimationsConfig.getInstance().cancelBundleAnimation && original == UseAction.BUNDLE)) {
+        if (switch (original) {
+            case EAT -> AdvantimationsConfig.getInstance().cancelEatingAnimation;
+            case DRINK -> AdvantimationsConfig.getInstance().cancelDrinkingAnimation;
+            case BLOCK -> AdvantimationsConfig.getInstance().cancelBlockingAnimation.isEnabledInFirstPerson();
+            case BOW -> AdvantimationsConfig.getInstance().cancelBowAnimation.isEnabledInFirstPerson();
+            case SPEAR -> AdvantimationsConfig.getInstance().cancelSpearAnimation.isEnabledInFirstPerson();
+            case BRUSH -> AdvantimationsConfig.getInstance().cancelBrushingAnimation.isEnabledInFirstPerson();
+            case BUNDLE -> AdvantimationsConfig.getInstance().cancelBundleAnimation.isEnabledInFirstPerson();
+            default -> false;
+        }) {
             return UseAction.NONE;
         }
         return original;
     }
 
     @ModifyExpressionValue(method = "renderFirstPersonItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/network/AbstractClientPlayerEntity;isUsingItem()Z", ordinal = 0))
-    private boolean advantimations$cancelCrossbowingAnimation(boolean original) {
-        if (AdvantimationsConfig.getInstance().cancelCrossbowAnimation) {
+    private boolean advantimations$cancelCrossbowAnimation(boolean original) {
+        if (AdvantimationsConfig.getInstance().cancelCrossbowAnimation.isEnabledInFirstPerson()) {
             return false;
         }
         return original;
@@ -44,7 +53,7 @@ public abstract class HeldItemRendererMixin {
 
     @ModifyExpressionValue(method = "renderFirstPersonItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/CrossbowItem;isCharged(Lnet/minecraft/item/ItemStack;)Z"))
     private boolean advantimations$cancelChargedCrossbowAnimation(boolean original) {
-        if (AdvantimationsConfig.getInstance().cancelChargedCrossbowAnimation) {
+        if (AdvantimationsConfig.getInstance().cancelChargedCrossbowAnimation.isEnabledInFirstPerson()) {
             return false;
         }
         return original;
