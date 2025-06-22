@@ -16,12 +16,17 @@ import java.util.function.Consumer;
 
 
 
-public class EntityOption {
+public class EntityOption implements FirstPersonOption {
     protected boolean enabled;
     protected boolean enabledInFirstPerson;
     protected boolean enabledOnSelf;
     protected boolean enabledOnOtherPlayers;
     protected boolean enabledOnOtherEntities;
+
+    @Override
+    public boolean shouldApplyInFirstPerson() {
+        return enabled && enabledInFirstPerson;
+    }
 
     public <T> T getThirdPersonResult(Entity entity, T originalValue, T newValue) {
         if (enabled) {

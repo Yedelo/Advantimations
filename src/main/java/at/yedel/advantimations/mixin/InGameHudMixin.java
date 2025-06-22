@@ -14,9 +14,6 @@ import org.spongepowered.asm.mixin.injection.At;
 public abstract class InGameHudMixin {
     @ModifyExpressionValue(method = "renderMiscOverlays", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/network/ClientPlayerEntity;isUsingSpyglass()Z"))
     private boolean advantimations$cancelSpyglassAnimation(boolean original) {
-        if (AdvantimationsConfig.getInstance().cancelSpyglassAnimation.isEnabledInFirstPerson()) {
-            return false;
-        }
-        return original;
+        return AdvantimationsConfig.getInstance().cancelSpyglassAnimation.getFirstPersonResult(original, false);
     }
 }

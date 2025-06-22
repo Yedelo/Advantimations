@@ -23,15 +23,15 @@ public abstract class UsingItemPropertyMixin {
         boolean shouldCancel = switch (stack.getItem()) {
             case ShieldItem ignored: {
                 EntityOption option = AdvantimationsConfig.getInstance().cancelShieldAnimation;
-                yield (option.isEnabledInFirstPerson() && firstPerson) || (option.getThirdPersonResult(entity, !original, true) && thirdPerson);
+                yield (option.shouldApplyInFirstPerson() && firstPerson) || (option.getThirdPersonResult(entity, !original, true) && thirdPerson);
             }
             case BowItem ignored: {
                 EntityOption option = AdvantimationsConfig.getInstance().cancelBowArrowModel;
-                yield (option.isEnabledInFirstPerson() && firstPerson) || (option.getThirdPersonResult(entity, !original, true) && thirdPerson);
+                yield (option.shouldApplyInFirstPerson() && firstPerson) || (option.getThirdPersonResult(entity, !original, true) && thirdPerson);
             }
             case CrossbowItem ignored: {
                 EntityOption option = AdvantimationsConfig.getInstance().cancelCrossbowArrowModel;
-                yield (option.isEnabledInFirstPerson() && firstPerson) || (option.getThirdPersonResult(entity, !original, true) && thirdPerson);
+                yield (option.shouldApplyInFirstPerson() && firstPerson) || (option.getThirdPersonResult(entity, !original, true) && thirdPerson);
             }
             default: {
                 yield !original;
