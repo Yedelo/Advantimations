@@ -2,34 +2,44 @@
 
 ![logo](src/main/resources/assets/advantimations/advantimations.png)
 
+(credit to [thebaum64](https://modrinth.com/user/thebaum64) for [original texture](https://modrinth.com/resourcepack/default-hd-128x))
+
+![discord yedel](https://img.shields.io/badge/discord-yedel-blue)
+
+![github release version](https://img.shields.io/github/v/release/Yedelo/Advantimations?label=github)
+
+![modrinth latest version](https://img.shields.io/modrinth/v/c0aI2COX?label=modrinth)
+
 Client-side mod to cancel animations
 
 ## Features
 
-### First Person
+### Item Model
 
-- Cancel First Person Swings
-  <br/><br/>
+- Cancel Swings
+
 - Cancel Eating Animation
 - Cancel Drinking Animation
 - Cancel Blocking Animation
 - Cancel Shield Animation
-- Cancel Bowing Animation
-- Cancel Bow Arrow Model
+- Cancel Bow Animation
+- Cancel Crossbow Animation
+- Cancel Charged Crossbow Animation
+- Cancel Spyglass Animation
+- Cancel Horn Toot Animation
 - Cancel Spear Animation
 - Cancel Brushing Animation
 - Cancel Bundle Animation
-  <br/><br/>
-- Cancel Crossbowing Animation
-- Cancel Charged Crossbow Animation
+- Cancel Bow Arrow Model
 - Cancel Crossbow Arrow Model
-  <br/><br/>
+
+- Cancel Attack Cooldown Resets
 - Cancel Block Interact Resets
 - Cancel Item Interact Resets
-- Cancel All Item Resets
-### Model
+- Cancel Slot Swapping Resets
 
-- Cancel Swings
+### Entity Model
+
 - Cancel Limb Movements
 - Weirder Limb Movements
 - Cancel Sneaking
