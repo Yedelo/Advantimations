@@ -16,11 +16,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(HeldItemRenderer.class)
 public abstract class HeldItemRendererMixin {
-    @ModifyExpressionValue(method = "renderFirstPersonItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/network/AbstractClientPlayerEntity;isUsingSpyglass()Z"))
-    private boolean advantimations$cancelSpyglassAnimation(boolean original) {
-        return AdvantimationsConfig.getInstance().cancelSpyglassAnimation.getFirstPersonResult(original, false);
-    }
-
     @ModifyExpressionValue(method = "renderItem(FLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider$Immediate;Lnet/minecraft/client/network/ClientPlayerEntity;I)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/network/ClientPlayerEntity;getHandSwingProgress(F)F"))
     private float advantimations$cancelFirstPersonSwings(float original) {
         return AdvantimationsConfig.getInstance().cancelSwings.getFirstPersonResult(original, 0F);
@@ -52,6 +47,11 @@ public abstract class HeldItemRendererMixin {
     @ModifyExpressionValue(method = "renderFirstPersonItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/CrossbowItem;isCharged(Lnet/minecraft/item/ItemStack;)Z"))
     private boolean advantimations$cancelChargedCrossbowAnimation(boolean original) {
         return AdvantimationsConfig.getInstance().cancelChargedCrossbowAnimation.getFirstPersonResult(original, false);
+    }
+
+    @ModifyExpressionValue(method = "renderFirstPersonItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/network/AbstractClientPlayerEntity;isUsingSpyglass()Z"))
+    private boolean advantimations$cancelSpyglassAnimation(boolean original) {
+        return AdvantimationsConfig.getInstance().cancelSpyglassAnimation.getFirstPersonResult(original, false);
     }
 
     @ModifyExpressionValue(method = "updateHeldItems", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/network/ClientPlayerEntity;getAttackCooldownProgress(F)F"))
