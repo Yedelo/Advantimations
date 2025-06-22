@@ -27,6 +27,7 @@ public abstract class BipedEntityModelMixin {
             case CROSSBOW_CHARGE -> AdvantimationsConfig.getInstance().cancelCrossbowAnimation.getThirdPersonResult(entity, original, defaultPose);
             case CROSSBOW_HOLD -> AdvantimationsConfig.getInstance().cancelChargedCrossbowAnimation.getThirdPersonResult(entity, original, defaultPose);
             case SPYGLASS -> AdvantimationsConfig.getInstance().cancelSpyglassAnimation.getThirdPersonResult(entity, original, defaultPose);
+            case TOOT_HORN -> AdvantimationsConfig.getInstance().cancelHornTootAnimation.getThirdPersonResult(entity, original, defaultPose);
             case BRUSH -> AdvantimationsConfig.getInstance().cancelBrushingAnimation.getThirdPersonResult(entity, original, defaultPose);
             default -> original;
         };

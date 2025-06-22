@@ -68,6 +68,9 @@ public class AdvantimationsConfig {
     public EntityOption cancelSpyglassAnimation = new EntityOption();
 
     @SerialEntry
+    public EntityOption cancelHornTootAnimation = new EntityOption();
+
+    @SerialEntry
     public EntityOption cancelSpearAnimation = new EntityOption();
 
     @SerialEntry
@@ -157,6 +160,10 @@ public class AdvantimationsConfig {
                 ))
                 .group(EntityOption.createGroup(
                     "Cancel Spyglass Animation", "Cancel the spyglass animation.", defaults.cancelSpyglassAnimation, config.cancelSpyglassAnimation,
+                    ITEM_MODEL_CONFIGURATOR
+                ))
+                .group(EntityOption.createGroup(
+                    "Cancel Horn Toot Animation", "Cancel the horn tooting animation.", defaults.cancelHornTootAnimation, config.cancelHornTootAnimation,
                     ITEM_MODEL_CONFIGURATOR
                 ))
                 .group(EntityOption.createGroup(

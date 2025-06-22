@@ -33,6 +33,7 @@ public abstract class HeldItemRendererMixin {
             case DRINK -> AdvantimationsConfig.getInstance().cancelDrinkingAnimation.shouldApplyInFirstPerson();
             case BLOCK -> AdvantimationsConfig.getInstance().cancelBlockingAnimation.shouldApplyInFirstPerson();
             case BOW -> AdvantimationsConfig.getInstance().cancelBowAnimation.shouldApplyInFirstPerson();
+            case TOOT_HORN -> AdvantimationsConfig.getInstance().cancelHornTootAnimation.shouldApplyInFirstPerson();
             case SPEAR -> AdvantimationsConfig.getInstance().cancelSpearAnimation.shouldApplyInFirstPerson();
             case BRUSH -> AdvantimationsConfig.getInstance().cancelBrushingAnimation.shouldApplyInFirstPerson();
             case BUNDLE -> AdvantimationsConfig.getInstance().cancelBundleAnimation.shouldApplyInFirstPerson();
