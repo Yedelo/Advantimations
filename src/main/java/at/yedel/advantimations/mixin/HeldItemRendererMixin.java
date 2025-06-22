@@ -29,8 +29,8 @@ public abstract class HeldItemRendererMixin {
     @ModifyExpressionValue(method = "renderFirstPersonItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;getUseAction()Lnet/minecraft/item/consume/UseAction;"))
     private UseAction advantimations$cancelUseAnimations(UseAction original) {
         if (switch (original) {
-            case EAT -> AdvantimationsConfig.getInstance().cancelEatingAnimation;
-            case DRINK -> AdvantimationsConfig.getInstance().cancelDrinkingAnimation;
+            case EAT -> AdvantimationsConfig.getInstance().cancelEatingAnimation.shouldApplyInFirstPerson();
+            case DRINK -> AdvantimationsConfig.getInstance().cancelDrinkingAnimation.shouldApplyInFirstPerson();
             case BLOCK -> AdvantimationsConfig.getInstance().cancelBlockingAnimation.shouldApplyInFirstPerson();
             case BOW -> AdvantimationsConfig.getInstance().cancelBowAnimation.shouldApplyInFirstPerson();
             case SPEAR -> AdvantimationsConfig.getInstance().cancelSpearAnimation.shouldApplyInFirstPerson();
@@ -55,7 +55,7 @@ public abstract class HeldItemRendererMixin {
 
     @Inject(method = "shouldSkipHandAnimationOnSwap", at = @At("HEAD"), cancellable = true)
     private void advantimations$cancelAllItemResets(ItemStack from, ItemStack to, CallbackInfoReturnable<Boolean> cir) {
-        if (AdvantimationsConfig.getInstance().cancelSlotSwappingResets) {
+        if (AdvantimationsConfig.getInstance().cancelSlotSwappingResets.shouldApplyInFirstPerson()) {
             cir.setReturnValue(true);
         }
     }

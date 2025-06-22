@@ -40,10 +40,10 @@ public class AdvantimationsConfig {
         .enabledOnSelf();
 
     @SerialEntry
-    public boolean cancelEatingAnimation = false;
+    public SimpleFirstPersonOption cancelEatingAnimation = SimpleFirstPersonOption.falseOption();
 
     @SerialEntry
-    public boolean cancelDrinkingAnimation = false;
+    public SimpleFirstPersonOption cancelDrinkingAnimation = SimpleFirstPersonOption.falseOption();
 
     @SerialEntry
     public EntityOption cancelBlockingAnimation = new EntityOption();
@@ -79,13 +79,13 @@ public class AdvantimationsConfig {
     public EntityOption cancelCrossbowArrowModel = new EntityOption();
 
     @SerialEntry
-    public boolean cancelBlockInteractResets = true;
+    public SimpleFirstPersonOption cancelBlockInteractResets = SimpleFirstPersonOption.trueOption();
 
     @SerialEntry
-    public boolean cancelItemInteractResets = true;
+    public SimpleFirstPersonOption cancelItemInteractResets = SimpleFirstPersonOption.trueOption();
 
     @SerialEntry
-    public boolean cancelSlotSwappingResets = false;
+    public SimpleFirstPersonOption cancelSlotSwappingResets = SimpleFirstPersonOption.falseOption();
 
     @SerialEntry
     public EntityOption cancelLimbMovements = new EntityOption();
@@ -110,9 +110,9 @@ public class AdvantimationsConfig {
                     .name(Text.literal("Cancel Eating Animation"))
                     .description(OptionDescription.of(Text.literal("Cancel the first-person eating animation.")))
                     .binding(
-                        defaults.cancelEatingAnimation,
-                        () -> config.cancelEatingAnimation,
-                        (cancelEatingAnimation) -> config.cancelEatingAnimation = cancelEatingAnimation
+                        defaults.cancelEatingAnimation.isEnabled(),
+                        config.cancelEatingAnimation::isEnabled,
+                        config.cancelEatingAnimation::setEnabled
                     )
                     .controller(BooleanControllerBuilder::create)
                     .build()
@@ -121,9 +121,9 @@ public class AdvantimationsConfig {
                     .name(Text.literal("Cancel Drinking Animation"))
                     .description(OptionDescription.of(Text.literal("Cancel the first-person drinking animation.")))
                     .binding(
-                        defaults.cancelDrinkingAnimation,
-                        () -> config.cancelDrinkingAnimation,
-                        (cancelDrinkingAnimation) -> config.cancelDrinkingAnimation = cancelDrinkingAnimation
+                        defaults.cancelDrinkingAnimation.isEnabled(),
+                        config.cancelDrinkingAnimation::isEnabled,
+                        config.cancelDrinkingAnimation::setEnabled
                     )
                     .controller(BooleanControllerBuilder::create)
                     .build()
@@ -179,9 +179,9 @@ public class AdvantimationsConfig {
                         .name(Text.literal("Cancel Block Interact Resets"))
                         .description(OptionDescription.of(Text.literal("Cancel the item reset animation when interacting with a block.")))
                         .binding(
-                            defaults.cancelBlockInteractResets,
-                            () -> config.cancelBlockInteractResets,
-                            (cancelBlockInteractResets) -> config.cancelBlockInteractResets = cancelBlockInteractResets
+                            defaults.cancelBlockInteractResets.isEnabled(),
+                            config.cancelBlockInteractResets::isEnabled,
+                            config.cancelBlockInteractResets::setEnabled
                         )
                         .controller(BooleanControllerBuilder::create)
                         .build()
@@ -190,9 +190,9 @@ public class AdvantimationsConfig {
                         .name(Text.literal("Cancel Item Interact Resets"))
                         .description(OptionDescription.of(Text.literal("Cancel the item reset animation when interacting with an item.")))
                         .binding(
-                            defaults.cancelItemInteractResets,
-                            () -> config.cancelItemInteractResets,
-                            (cancelItemInteractResets) -> config.cancelItemInteractResets = cancelItemInteractResets
+                            defaults.cancelItemInteractResets.isEnabled(),
+                            config.cancelItemInteractResets::isEnabled,
+                            config.cancelItemInteractResets::setEnabled
                         )
                         .controller(BooleanControllerBuilder::create)
                         .build()
@@ -201,9 +201,9 @@ public class AdvantimationsConfig {
                         .name(Text.literal("Cancel Slot Swapping Resets"))
                         .description(OptionDescription.of(Text.literal("Cancel the item reset animation when swapping items.")))
                         .binding(
-                            defaults.cancelSlotSwappingResets,
-                            () -> config.cancelSlotSwappingResets,
-                            (cancelAllItemResets) -> config.cancelSlotSwappingResets = cancelAllItemResets
+                            defaults.cancelSlotSwappingResets.isEnabled(),
+                            config.cancelSlotSwappingResets::isEnabled,
+                            config.cancelSlotSwappingResets::setEnabled
                         )
                         .controller(BooleanControllerBuilder::create)
                         .build()
