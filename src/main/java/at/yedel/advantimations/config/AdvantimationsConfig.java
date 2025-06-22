@@ -3,7 +3,6 @@ package at.yedel.advantimations.config;
 
 
 import dev.isxander.yacl3.api.*;
-import dev.isxander.yacl3.api.controller.BooleanControllerBuilder;
 import dev.isxander.yacl3.config.v2.api.ConfigClassHandler;
 import dev.isxander.yacl3.config.v2.api.SerialEntry;
 import dev.isxander.yacl3.config.v2.api.serializer.GsonConfigSerializerBuilder;
@@ -116,28 +115,12 @@ public class AdvantimationsConfig {
                     "Cancel Swings", "Cancel hand and item swing animations.", defaults.cancelSwings, config.cancelSwings,
                     EntityOption.Configuration.PERSPECTIVE_INDEPENDENT_OPTION_CONFIGURATOR
                 ))
-                .option(Option.<Boolean>createBuilder()
-                    .name(Text.literal("Cancel Eating Animation"))
-                    .description(OptionDescription.of(Text.literal("Cancel the first-person eating animation.")))
-                    .binding(
-                        defaults.cancelEatingAnimation.isEnabled(),
-                        config.cancelEatingAnimation::isEnabled,
-                        config.cancelEatingAnimation::setEnabled
-                    )
-                    .controller(BooleanControllerBuilder::create)
-                    .build()
-                )
-                .option(Option.<Boolean>createBuilder()
-                    .name(Text.literal("Cancel Drinking Animation"))
-                    .description(OptionDescription.of(Text.literal("Cancel the first-person drinking animation.")))
-                    .binding(
-                        defaults.cancelDrinkingAnimation.isEnabled(),
-                        config.cancelDrinkingAnimation::isEnabled,
-                        config.cancelDrinkingAnimation::setEnabled
-                    )
-                    .controller(BooleanControllerBuilder::create)
-                    .build()
-                )
+                .option(SimpleFirstPersonOption.createOption(
+                    "Cancel Eating Animation", "Cancel the first-person eating animation.", defaults.cancelEatingAnimation, config.cancelEatingAnimation
+                ))
+                .option(SimpleFirstPersonOption.createOption(
+                    "Cancel Drinking Animation", "Cancel the first-person drinking animation.", defaults.cancelDrinkingAnimation, config.cancelDrinkingAnimation
+                ))
                 .group(EntityOption.createGroup(
                     "Cancel Blocking Animation", "Cancel the item blocking animation.", defaults.cancelBlockingAnimation, config.cancelBlockingAnimation,
                     ITEM_MODEL_CONFIGURATOR
@@ -189,50 +172,18 @@ public class AdvantimationsConfig {
                 .group(OptionGroup.createBuilder()
                     .name(Text.literal("Item Resets"))
                     .description(OptionDescription.of(Text.literal("Options for cancelling the item reset animation.")))
-                    .option(Option.<Boolean>createBuilder()
-                        .name(Text.literal("Cancel Attack Cooldown Resets"))
-                        .description(OptionDescription.of(Text.literal("Cancel the item reset animation when attacking or swapping items with cooldowns.")))
-                        .binding(
-                            defaults.cancelAttackCooldownResets.isEnabled(),
-                            config.cancelAttackCooldownResets::isEnabled,
-                            config.cancelAttackCooldownResets::setEnabled
-                        )
-                        .controller(BooleanControllerBuilder::create)
-                        .build()
-                    )
-                    .option(Option.<Boolean>createBuilder()
-                        .name(Text.literal("Cancel Block Interact Resets"))
-                        .description(OptionDescription.of(Text.literal("Cancel the item reset animation when interacting with a block.")))
-                        .binding(
-                            defaults.cancelBlockInteractResets.isEnabled(),
-                            config.cancelBlockInteractResets::isEnabled,
-                            config.cancelBlockInteractResets::setEnabled
-                        )
-                        .controller(BooleanControllerBuilder::create)
-                        .build()
-                    )
-                    .option(Option.<Boolean>createBuilder()
-                        .name(Text.literal("Cancel Item Interact Resets"))
-                        .description(OptionDescription.of(Text.literal("Cancel the item reset animation when interacting with an item.")))
-                        .binding(
-                            defaults.cancelItemInteractResets.isEnabled(),
-                            config.cancelItemInteractResets::isEnabled,
-                            config.cancelItemInteractResets::setEnabled
-                        )
-                        .controller(BooleanControllerBuilder::create)
-                        .build()
-                    )
-                    .option(Option.<Boolean>createBuilder()
-                        .name(Text.literal("Cancel Slot Swapping Resets"))
-                        .description(OptionDescription.of(Text.literal("Cancel the item reset animation when swapping items.")))
-                        .binding(
-                            defaults.cancelSlotSwappingResets.isEnabled(),
-                            config.cancelSlotSwappingResets::isEnabled,
-                            config.cancelSlotSwappingResets::setEnabled
-                        )
-                        .controller(BooleanControllerBuilder::create)
-                        .build()
-                    )
+                    .option(SimpleFirstPersonOption.createOption(
+                        "Cancel Attack Cooldown Resets", "Cancel the item reset animation when attacking or swapping items with cooldowns.", defaults.cancelAttackCooldownResets,  config.cancelAttackCooldownResets
+                    ))
+                    .option(SimpleFirstPersonOption.createOption(
+                        "Cancel Block Interact Resets", "Cancel the item reset animation when interacting with a block.", defaults.cancelBlockInteractResets,  config.cancelBlockInteractResets
+                    ))
+                    .option(SimpleFirstPersonOption.createOption(
+                        "Cancel Item Interact Resets", "Cancel the item reset animation when interacting with an item.", defaults.cancelItemInteractResets,  config.cancelItemInteractResets
+                    ))
+                    .option(SimpleFirstPersonOption.createOption(
+                        "Cancel Slot Swapping Resets", "Cancel the item reset animation when swapping items.", defaults.cancelSlotSwappingResets,  config.cancelSlotSwappingResets
+                    ))
                     .build()
                 )
                 .build()
