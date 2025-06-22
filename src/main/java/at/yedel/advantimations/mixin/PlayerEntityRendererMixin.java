@@ -27,6 +27,6 @@ public abstract class PlayerEntityRendererMixin {
 
     @ModifyExpressionValue(method = "getArmPose(Lnet/minecraft/entity/player/PlayerEntity;Lnet/minecraft/item/ItemStack;Lnet/minecraft/util/Hand;)Lnet/minecraft/client/render/entity/model/BipedEntityModel$ArmPose;", at = @At(value = "FIELD", target = "Lnet/minecraft/entity/player/PlayerEntity;handSwinging:Z"))
     private static boolean advantimations$cancelSwings(boolean original, @Share("player") LocalRef<PlayerEntity> playerRef) {
-        return AdvantimationsConfig.getInstance().cancelSwings.getResult(playerRef.get(), original, false);
+        return AdvantimationsConfig.getInstance().cancelSwings.getThirdPersonResult(playerRef.get(), original, false);
     }
 }

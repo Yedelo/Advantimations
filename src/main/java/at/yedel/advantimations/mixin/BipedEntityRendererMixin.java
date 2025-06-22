@@ -26,11 +26,11 @@ public abstract class BipedEntityRendererMixin {
 
     @ModifyExpressionValue(method = "updateBipedRenderState", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;getHandSwingProgress(F)F"))
     private static float advantimations$cancelSwings(float original, @Share("entity") LocalRef<LivingEntity> entityRef) {
-        return AdvantimationsConfig.getInstance().cancelSwings.getResult(entityRef.get(), original, 0F);
+        return AdvantimationsConfig.getInstance().cancelSwings.getThirdPersonResult(entityRef.get(), original, 0F);
     }
 
     @ModifyExpressionValue(method = "updateBipedRenderState", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;isInSneakingPose()Z"))
     private static boolean advantimations$cancelSneaking(boolean original, @Share("entity") LocalRef<LivingEntity> entityRef) {
-        return AdvantimationsConfig.getInstance().cancelSneaking.getResult(entityRef.get(), original, false);
+        return AdvantimationsConfig.getInstance().cancelSneaking.getThirdPersonResult(entityRef.get(), original, false);
     }
 }

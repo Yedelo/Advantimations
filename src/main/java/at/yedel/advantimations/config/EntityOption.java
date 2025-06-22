@@ -23,7 +23,7 @@ public class EntityOption {
     protected boolean enabledOnOtherPlayers;
     protected boolean enabledOnOtherEntities;
 
-    public <T> T getResult(Entity entity, T originalValue, T newValue) {
+    public <T> T getThirdPersonResult(Entity entity, T originalValue, T newValue) {
         if (enabled) {
             if (enabledOnSelf && entity instanceof ClientPlayerEntity) {
                 return newValue;

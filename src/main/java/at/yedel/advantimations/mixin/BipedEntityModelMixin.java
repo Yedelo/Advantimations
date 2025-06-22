@@ -21,12 +21,12 @@ public abstract class BipedEntityModelMixin {
         LivingEntity entity = (LivingEntity) BipedEntityInfo.entity;
         BipedEntityModel.ArmPose defaultPose = !entity.getStackInArm(arm).isEmpty() ? BipedEntityModel.ArmPose.ITEM : BipedEntityModel.ArmPose.EMPTY;
         return switch (original) {
-            case BLOCK -> AdvantimationsConfig.getInstance().cancelBlockingAnimation.getResult(entity, original, defaultPose);
-            case BOW_AND_ARROW -> AdvantimationsConfig.getInstance().cancelBowAnimation.getResult(entity, original, defaultPose);
-            case THROW_SPEAR -> AdvantimationsConfig.getInstance().cancelSpearAnimation.getResult(entity, original, defaultPose);
-            case CROSSBOW_CHARGE -> AdvantimationsConfig.getInstance().cancelCrossbowAnimation.getResult(entity, original, defaultPose);
-            case CROSSBOW_HOLD -> AdvantimationsConfig.getInstance().cancelChargedCrossbowAnimation.getResult(entity, original, defaultPose);
-            case BRUSH -> AdvantimationsConfig.getInstance().cancelBrushingAnimation.getResult(entity, original, defaultPose);
+            case BLOCK -> AdvantimationsConfig.getInstance().cancelBlockingAnimation.getThirdPersonResult(entity, original, defaultPose);
+            case BOW_AND_ARROW -> AdvantimationsConfig.getInstance().cancelBowAnimation.getThirdPersonResult(entity, original, defaultPose);
+            case THROW_SPEAR -> AdvantimationsConfig.getInstance().cancelSpearAnimation.getThirdPersonResult(entity, original, defaultPose);
+            case CROSSBOW_CHARGE -> AdvantimationsConfig.getInstance().cancelCrossbowAnimation.getThirdPersonResult(entity, original, defaultPose);
+            case CROSSBOW_HOLD -> AdvantimationsConfig.getInstance().cancelChargedCrossbowAnimation.getThirdPersonResult(entity, original, defaultPose);
+            case BRUSH -> AdvantimationsConfig.getInstance().cancelBrushingAnimation.getThirdPersonResult(entity, original, defaultPose);
             default -> original;
         };
     }

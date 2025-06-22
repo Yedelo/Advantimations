@@ -25,11 +25,11 @@ public abstract class LivingEntityRendererMixin<T extends LivingEntity, S extend
 
     @ModifyExpressionValue(method = "updateRenderState(Lnet/minecraft/entity/LivingEntity;Lnet/minecraft/client/render/entity/state/LivingEntityRenderState;F)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LimbAnimator;getAmplitude(F)F"))
     private float advantimations$cancelLimbMovements(float original, @Share("entity") LocalRef<LivingEntity> entityRef) {
-        return AdvantimationsConfig.getInstance().cancelLimbMovements.getResult(entityRef.get(), original, 0F);
+        return AdvantimationsConfig.getInstance().cancelLimbMovements.getThirdPersonResult(entityRef.get(), original, 0F);
     }
 
     @ModifyExpressionValue(method = "updateRenderState(Lnet/minecraft/entity/LivingEntity;Lnet/minecraft/client/render/entity/state/LivingEntityRenderState;F)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LimbAnimator;getAnimationProgress(F)F"))
     private float advantimations$weirderLimbMovements(float original, @Share("entity") LocalRef<LivingEntity> entityRef) {
-        return AdvantimationsConfig.getInstance().weirderLimbMovements.getResult(entityRef.get(), original, 0F);
+        return AdvantimationsConfig.getInstance().weirderLimbMovements.getThirdPersonResult(entityRef.get(), original, 0F);
     }
 }
