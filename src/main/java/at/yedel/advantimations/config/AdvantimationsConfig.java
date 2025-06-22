@@ -79,6 +79,9 @@ public class AdvantimationsConfig {
     public EntityOption cancelCrossbowArrowModel = new EntityOption();
 
     @SerialEntry
+    public SimpleFirstPersonOption cancelAttackCooldownResets = SimpleFirstPersonOption.trueOption();
+
+    @SerialEntry
     public SimpleFirstPersonOption cancelBlockInteractResets = SimpleFirstPersonOption.trueOption();
 
     @SerialEntry
@@ -175,6 +178,17 @@ public class AdvantimationsConfig {
                 .group(OptionGroup.createBuilder()
                     .name(Text.literal("Item Resets"))
                     .description(OptionDescription.of(Text.literal("Options for cancelling the item reset animation.")))
+                    .option(Option.<Boolean>createBuilder()
+                        .name(Text.literal("Cancel Attack Cooldown Resets"))
+                        .description(OptionDescription.of(Text.literal("Cancel the item reset animation when attacking or swapping items with cooldowns.")))
+                        .binding(
+                            defaults.cancelAttackCooldownResets.isEnabled(),
+                            config.cancelAttackCooldownResets::isEnabled,
+                            config.cancelAttackCooldownResets::setEnabled
+                        )
+                        .controller(BooleanControllerBuilder::create)
+                        .build()
+                    )
                     .option(Option.<Boolean>createBuilder()
                         .name(Text.literal("Cancel Block Interact Resets"))
                         .description(OptionDescription.of(Text.literal("Cancel the item reset animation when interacting with a block.")))

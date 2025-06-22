@@ -53,6 +53,11 @@ public abstract class HeldItemRendererMixin {
         return AdvantimationsConfig.getInstance().cancelChargedCrossbowAnimation.getFirstPersonResult(original, false);
     }
 
+    @ModifyExpressionValue(method = "updateHeldItems", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/network/ClientPlayerEntity;getAttackCooldownProgress(F)F"))
+    private float advantimations$cancelAttackCooldownResets(float original) {
+        return AdvantimationsConfig.getInstance().cancelAttackCooldownResets.getFirstPersonResult(original, 1F);
+    }
+
     @Inject(method = "shouldSkipHandAnimationOnSwap", at = @At("HEAD"), cancellable = true)
     private void advantimations$cancelAllItemResets(ItemStack from, ItemStack to, CallbackInfoReturnable<Boolean> cir) {
         if (AdvantimationsConfig.getInstance().cancelSlotSwappingResets.shouldApplyInFirstPerson()) {
