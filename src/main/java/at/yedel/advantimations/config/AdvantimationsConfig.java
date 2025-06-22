@@ -116,13 +116,13 @@ public class AdvantimationsConfig {
                     EntityOption.Configuration.PERSPECTIVE_INDEPENDENT_OPTION_CONFIGURATOR
                 ))
                 .option(SimpleFirstPersonOption.createOption(
-                    "Cancel Eating Animation", "Cancel the first-person eating animation.", defaults.cancelEatingAnimation, config.cancelEatingAnimation
+                    "Cancel Eating Animation", "Cancel the first-person eating animation of items with component \nconsumable{animation:'eat'}.", defaults.cancelEatingAnimation, config.cancelEatingAnimation
                 ))
                 .option(SimpleFirstPersonOption.createOption(
-                    "Cancel Drinking Animation", "Cancel the first-person drinking animation.", defaults.cancelDrinkingAnimation, config.cancelDrinkingAnimation
+                    "Cancel Drinking Animation", "Cancel the first-person drinking animation of items with component \nconsumable{animation:'drink'}.", defaults.cancelDrinkingAnimation, config.cancelDrinkingAnimation
                 ))
                 .group(EntityOption.createGroup(
-                    "Cancel Blocking Animation", "Cancel the item blocking animation.", defaults.cancelBlockingAnimation, config.cancelBlockingAnimation,
+                    "Cancel Blocking Animation", "Cancel the item blocking animation of items with component \nconsumable{animation:'block'} \n(except shields).", defaults.cancelBlockingAnimation, config.cancelBlockingAnimation,
                     ITEM_MODEL_CONFIGURATOR
                 ))
                 .group(EntityOption.createGroup(
@@ -130,11 +130,11 @@ public class AdvantimationsConfig {
                     ITEM_MODEL_CONFIGURATOR
                 ))
                 .group(EntityOption.createGroup(
-                    "Cancel Bow Animation", "Cancel the bow drawing animation.", defaults.cancelBowAnimation, config.cancelBowAnimation,
+                    "Cancel Bow Animation", "Cancel the bow drawing animation of items with component \nconsumable{animation:'bow'}.", defaults.cancelBowAnimation, config.cancelBowAnimation,
                     ITEM_MODEL_CONFIGURATOR
                 ))
                 .group(EntityOption.createGroup(
-                    "Cancel Crossbow Animation", "Cancel the crossbow drawing animation.", defaults.cancelCrossbowAnimation, config.cancelCrossbowAnimation,
+                    "Cancel Crossbow Animation", "Cancel the crossbow drawing animation of items with component \nconsumable{animation:'crossbow'}.", defaults.cancelCrossbowAnimation, config.cancelCrossbowAnimation,
                     ITEM_MODEL_CONFIGURATOR
                 ))
                 .group(EntityOption.createGroup(
@@ -142,15 +142,15 @@ public class AdvantimationsConfig {
                     ITEM_MODEL_CONFIGURATOR
                 ))
                 .group(EntityOption.createGroup(
-                    "Cancel Spyglass Animation", "Cancel the spyglass animation.", defaults.cancelSpyglassAnimation, config.cancelSpyglassAnimation,
+                    "Cancel Spyglass Animation", "Cancel the spyglass animation of items with component \nconsumable{animation:'spyglass'}.", defaults.cancelSpyglassAnimation, config.cancelSpyglassAnimation,
                     ITEM_MODEL_CONFIGURATOR
                 ))
                 .group(EntityOption.createGroup(
-                    "Cancel Horn Toot Animation", "Cancel the horn tooting animation.", defaults.cancelHornTootAnimation, config.cancelHornTootAnimation,
+                    "Cancel Horn Toot Animation", "Cancel the horn tooting animation of items with component \nconsumable{animation:'toot_horn'}, \nmainly the goat horn.", defaults.cancelHornTootAnimation, config.cancelHornTootAnimation,
                     ITEM_MODEL_CONFIGURATOR
                 ))
                 .group(EntityOption.createGroup(
-                    "Cancel Spear Animation", "Cancel the spear drawing animation.", defaults.cancelSpearAnimation, config.cancelSpearAnimation,
+                    "Cancel Spear Animation", "Cancel the spear drawing animation of items with component \nconsumable{animation:'spear'}, \nmainly the trident.", defaults.cancelSpearAnimation, config.cancelSpearAnimation,
                     ITEM_MODEL_CONFIGURATOR
                 ))
                 .group(EntityOption.createGroup(
@@ -173,13 +173,13 @@ public class AdvantimationsConfig {
                     .name(Text.literal("Item Resets"))
                     .description(OptionDescription.of(Text.literal("Options for cancelling the item reset animation.")))
                     .option(SimpleFirstPersonOption.createOption(
-                        "Cancel Attack Cooldown Resets", "Cancel the item reset animation when attacking or swapping items with cooldowns.", defaults.cancelAttackCooldownResets,  config.cancelAttackCooldownResets
+                        "Cancel Attack Cooldown Resets", "Cancel the item reset animation when attacking or swapping items with cooldowns, such as in combat.", defaults.cancelAttackCooldownResets,  config.cancelAttackCooldownResets
                     ))
                     .option(SimpleFirstPersonOption.createOption(
-                        "Cancel Block Interact Resets", "Cancel the item reset animation when interacting with a block.", defaults.cancelBlockInteractResets,  config.cancelBlockInteractResets
+                        "Cancel Block Interact Resets", "Cancel the item reset animation when interacting with a block such as a cake.", defaults.cancelBlockInteractResets,  config.cancelBlockInteractResets
                     ))
                     .option(SimpleFirstPersonOption.createOption(
-                        "Cancel Item Interact Resets", "Cancel the item reset animation when interacting with an item.", defaults.cancelItemInteractResets,  config.cancelItemInteractResets
+                        "Cancel Item Interact Resets", "Cancel the item reset animation when interacting with an item such as a fishing rod.", defaults.cancelItemInteractResets,  config.cancelItemInteractResets
                     ))
                     .option(SimpleFirstPersonOption.createOption(
                         "Cancel Slot Swapping Resets", "Cancel the item reset animation when swapping items.", defaults.cancelSlotSwappingResets,  config.cancelSlotSwappingResets
@@ -196,11 +196,11 @@ public class AdvantimationsConfig {
                     EntityOption.Configuration.THIRD_PERSON_OPTION_CONFIGURATOR
                 ))
                 .group(EntityOption.createGroup(
-                    "Weirder Limb Movements", "Somewhat cancel entity limb movements.", defaults.weirderLimbMovements, config.weirderLimbMovements,
+                    "Weirder Limb Movements", "Cancel entity limbs from moving after they already started (or are in the \"top\" of their movement).", defaults.weirderLimbMovements, config.weirderLimbMovements,
                     EntityOption.Configuration.THIRD_PERSON_OPTION_CONFIGURATOR
                 ))
                 .group(EntityOption.createGroup(
-                    "Cancel Sneaking", "Cancel the sneaking animation.", defaults.cancelSneaking, config.cancelSneaking,
+                    "Cancel Sneaking", "Cancel the sneaking pose.", defaults.cancelSneaking, config.cancelSneaking,
                     (configuration) -> configuration.canBeEnabledInFirstPerson().canBeEnabledOnSelf().canBeEnabledOnOtherPlayers()
                 ))
                 .build()
