@@ -33,5 +33,13 @@
 		"java": ">=21",
 		"fabric-api": "*",
 		"yet_another_config_lib_v3": ">=3.7.1+1.21.5-fabric"
+	},
+	"custom": {
+		"modmenu": {
+			"links": {
+				"modmenu.github_releases": "https://github.com/Yedelo/Advantimations/releases/",
+				"modmenu.modrinth": "https://modrinth.com/mod/advantimations"
+			}
+		}
 	}
 }
