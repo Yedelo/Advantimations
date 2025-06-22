@@ -6,6 +6,6 @@ import net.minecraft.entity.Entity;
 
 
 
-public class BipedEntityInfo {
+public class EntityRenderInfo {
     public static Entity entity;
 }

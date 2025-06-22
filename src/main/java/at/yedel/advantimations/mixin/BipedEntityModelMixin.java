@@ -3,7 +3,7 @@ package at.yedel.advantimations.mixin;
 
 
 import at.yedel.advantimations.config.AdvantimationsConfig;
-import at.yedel.advantimations.utils.BipedEntityInfo;
+import at.yedel.advantimations.utils.EntityRenderInfo;
 import com.llamalad7.mixinextras.injector.ModifyReceiver;
 import net.minecraft.client.render.entity.model.BipedEntityModel;
 import net.minecraft.entity.LivingEntity;
@@ -18,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.At;
 public abstract class BipedEntityModelMixin {
     @Unique
     private BipedEntityModel.ArmPose advantimations$cancelItemUseAnimations(Arm arm, BipedEntityModel.ArmPose original) {
-        LivingEntity entity = (LivingEntity) BipedEntityInfo.entity;
+        LivingEntity entity = (LivingEntity) EntityRenderInfo.entity;
         BipedEntityModel.ArmPose defaultPose = !entity.getStackInArm(arm).isEmpty() ? BipedEntityModel.ArmPose.ITEM : BipedEntityModel.ArmPose.EMPTY;
         return switch (original) {
             case BLOCK -> AdvantimationsConfig.getInstance().cancelBlockingAnimation.getThirdPersonResult(entity, original, defaultPose);

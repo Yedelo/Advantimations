@@ -3,7 +3,7 @@ package at.yedel.advantimations.mixin;
 
 
 
-import at.yedel.advantimations.utils.BipedEntityInfo;
+import at.yedel.advantimations.utils.EntityRenderInfo;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.EntityRenderDispatcher;
 import net.minecraft.client.render.entity.EntityRenderer;
@@ -21,6 +21,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class EntityRenderDispatcherMixin {
     @Inject(method = "render(Lnet/minecraft/entity/Entity;DDDFLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;ILnet/minecraft/client/render/entity/EntityRenderer;)V", at = @At("HEAD"))
     private <E extends Entity, S extends EntityRenderState> void advantimations$storeEntity(E entity, double x, double y, double z, float tickProgress, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, EntityRenderer<? super E, S> renderer, CallbackInfo ci) {
-        BipedEntityInfo.entity = entity;
+        EntityRenderInfo.entity = entity;
     }
 }
