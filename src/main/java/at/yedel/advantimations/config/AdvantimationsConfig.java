@@ -94,120 +94,134 @@ public class AdvantimationsConfig {
     public EntityOption cancelSneaking = new EntityOption();
 
     public static Screen getScreen(Screen parent) {
-        return YetAnotherConfigLib.create(HANDLER, (defaults, config, builder) ->
-            builder
-                .title(Text.literal("Advantimations Config"))
-                .category(ConfigCategory.createBuilder()
-                    .name(Text.literal("Item Model"))
-                    .tooltip(Text.literal("Options for cancelling item models and animations."))
-                    .group(EntityOption.createGroup(
-                        "Cancel Swings", "Cancel hand and item swing animations.", defaults.cancelSwings, config.cancelSwings
-                    ))
+        return YetAnotherConfigLib.create(HANDLER, (defaults, config, builder) -> builder
+            .title(Text.literal("Advantimations Config"))
+            .category(ConfigCategory.createBuilder()
+                .name(Text.literal("Item Model"))
+                .tooltip(Text.literal("Options for cancelling item models and animations."))
+                .group(EntityOption.createGroup(
+                    "Cancel Swings", "Cancel hand and item swing animations.", defaults.cancelSwings, config.cancelSwings,
+                    EntityOption.Configuration.PERSPECTIVE_INDEPENDENT_OPTION_CONFIGURATOR
+                ))
+                .option(Option.<Boolean>createBuilder()
+                    .name(Text.literal("Cancel Eating Animation"))
+                    .description(OptionDescription.of(Text.literal("Cancel the first-person eating animation.")))
+                    .binding(
+                        defaults.cancelEatingAnimation,
+                        () -> config.cancelEatingAnimation,
+                        (cancelEatingAnimation) -> config.cancelEatingAnimation = cancelEatingAnimation
+                    )
+                    .controller(BooleanControllerBuilder::create)
+                    .build()
+                )
+                .option(Option.<Boolean>createBuilder()
+                    .name(Text.literal("Cancel Drinking Animation"))
+                    .description(OptionDescription.of(Text.literal("Cancel the first-person drinking animation.")))
+                    .binding(
+                        defaults.cancelDrinkingAnimation,
+                        () -> config.cancelDrinkingAnimation,
+                        (cancelDrinkingAnimation) -> config.cancelDrinkingAnimation = cancelDrinkingAnimation
+                    )
+                    .controller(BooleanControllerBuilder::create)
+                    .build()
+                )
+                .group(EntityOption.createGroup(
+                    "Cancel Blocking Animation", "Cancel the item blocking animation.", defaults.cancelBlockingAnimation, config.cancelBlockingAnimation,
+                    EntityOption.Configuration.PERSPECTIVE_INDEPENDENT_OPTION_CONFIGURATOR
+                ))
+                .group(EntityOption.createGroup(
+                    "Cancel Shield Animation", "Cancel the shield blocking animation.", defaults.cancelShieldAnimation, config.cancelShieldAnimation,
+                    EntityOption.Configuration.PERSPECTIVE_INDEPENDENT_OPTION_CONFIGURATOR
+                ))
+                .group(EntityOption.createGroup(
+                    "Cancel Bow Animation", "Cancel the bow drawing animation.", defaults.cancelBowAnimation, config.cancelBowAnimation,
+                    EntityOption.Configuration.PERSPECTIVE_INDEPENDENT_OPTION_CONFIGURATOR
+                ))
+                .group(EntityOption.createGroup(
+                    "Cancel Crossbow Animation", "Cancel the crossbow drawing animation.", defaults.cancelCrossbowAnimation, config.cancelCrossbowAnimation,
+                    EntityOption.Configuration.PERSPECTIVE_INDEPENDENT_OPTION_CONFIGURATOR
+                ))
+                .group(EntityOption.createGroup(
+                    "Cancel Charged Crossbow Animation", "Cancel the charged crossbow model.", defaults.cancelChargedCrossbowAnimation, config.cancelChargedCrossbowAnimation,
+                    EntityOption.Configuration.PERSPECTIVE_INDEPENDENT_OPTION_CONFIGURATOR
+                ))
+                .group(EntityOption.createGroup(
+                    "Cancel Spear Animation", "Cancel the spear drawing animation.", defaults.cancelSpearAnimation, config.cancelSpearAnimation,
+                    EntityOption.Configuration.PERSPECTIVE_INDEPENDENT_OPTION_CONFIGURATOR
+                ))
+                .group(EntityOption.createGroup(
+                    "Cancel Brushing Animation", "Cancel the brushing animation.", defaults.cancelBrushingAnimation, config.cancelBrushingAnimation,
+                    EntityOption.Configuration.PERSPECTIVE_INDEPENDENT_OPTION_CONFIGURATOR
+                ))
+                .group(EntityOption.createGroup(
+                    "Cancel Bundle Animation", "Cancel the bundle use swing animation.", defaults.cancelBundleAnimation, config.cancelBundleAnimation,
+                    EntityOption.Configuration.PERSPECTIVE_INDEPENDENT_OPTION_CONFIGURATOR
+                ))
+                .group(EntityOption.createGroup(
+                    "Cancel Bow Arrow Model", "Cancel the arrow in a bow being rendered.", defaults.cancelBowArrowModel, config.cancelBowArrowModel,
+                    EntityOption.Configuration.PERSPECTIVE_INDEPENDENT_OPTION_CONFIGURATOR
+                ))
+                .group(EntityOption.createGroup(
+                    "Cancel Crossbow Arrow Model", "Cancel the arrow in a crossbow being rendered.", defaults.cancelCrossbowArrowModel, config.cancelCrossbowArrowModel,
+                    EntityOption.Configuration.PERSPECTIVE_INDEPENDENT_OPTION_CONFIGURATOR
+                ))
+                .group(OptionGroup.createBuilder()
+                    .name(Text.literal("Item Resets"))
+                    .description(OptionDescription.of(Text.literal("Options for cancelling the item reset animation.")))
                     .option(Option.<Boolean>createBuilder()
-                        .name(Text.literal("Cancel Eating Animation"))
-                        .description(OptionDescription.of(Text.literal("Cancel the first-person eating animation.")))
+                        .name(Text.literal("Cancel Block Interact Resets"))
+                        .description(OptionDescription.of(Text.literal("Cancel the item reset animation when interacting with a block.")))
                         .binding(
-                            defaults.cancelEatingAnimation,
-                            () -> config.cancelEatingAnimation,
-                            (cancelEatingAnimation) -> config.cancelEatingAnimation = cancelEatingAnimation
+                            defaults.cancelBlockInteractResets,
+                            () -> config.cancelBlockInteractResets,
+                            (cancelBlockInteractResets) -> config.cancelBlockInteractResets = cancelBlockInteractResets
                         )
                         .controller(BooleanControllerBuilder::create)
                         .build()
                     )
                     .option(Option.<Boolean>createBuilder()
-                        .name(Text.literal("Cancel Drinking Animation"))
-                        .description(OptionDescription.of(Text.literal("Cancel the first-person drinking animation.")))
+                        .name(Text.literal("Cancel Item Interact Resets"))
+                        .description(OptionDescription.of(Text.literal("Cancel the item reset animation when interacting with an item.")))
                         .binding(
-                            defaults.cancelDrinkingAnimation,
-                            () -> config.cancelDrinkingAnimation,
-                            (cancelDrinkingAnimation) -> config.cancelDrinkingAnimation = cancelDrinkingAnimation
+                            defaults.cancelItemInteractResets,
+                            () -> config.cancelItemInteractResets,
+                            (cancelItemInteractResets) -> config.cancelItemInteractResets = cancelItemInteractResets
                         )
                         .controller(BooleanControllerBuilder::create)
                         .build()
                     )
-                    .group(EntityOption.createGroup(
-                        "Cancel Blocking Animation", "Cancel the item blocking animation.", defaults.cancelBlockingAnimation, config.cancelBlockingAnimation
-                    ))
-                    .group(EntityOption.createGroup(
-                        "Cancel Shield Animation", "Cancel the shield blocking animation.", defaults.cancelShieldAnimation, config.cancelShieldAnimation
-                    ))
-                    .group(EntityOption.createGroup(
-                        "Cancel Bow Animation", "Cancel the bow drawing animation.", defaults.cancelBowAnimation, config.cancelBowAnimation
-                    ))
-                    .group(EntityOption.createGroup(
-                        "Cancel Crossbow Animation", "Cancel the crossbow drawing animation.", defaults.cancelCrossbowAnimation, config.cancelCrossbowAnimation
-                    ))
-                    .group(EntityOption.createGroup(
-                        "Cancel Charged Crossbow Animation", "Cancel the charged crossbow model.", defaults.cancelChargedCrossbowAnimation, config.cancelChargedCrossbowAnimation
-                    ))
-                    .group(EntityOption.createGroup(
-                        "Cancel Spear Animation", "Cancel the spear drawing animation.", defaults.cancelSpearAnimation, config.cancelSpearAnimation
-                    ))
-                    .group(EntityOption.createGroup(
-                        "Cancel Brushing Animation", "Cancel the brushing animation.", defaults.cancelBrushingAnimation, config.cancelBrushingAnimation
-                    ))
-                    .group(EntityOption.createGroup(
-                        "Cancel Bundle Animation", "Cancel the bundle use swing animation.", defaults.cancelBundleAnimation, config.cancelBundleAnimation
-                    ))
-                    .group(EntityOption.createGroup(
-                        "Cancel Bow Arrow Model", "Cancel the arrow in a bow being rendered.", defaults.cancelBowArrowModel, config.cancelBowArrowModel
-                    ))
-                    .group(EntityOption.createGroup(
-                        "Cancel Crossbow Arrow Model", "Cancel the arrow in a crossbow being rendered.", defaults.cancelCrossbowArrowModel, config.cancelCrossbowArrowModel
-                    ))
-                    .group(OptionGroup.createBuilder()
-                        .name(Text.literal("Item Resets"))
-                        .description(OptionDescription.of(Text.literal("Options for cancelling the item reset animation.")))
-                        .option(Option.<Boolean>createBuilder()
-                            .name(Text.literal("Cancel Block Interact Resets"))
-                            .description(OptionDescription.of(Text.literal("Cancel the item reset animation when interacting with a block.")))
-                            .binding(
-                                defaults.cancelBlockInteractResets,
-                                () -> config.cancelBlockInteractResets,
-                                (cancelBlockInteractResets) -> config.cancelBlockInteractResets = cancelBlockInteractResets
-                            )
-                            .controller(BooleanControllerBuilder::create)
-                            .build()
+                    .option(Option.<Boolean>createBuilder()
+                        .name(Text.literal("Cancel Slot Swapping Resets"))
+                        .description(OptionDescription.of(Text.literal("Cancel the item reset animation when swapping items.")))
+                        .binding(
+                            defaults.cancelSlotSwappingResets,
+                            () -> config.cancelSlotSwappingResets,
+                            (cancelAllItemResets) -> config.cancelSlotSwappingResets = cancelAllItemResets
                         )
-                        .option(Option.<Boolean>createBuilder()
-                            .name(Text.literal("Cancel Item Interact Resets"))
-                            .description(OptionDescription.of(Text.literal("Cancel the item reset animation when interacting with an item.")))
-                            .binding(
-                                defaults.cancelItemInteractResets,
-                                () -> config.cancelItemInteractResets,
-                                (cancelItemInteractResets) -> config.cancelItemInteractResets = cancelItemInteractResets
-                            )
-                            .controller(BooleanControllerBuilder::create)
-                            .build()
-                        )
-                        .option(Option.<Boolean>createBuilder()
-                            .name(Text.literal("Cancel Slot Swapping Resets"))
-                            .description(OptionDescription.of(Text.literal("Cancel the item reset animation when swapping items.")))
-                            .binding(
-                                defaults.cancelSlotSwappingResets,
-                                () -> config.cancelSlotSwappingResets,
-                                (cancelAllItemResets) -> config.cancelSlotSwappingResets = cancelAllItemResets
-                            )
-                            .controller(BooleanControllerBuilder::create)
-                            .build()
-                        )
+                        .controller(BooleanControllerBuilder::create)
                         .build()
                     )
                     .build()
                 )
-                .category(ConfigCategory.createBuilder()
-                    .name(Text.literal("Entity Model"))
-                    .tooltip(Text.literal("Options for cancelling entity model animations."))
-                    .group(EntityOption.createGroup(
-                        "Cancel Limb Movements", "Cancel entity limb movements.", defaults.cancelLimbMovements, config.cancelLimbMovements
-                    ))
-                    .group(EntityOption.createGroup(
-                        "Weirder Limb Movements", "Somewhat cancel entity limb movements.", defaults.weirderLimbMovements, config.weirderLimbMovements
-                    ))
-                    .group(EntityOption.createGroup(
-                        "Cancel Sneaking", "Cancel the sneaking animation.", defaults.cancelSneaking, config.cancelSneaking
-                    ))
-                    .build()
-                )).generateScreen(parent);
+                .build()
+            )
+            .category(ConfigCategory.createBuilder()
+                .name(Text.literal("Entity Model"))
+                .tooltip(Text.literal("Options for cancelling entity model animations."))
+                .group(EntityOption.createGroup(
+                    "Cancel Limb Movements", "Cancel entity limb movements.", defaults.cancelLimbMovements, config.cancelLimbMovements,
+                    EntityOption.Configuration.THIRD_PERSON_OPTION_CONFIGURATION
+                ))
+                .group(EntityOption.createGroup(
+                    "Weirder Limb Movements", "Somewhat cancel entity limb movements.", defaults.weirderLimbMovements, config.weirderLimbMovements,
+                    EntityOption.Configuration.THIRD_PERSON_OPTION_CONFIGURATION
+                ))
+                .group(EntityOption.createGroup(
+                    "Cancel Sneaking", "Cancel the sneaking animation.", defaults.cancelSneaking, config.cancelSneaking,
+                    EntityOption.Configuration.THIRD_PERSON_OPTION_CONFIGURATION
+                ))
+                .build()
+            )
+        ).generateScreen(parent);
     }
 }

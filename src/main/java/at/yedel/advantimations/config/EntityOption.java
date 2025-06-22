@@ -12,6 +12,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.text.Text;
 
+import java.util.function.Consumer;
+
 
 
 public class EntityOption {
@@ -36,11 +38,13 @@ public class EntityOption {
         return originalValue;
     }
 
-    public static OptionGroup createGroup(String groupName, String groupDescription, EntityOption defaultValue, EntityOption configValue) {
+    public static OptionGroup createGroup(String groupName, String groupDescription, EntityOption defaultValue, EntityOption configValue, Consumer<Configuration> configurator) {
+        Configuration configuration = new Configuration();
+        configurator.accept(configuration);
         return OptionGroup.createBuilder()
             .name(Text.literal(groupName))
             .description(OptionDescription.of(Text.literal(groupDescription)))
-            .optionIf(true, Option.<Boolean>createBuilder()
+            .option(Option.<Boolean>createBuilder()
                 .name(Text.literal("Enabled"))
                 .binding(
                     defaultValue.isEnabled(),
@@ -50,7 +54,7 @@ public class EntityOption {
                 .controller(BooleanControllerBuilder::create)
                 .build()
             )
-            .optionIf(true, Option.<Boolean>createBuilder()
+            .optionIf(configuration.canBeEnabledInFirstPerson, Option.<Boolean>createBuilder()
                 .name(Text.literal("Enabled in First Person"))
                 .description(OptionDescription.of(Text.literal("Enable this option for yourself in first person.")))
                 .binding(
@@ -61,7 +65,7 @@ public class EntityOption {
                 .controller(TickBoxControllerBuilder::create)
                 .build()
             )
-            .optionIf(true, Option.<Boolean>createBuilder()
+            .optionIf(configuration.canBeEnabledOnSelf, Option.<Boolean>createBuilder()
                 .name(Text.literal("Enabled on Self"))
                 .description(OptionDescription.of(Text.literal("Enable this option for yourself.")))
                 .binding(
@@ -72,7 +76,7 @@ public class EntityOption {
                 .controller(TickBoxControllerBuilder::create)
                 .build()
             )
-            .optionIf(true, Option.<Boolean>createBuilder()
+            .optionIf(configuration.canBeEnabledOnOtherPlayers, Option.<Boolean>createBuilder()
                 .name(Text.literal("Enabled on Other Players"))
                 .description(OptionDescription.of(Text.literal("Enable this option for other players.")))
                 .binding(
@@ -83,7 +87,7 @@ public class EntityOption {
                 .controller(TickBoxControllerBuilder::create)
                 .build()
             )
-            .optionIf(true, Option.<Boolean>createBuilder()
+            .optionIf(configuration.canBeEnabledOnOtherEntities, Option.<Boolean>createBuilder()
                 .name(Text.literal("Enabled on Other Entities"))
                 .description(OptionDescription.of(Text.literal("Enable this option for other non-player entities, such as zombies.")))
                 .binding(
@@ -160,5 +164,38 @@ public class EntityOption {
 
     public void setEnabledOnOtherEntities(boolean enabledOnOtherEntities) {
         this.enabledOnOtherEntities = enabledOnOtherEntities;
+    }
+
+    public static class Configuration {
+        public static final Consumer<Configuration> PERSPECTIVE_INDEPENDENT_OPTION_CONFIGURATOR = (configuration) ->
+            configuration.canBeEnabledInFirstPerson().canBeEnabledOnSelf().canBeEnabledOnOtherPlayers().canBeEnabledOnOtherEntities();
+
+        public static final Consumer<Configuration> THIRD_PERSON_OPTION_CONFIGURATION = (configuration) ->
+            configuration.canBeEnabledOnSelf().canBeEnabledOnOtherPlayers().canBeEnabledOnOtherEntities();
+
+        private boolean canBeEnabledInFirstPerson;
+        private boolean canBeEnabledOnSelf;
+        private boolean canBeEnabledOnOtherPlayers;
+        private boolean canBeEnabledOnOtherEntities;
+
+        public Configuration canBeEnabledInFirstPerson() {
+            this.canBeEnabledInFirstPerson = true;
+            return this;
+        }
+
+        public Configuration canBeEnabledOnSelf() {
+            this.canBeEnabledOnSelf = true;
+            return this;
+        }
+
+        public Configuration canBeEnabledOnOtherPlayers() {
+            this.canBeEnabledOnOtherPlayers = true;
+            return this;
+        }
+
+        public Configuration canBeEnabledOnOtherEntities() {
+            this.canBeEnabledOnOtherEntities = true;
+            return this;
+        }
     }
 }
