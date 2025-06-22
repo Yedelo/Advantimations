@@ -12,8 +12,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.text.Text;
 
-import java.util.ArrayList;
-
 
 
 public class EntityOption {
@@ -42,14 +40,7 @@ public class EntityOption {
         return OptionGroup.createBuilder()
             .name(Text.literal(groupName))
             .description(OptionDescription.of(Text.literal(groupDescription)))
-            .options(createOptions(defaultValue, configValue))
-            .build();
-    }
-
-    protected static ArrayList<Option<Boolean>> createOptions(EntityOption defaultValue, EntityOption configValue) {
-        ArrayList<Option<Boolean>> options = new ArrayList<>();
-        options.add(
-            Option.<Boolean>createBuilder()
+            .optionIf(true, Option.<Boolean>createBuilder()
                 .name(Text.literal("Enabled"))
                 .binding(
                     defaultValue.isEnabled(),
@@ -58,9 +49,8 @@ public class EntityOption {
                 )
                 .controller(BooleanControllerBuilder::create)
                 .build()
-        );
-        options.add(
-            Option.<Boolean>createBuilder()
+            )
+            .optionIf(true, Option.<Boolean>createBuilder()
                 .name(Text.literal("Enabled in First Person"))
                 .description(OptionDescription.of(Text.literal("Enable this option for yourself in first person.")))
                 .binding(
@@ -70,9 +60,8 @@ public class EntityOption {
                 )
                 .controller(TickBoxControllerBuilder::create)
                 .build()
-        );
-        options.add(
-            Option.<Boolean>createBuilder()
+            )
+            .optionIf(true, Option.<Boolean>createBuilder()
                 .name(Text.literal("Enabled on Self"))
                 .description(OptionDescription.of(Text.literal("Enable this option for yourself.")))
                 .binding(
@@ -82,9 +71,8 @@ public class EntityOption {
                 )
                 .controller(TickBoxControllerBuilder::create)
                 .build()
-        );
-        options.add(
-            Option.<Boolean>createBuilder()
+            )
+            .optionIf(true, Option.<Boolean>createBuilder()
                 .name(Text.literal("Enabled on Other Players"))
                 .description(OptionDescription.of(Text.literal("Enable this option for other players.")))
                 .binding(
@@ -94,9 +82,8 @@ public class EntityOption {
                 )
                 .controller(TickBoxControllerBuilder::create)
                 .build()
-        );
-        options.add(
-            Option.<Boolean>createBuilder()
+            )
+            .optionIf(true, Option.<Boolean>createBuilder()
                 .name(Text.literal("Enabled on Other Entities"))
                 .description(OptionDescription.of(Text.literal("Enable this option for other non-player entities, such as zombies.")))
                 .binding(
@@ -106,8 +93,8 @@ public class EntityOption {
                 )
                 .controller(TickBoxControllerBuilder::create)
                 .build()
-        );
-        return options;
+            )
+            .build();
     }
 
     public EntityOption enabled() {
