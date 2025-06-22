@@ -16,8 +16,9 @@ import java.util.ArrayList;
 
 
 
-public class ThirdPersonEntityOption {
+public class EntityOption {
     protected boolean enabled;
+    protected boolean enabledInFirstPerson;
     protected boolean enabledOnSelf;
     protected boolean enabledOnOtherPlayers;
     protected boolean enabledOnOtherEntities;
@@ -37,7 +38,7 @@ public class ThirdPersonEntityOption {
         return originalValue;
     }
 
-    public static OptionGroup createGroup(String groupName, String groupDescription, ThirdPersonEntityOption defaultValue, ThirdPersonEntityOption configValue) {
+    public static OptionGroup createGroup(String groupName, String groupDescription, EntityOption defaultValue, EntityOption configValue) {
         return OptionGroup.createBuilder()
             .name(Text.literal(groupName))
             .description(OptionDescription.of(Text.literal(groupDescription)))
@@ -45,7 +46,7 @@ public class ThirdPersonEntityOption {
             .build();
     }
 
-    protected static ArrayList<Option<Boolean>> createOptions(ThirdPersonEntityOption defaultValue, ThirdPersonEntityOption configValue) {
+    protected static ArrayList<Option<Boolean>> createOptions(EntityOption defaultValue, EntityOption configValue) {
         ArrayList<Option<Boolean>> options = new ArrayList<>();
         options.add(
             Option.<Boolean>createBuilder()
@@ -56,6 +57,18 @@ public class ThirdPersonEntityOption {
                     configValue::setEnabled
                 )
                 .controller(BooleanControllerBuilder::create)
+                .build()
+        );
+        options.add(
+            Option.<Boolean>createBuilder()
+                .name(Text.literal("Enabled in First Person"))
+                .description(OptionDescription.of(Text.literal("Enable this option for yourself in first person.")))
+                .binding(
+                    defaultValue.enabledInFirstPerson,
+                    configValue::isEnabledInFirstPerson,
+                    configValue::setEnabledInFirstPerson
+                )
+                .controller(TickBoxControllerBuilder::create)
                 .build()
         );
         options.add(
@@ -97,22 +110,27 @@ public class ThirdPersonEntityOption {
         return options;
     }
 
-    public ThirdPersonEntityOption enabled() {
+    public EntityOption enabled() {
         this.enabled = true;
         return this;
     }
 
-    public ThirdPersonEntityOption enabledOnSelf() {
+    public EntityOption enabledInFirstPerson() {
+        this.enabledInFirstPerson = true;
+        return this;
+    }
+
+    public EntityOption enabledOnSelf() {
         this.enabledOnSelf = true;
         return this;
     }
 
-    public ThirdPersonEntityOption enabledOnOtherPlayers() {
+    public EntityOption enabledOnOtherPlayers() {
         this.enabledOnOtherPlayers = true;
         return this;
     }
 
-    public ThirdPersonEntityOption enabledOnOtherEntities() {
+    public EntityOption enabledOnOtherEntities() {
         this.enabledOnOtherEntities = true;
         return this;
     }
@@ -123,6 +141,14 @@ public class ThirdPersonEntityOption {
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
+    }
+
+    public boolean isEnabledInFirstPerson() {
+        return enabledInFirstPerson;
+    }
+
+    public void setEnabledInFirstPerson(boolean enabledInFirstPerson) {
+        this.enabledInFirstPerson = enabledInFirstPerson;
     }
 
     public boolean isEnabledOnSelf() {

@@ -3,7 +3,7 @@ package at.yedel.advantimations.mixin;
 
 
 import at.yedel.advantimations.config.AdvantimationsConfig;
-import at.yedel.advantimations.config.PerspectiveIndependentEntityOption;
+import at.yedel.advantimations.config.EntityOption;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.sugar.Share;
 import com.llamalad7.mixinextras.sugar.ref.LocalRef;
@@ -36,15 +36,15 @@ public abstract class UsingItemPropertyMixin {
         boolean thirdPerson = !firstPerson;
         boolean shouldCancel = switch (item) {
             case ShieldItem ignored: {
-                PerspectiveIndependentEntityOption option = AdvantimationsConfig.getInstance().cancelShieldAnimation;
+                EntityOption option = AdvantimationsConfig.getInstance().cancelShieldAnimation;
                 yield (option.isEnabledInFirstPerson() && firstPerson) || (option.getResult(entity, !original, true) && thirdPerson);
             }
             case BowItem ignored: {
-                PerspectiveIndependentEntityOption option = AdvantimationsConfig.getInstance().cancelBowArrowModel;
+                EntityOption option = AdvantimationsConfig.getInstance().cancelBowArrowModel;
                 yield (option.isEnabledInFirstPerson() && firstPerson) || (option.getResult(entity, !original, true) && thirdPerson);
             }
             case CrossbowItem ignored: {
-                PerspectiveIndependentEntityOption option = AdvantimationsConfig.getInstance().cancelCrossbowArrowModel;
+                EntityOption option = AdvantimationsConfig.getInstance().cancelCrossbowArrowModel;
                 yield (option.isEnabledInFirstPerson() && firstPerson) || (option.getResult(entity, !original, true) && thirdPerson);
             }
             default: {
