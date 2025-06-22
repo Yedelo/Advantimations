@@ -12,6 +12,8 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
+import java.util.function.Consumer;
+
 
 
 public class AdvantimationsConfig {
@@ -32,6 +34,8 @@ public class AdvantimationsConfig {
     public static void init() {
         HANDLER.load();
     }
+
+    private static final Consumer<EntityOption.Configuration> ITEM_MODEL_CONFIGURATOR = EntityOption.Configuration.PERSPECTIVE_INDEPENDENT_OPTION_CONFIGURATOR.andThen(EntityOption.Configuration::collapsed);
 
     @SerialEntry
     public EntityOption cancelSwings = new EntityOption()
@@ -133,47 +137,47 @@ public class AdvantimationsConfig {
                 )
                 .group(EntityOption.createGroup(
                     "Cancel Blocking Animation", "Cancel the item blocking animation.", defaults.cancelBlockingAnimation, config.cancelBlockingAnimation,
-                    EntityOption.Configuration.PERSPECTIVE_INDEPENDENT_OPTION_CONFIGURATOR
+                    ITEM_MODEL_CONFIGURATOR
                 ))
                 .group(EntityOption.createGroup(
                     "Cancel Shield Animation", "Cancel the shield blocking animation.", defaults.cancelShieldAnimation, config.cancelShieldAnimation,
-                    EntityOption.Configuration.PERSPECTIVE_INDEPENDENT_OPTION_CONFIGURATOR
+                    ITEM_MODEL_CONFIGURATOR
                 ))
                 .group(EntityOption.createGroup(
                     "Cancel Bow Animation", "Cancel the bow drawing animation.", defaults.cancelBowAnimation, config.cancelBowAnimation,
-                    EntityOption.Configuration.PERSPECTIVE_INDEPENDENT_OPTION_CONFIGURATOR
+                    ITEM_MODEL_CONFIGURATOR
                 ))
                 .group(EntityOption.createGroup(
                     "Cancel Crossbow Animation", "Cancel the crossbow drawing animation.", defaults.cancelCrossbowAnimation, config.cancelCrossbowAnimation,
-                    EntityOption.Configuration.PERSPECTIVE_INDEPENDENT_OPTION_CONFIGURATOR
+                    ITEM_MODEL_CONFIGURATOR
                 ))
                 .group(EntityOption.createGroup(
                     "Cancel Charged Crossbow Animation", "Cancel the charged crossbow model.", defaults.cancelChargedCrossbowAnimation, config.cancelChargedCrossbowAnimation,
-                    EntityOption.Configuration.PERSPECTIVE_INDEPENDENT_OPTION_CONFIGURATOR
+                    ITEM_MODEL_CONFIGURATOR
                 ))
                 .group(EntityOption.createGroup(
                     "Cancel Spyglass Animation", "Cancel the spyglass animation.", defaults.cancelSpyglassAnimation, config.cancelSpyglassAnimation,
-                    EntityOption.Configuration.PERSPECTIVE_INDEPENDENT_OPTION_CONFIGURATOR
+                    ITEM_MODEL_CONFIGURATOR
                 ))
                 .group(EntityOption.createGroup(
                     "Cancel Spear Animation", "Cancel the spear drawing animation.", defaults.cancelSpearAnimation, config.cancelSpearAnimation,
-                    EntityOption.Configuration.PERSPECTIVE_INDEPENDENT_OPTION_CONFIGURATOR
+                    ITEM_MODEL_CONFIGURATOR
                 ))
                 .group(EntityOption.createGroup(
                     "Cancel Brushing Animation", "Cancel the brushing animation.", defaults.cancelBrushingAnimation, config.cancelBrushingAnimation,
-                    EntityOption.Configuration.PERSPECTIVE_INDEPENDENT_OPTION_CONFIGURATOR
+                    ITEM_MODEL_CONFIGURATOR
                 ))
                 .group(EntityOption.createGroup(
                     "Cancel Bundle Animation", "Cancel the bundle use swing animation.", defaults.cancelBundleAnimation, config.cancelBundleAnimation,
-                    EntityOption.Configuration.PERSPECTIVE_INDEPENDENT_OPTION_CONFIGURATOR
+                    ITEM_MODEL_CONFIGURATOR
                 ))
                 .group(EntityOption.createGroup(
                     "Cancel Bow Arrow Model", "Cancel the arrow in a bow being rendered.", defaults.cancelBowArrowModel, config.cancelBowArrowModel,
-                    EntityOption.Configuration.PERSPECTIVE_INDEPENDENT_OPTION_CONFIGURATOR
+                    ITEM_MODEL_CONFIGURATOR
                 ))
                 .group(EntityOption.createGroup(
                     "Cancel Crossbow Arrow Model", "Cancel the arrow in a crossbow being rendered.", defaults.cancelCrossbowArrowModel, config.cancelCrossbowArrowModel,
-                    EntityOption.Configuration.PERSPECTIVE_INDEPENDENT_OPTION_CONFIGURATOR
+                    ITEM_MODEL_CONFIGURATOR
                 ))
                 .group(OptionGroup.createBuilder()
                     .name(Text.literal("Item Resets"))

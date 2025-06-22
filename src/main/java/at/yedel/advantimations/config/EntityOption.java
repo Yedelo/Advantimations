@@ -49,6 +49,7 @@ public class EntityOption implements FirstPersonOption {
         return OptionGroup.createBuilder()
             .name(Text.literal(groupName))
             .description(OptionDescription.of(Text.literal(groupDescription)))
+            .collapsed(configuration.collapsed)
             .option(Option.<Boolean>createBuilder()
                 .name(Text.literal("Enabled"))
                 .binding(
@@ -182,6 +183,7 @@ public class EntityOption implements FirstPersonOption {
         private boolean canBeEnabledOnSelf;
         private boolean canBeEnabledOnOtherPlayers;
         private boolean canBeEnabledOnOtherEntities;
+        private boolean collapsed;
 
         public Configuration canBeEnabledInFirstPerson() {
             this.canBeEnabledInFirstPerson = true;
@@ -200,6 +202,11 @@ public class EntityOption implements FirstPersonOption {
 
         public Configuration canBeEnabledOnOtherEntities() {
             this.canBeEnabledOnOtherEntities = true;
+            return this;
+        }
+
+        public Configuration collapsed() {
+            this.collapsed = true;
             return this;
         }
     }
