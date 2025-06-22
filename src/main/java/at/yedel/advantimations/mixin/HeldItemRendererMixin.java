@@ -60,7 +60,7 @@ public abstract class HeldItemRendererMixin {
     }
 
     @Inject(method = "shouldSkipHandAnimationOnSwap", at = @At("HEAD"), cancellable = true)
-    private void advantimations$cancelAllItemResets(ItemStack from, ItemStack to, CallbackInfoReturnable<Boolean> cir) {
+    private void advantimations$cancelSlotSwappingResets(ItemStack from, ItemStack to, CallbackInfoReturnable<Boolean> cir) {
         if (AdvantimationsConfig.getInstance().cancelSlotSwappingResets.shouldApplyInFirstPerson()) {
             cir.setReturnValue(true);
         }
