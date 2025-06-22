@@ -16,6 +16,14 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(HeldItemRenderer.class)
 public abstract class HeldItemRendererMixin {
+    @ModifyExpressionValue(method = "renderFirstPersonItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/network/AbstractClientPlayerEntity;isUsingSpyglass()Z"))
+    private boolean advantimations$cancelSpyglassAnimation(boolean original) {
+        if (AdvantimationsConfig.getInstance().cancelSpyglassAnimation.isEnabledInFirstPerson()) {
+            return false;
+        }
+        return original;
+    }
+
     @ModifyExpressionValue(method = "renderItem(FLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider$Immediate;Lnet/minecraft/client/network/ClientPlayerEntity;I)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/network/ClientPlayerEntity;getHandSwingProgress(F)F"))
     private float advantimations$cancelFirstPersonSwings(float original) {
         if (AdvantimationsConfig.getInstance().cancelSwings.isEnabledInFirstPerson()) {

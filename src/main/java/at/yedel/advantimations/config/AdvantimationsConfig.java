@@ -61,6 +61,9 @@ public class AdvantimationsConfig {
     public EntityOption cancelChargedCrossbowAnimation = new EntityOption();
 
     @SerialEntry
+    public EntityOption cancelSpyglassAnimation = new EntityOption();
+
+    @SerialEntry
     public EntityOption cancelSpearAnimation = new EntityOption();
 
     @SerialEntry
@@ -143,6 +146,10 @@ public class AdvantimationsConfig {
                 ))
                 .group(EntityOption.createGroup(
                     "Cancel Charged Crossbow Animation", "Cancel the charged crossbow model.", defaults.cancelChargedCrossbowAnimation, config.cancelChargedCrossbowAnimation,
+                    EntityOption.Configuration.PERSPECTIVE_INDEPENDENT_OPTION_CONFIGURATOR
+                ))
+                .group(EntityOption.createGroup(
+                    "Cancel Spyglass Animation", "Cancel the spyglass animation.", defaults.cancelSpyglassAnimation, config.cancelSpyglassAnimation,
                     EntityOption.Configuration.PERSPECTIVE_INDEPENDENT_OPTION_CONFIGURATOR
                 ))
                 .group(EntityOption.createGroup(
