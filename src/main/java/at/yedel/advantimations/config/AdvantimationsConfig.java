@@ -239,7 +239,7 @@ public class AdvantimationsConfig {
                 ))
                 .group(EntityOption.createGroup(
                     "Cancel Sneaking", "Cancel the sneaking animation.", defaults.cancelSneaking, config.cancelSneaking,
-                    EntityOption.Configuration.THIRD_PERSON_OPTION_CONFIGURATOR
+                    (configuration) -> configuration.canBeEnabledInFirstPerson().canBeEnabledOnSelf().canBeEnabledOnOtherPlayers()
                 ))
                 .build()
             )
