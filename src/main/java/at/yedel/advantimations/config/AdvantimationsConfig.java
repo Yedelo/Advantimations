@@ -231,15 +231,15 @@ public class AdvantimationsConfig {
                 .tooltip(Text.literal("Options for cancelling entity model animations."))
                 .group(EntityOption.createGroup(
                     "Cancel Limb Movements", "Cancel entity limb movements.", defaults.cancelLimbMovements, config.cancelLimbMovements,
-                    EntityOption.Configuration.THIRD_PERSON_OPTION_CONFIGURATION
+                    EntityOption.Configuration.THIRD_PERSON_OPTION_CONFIGURATOR
                 ))
                 .group(EntityOption.createGroup(
                     "Weirder Limb Movements", "Somewhat cancel entity limb movements.", defaults.weirderLimbMovements, config.weirderLimbMovements,
-                    EntityOption.Configuration.THIRD_PERSON_OPTION_CONFIGURATION
+                    EntityOption.Configuration.THIRD_PERSON_OPTION_CONFIGURATOR
                 ))
                 .group(EntityOption.createGroup(
                     "Cancel Sneaking", "Cancel the sneaking animation.", defaults.cancelSneaking, config.cancelSneaking,
-                    EntityOption.Configuration.THIRD_PERSON_OPTION_CONFIGURATION
+                    EntityOption.Configuration.THIRD_PERSON_OPTION_CONFIGURATOR
                 ))
                 .build()
             )

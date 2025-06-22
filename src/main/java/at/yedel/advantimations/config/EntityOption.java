@@ -175,7 +175,7 @@ public class EntityOption implements FirstPersonOption {
         public static final Consumer<Configuration> PERSPECTIVE_INDEPENDENT_OPTION_CONFIGURATOR = (configuration) ->
             configuration.canBeEnabledInFirstPerson().canBeEnabledOnSelf().canBeEnabledOnOtherPlayers().canBeEnabledOnOtherEntities();
 
-        public static final Consumer<Configuration> THIRD_PERSON_OPTION_CONFIGURATION = (configuration) ->
+        public static final Consumer<Configuration> THIRD_PERSON_OPTION_CONFIGURATOR = (configuration) ->
             configuration.canBeEnabledOnSelf().canBeEnabledOnOtherPlayers().canBeEnabledOnOtherEntities();
 
         private boolean canBeEnabledInFirstPerson;
