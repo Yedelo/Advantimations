@@ -2,6 +2,8 @@
 
 ![logo](src/main/resources/assets/advantimations/advantimations.png)
 
+[Modrinth](https://modrinth.com/project/advantimations)
+
 (credit to [thebaum64](https://modrinth.com/user/thebaum64) for [original texture](https://modrinth.com/resourcepack/default-hd-128x))
 
 ![discord yedel](https://img.shields.io/badge/discord-yedel-blue)
