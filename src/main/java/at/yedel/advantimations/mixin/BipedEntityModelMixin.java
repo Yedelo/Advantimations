@@ -18,19 +18,21 @@ import org.spongepowered.asm.mixin.injection.At;
 public abstract class BipedEntityModelMixin {
     @Unique
     private BipedEntityModel.ArmPose advantimations$cancelItemUseAnimations(Arm arm, BipedEntityModel.ArmPose original) {
-        LivingEntity entity = (LivingEntity) EntityRenderInfo.entity;
-        BipedEntityModel.ArmPose defaultPose = !entity.getStackInArm(arm).isEmpty() ? BipedEntityModel.ArmPose.ITEM : BipedEntityModel.ArmPose.EMPTY;
-        return switch (original) {
-            case BLOCK -> AdvantimationsConfig.getInstance().cancelBlockingAnimation.getThirdPersonResult(entity, original, defaultPose);
-            case BOW_AND_ARROW -> AdvantimationsConfig.getInstance().cancelBowAnimation.getThirdPersonResult(entity, original, defaultPose);
-            case THROW_SPEAR -> AdvantimationsConfig.getInstance().cancelSpearAnimation.getThirdPersonResult(entity, original, defaultPose);
-            case CROSSBOW_CHARGE -> AdvantimationsConfig.getInstance().cancelCrossbowAnimation.getThirdPersonResult(entity, original, defaultPose);
-            case CROSSBOW_HOLD -> AdvantimationsConfig.getInstance().cancelChargedCrossbowAnimation.getThirdPersonResult(entity, original, defaultPose);
-            case SPYGLASS -> AdvantimationsConfig.getInstance().cancelSpyglassAnimation.getThirdPersonResult(entity, original, defaultPose);
-            case TOOT_HORN -> AdvantimationsConfig.getInstance().cancelHornTootAnimation.getThirdPersonResult(entity, original, defaultPose);
-            case BRUSH -> AdvantimationsConfig.getInstance().cancelBrushingAnimation.getThirdPersonResult(entity, original, defaultPose);
-            default -> original;
-        };
+        if (EntityRenderInfo.entity instanceof LivingEntity entity) {
+            BipedEntityModel.ArmPose defaultPose = !entity.getStackInArm(arm).isEmpty() ? BipedEntityModel.ArmPose.ITEM : BipedEntityModel.ArmPose.EMPTY;
+            return switch (original) {
+                case BLOCK -> AdvantimationsConfig.getInstance().cancelBlockingAnimation.getThirdPersonResult(entity, original, defaultPose);
+                case BOW_AND_ARROW -> AdvantimationsConfig.getInstance().cancelBowAnimation.getThirdPersonResult(entity, original, defaultPose);
+                case THROW_SPEAR -> AdvantimationsConfig.getInstance().cancelSpearAnimation.getThirdPersonResult(entity, original, defaultPose);
+                case CROSSBOW_CHARGE -> AdvantimationsConfig.getInstance().cancelCrossbowAnimation.getThirdPersonResult(entity, original, defaultPose);
+                case CROSSBOW_HOLD -> AdvantimationsConfig.getInstance().cancelChargedCrossbowAnimation.getThirdPersonResult(entity, original, defaultPose);
+                case SPYGLASS -> AdvantimationsConfig.getInstance().cancelSpyglassAnimation.getThirdPersonResult(entity, original, defaultPose);
+                case TOOT_HORN -> AdvantimationsConfig.getInstance().cancelHornTootAnimation.getThirdPersonResult(entity, original, defaultPose);
+                case BRUSH -> AdvantimationsConfig.getInstance().cancelBrushingAnimation.getThirdPersonResult(entity, original, defaultPose);
+                default -> original;
+            };
+        }
+        return original;
     }
 
     @ModifyReceiver(method = "positionLeftArm", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/entity/model/BipedEntityModel$ArmPose;ordinal()I"))
