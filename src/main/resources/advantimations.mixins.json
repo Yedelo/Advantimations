@@ -2,7 +2,8 @@
   "required": true,
   "package": "at.yedel.advantimations.mixin",
   "compatibilityLevel": "JAVA_21",
-  "client": ["BipedEntityModelMixin",
+  "client": [
+    "BipedEntityModelMixin",
     "BipedEntityRendererMixin",
     "EntityRenderDispatcherMixin",
     "HeldItemRendererMixin",
@@ -11,6 +12,7 @@
     "MinecraftClientMixin",
     "PlayerEntityRendererMixin",
     "PlayerHeldItemFeatureRendererMixin",
+    "UseCyclePropertyMixin",
     "UsingItemPropertyMixin"
   ],
   "injectors": {
