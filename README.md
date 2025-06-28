@@ -20,11 +20,6 @@ Client-side mod to cancel animations
 - [YetAnotherConfigLib (YACL)](https://modrinth.com/mod/yacl)
 - [Mod Menu](https://modrinth.com/mod/modmenu) for configuring the mod (extremely likely)
 
-## Version Note
-
-As of now (1.0.0-1.21.5-fabric), the mod also works on 1.21.4.
-A mod version for 1.21.6 will likely take longer to develop.
-
 ## Features
 
 ### Item Model
