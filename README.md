@@ -41,6 +41,7 @@ A mod version for 1.21.6 will likely take longer to develop.
 - Cancel Spyglass Animation
 - Cancel Horn Toot Animation
 - Cancel Spear Animation
+- Cancel Riptide Animation
 - Cancel Brushing Animation
 - Cancel Bundle Animation
 - Cancel Bow Arrow Model
