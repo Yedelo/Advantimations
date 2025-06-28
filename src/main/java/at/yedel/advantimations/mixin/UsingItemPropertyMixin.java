@@ -33,6 +33,10 @@ public abstract class UsingItemPropertyMixin {
                 EntityOption option = AdvantimationsConfig.getInstance().cancelCrossbowArrowModel;
                 yield (option.shouldApplyInFirstPerson() && firstPerson) || (option.getThirdPersonResult(entity, !original, true) && thirdPerson);
             }
+            case TridentItem ignored: {
+                EntityOption option = AdvantimationsConfig.getInstance().cancelSpearAnimation;
+                yield (option.shouldApplyInFirstPerson() && firstPerson) || (option.getThirdPersonResult(entity, !original,  true) && thirdPerson);
+            }
             case GoatHornItem ignored: {
                 EntityOption option = AdvantimationsConfig.getInstance().cancelHornTootAnimation;
                 yield (option.shouldApplyInFirstPerson() && firstPerson) || (option.getThirdPersonResult(entity, !original, true) && thirdPerson);
