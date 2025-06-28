@@ -73,6 +73,9 @@ public class AdvantimationsConfig {
     public EntityOption cancelSpearAnimation = new EntityOption();
 
     @SerialEntry
+    public EntityOption cancelRiptideAnimation = new EntityOption();
+
+    @SerialEntry
     public EntityOption cancelBrushingAnimation = new EntityOption();
 
     @SerialEntry
@@ -151,6 +154,10 @@ public class AdvantimationsConfig {
                 ))
                 .group(EntityOption.createGroup(
                     "Cancel Spear Animation", "Cancel the spear drawing animation of items with component \nconsumable{animation:'spear'}, \nmainly the trident.", defaults.cancelSpearAnimation, config.cancelSpearAnimation,
+                    ITEM_MODEL_CONFIGURATOR
+                ))
+                .group(EntityOption.createGroup(
+                    "Cancel Riptide Animation", "Cancel the trident riptide animation.", defaults.cancelRiptideAnimation, config.cancelRiptideAnimation,
                     ITEM_MODEL_CONFIGURATOR
                 ))
                 .group(EntityOption.createGroup(

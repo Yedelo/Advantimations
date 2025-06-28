@@ -54,6 +54,11 @@ public abstract class HeldItemRendererMixin {
         return AdvantimationsConfig.getInstance().cancelSpyglassAnimation.getFirstPersonResult(original, false);
     }
 
+    @ModifyExpressionValue(method = "renderFirstPersonItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/network/AbstractClientPlayerEntity;isUsingRiptide()Z"))
+    private boolean advantimations$cancelRiptideAnimation(boolean original) {
+        return AdvantimationsConfig.getInstance().cancelRiptideAnimation.getFirstPersonResult(original, false);
+    }
+
     @ModifyExpressionValue(method = "updateHeldItems", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/network/ClientPlayerEntity;getAttackCooldownProgress(F)F"))
     private float advantimations$cancelAttackCooldownResets(float original) {
         return AdvantimationsConfig.getInstance().cancelAttackCooldownResets.getFirstPersonResult(original, 1F);
