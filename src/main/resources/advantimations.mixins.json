@@ -3,17 +3,17 @@
   "package": "at.yedel.advantimations.mixin",
   "compatibilityLevel": "JAVA_21",
   "client": [
-    "BipedEntityModelMixin",
-    "BipedEntityRendererMixin",
+    "HumanoidModelMixin",
+    "HumanoidMobRendererMixin",
     "EntityRenderDispatcherMixin",
-    "HeldItemRendererMixin",
-    "InGameHudMixin",
+    "ItemInHandRendererMixin",
+    "GuiMixin",
     "LivingEntityRendererMixin",
-    "MinecraftClientMixin",
-    "PlayerEntityRendererMixin",
-    "PlayerHeldItemFeatureRendererMixin",
-    "UseCyclePropertyMixin",
-    "UsingItemPropertyMixin"
+    "MinecraftMixin",
+    "PlayerRendererMixin",
+    "PlayerItemInHandLayerMixin",
+    "UseCycleMixin",
+    "IsUsingItemMixin"
   ],
   "injectors": {
     "defaultRequire": 1

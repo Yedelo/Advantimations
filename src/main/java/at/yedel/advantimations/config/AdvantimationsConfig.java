@@ -7,17 +7,16 @@ import dev.isxander.yacl3.config.v2.api.ConfigClassHandler;
 import dev.isxander.yacl3.config.v2.api.SerialEntry;
 import dev.isxander.yacl3.config.v2.api.serializer.GsonConfigSerializerBuilder;
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
-
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import java.util.function.Consumer;
 
 
 
 public class AdvantimationsConfig {
     public static final ConfigClassHandler<AdvantimationsConfig> HANDLER = ConfigClassHandler.createBuilder(AdvantimationsConfig.class)
-        .id(Identifier.of("advantimations", "advantimations-config"))
+        .id(ResourceLocation.fromNamespaceAndPath("advantimations", "advantimations-config"))
         .serializer(
             config -> GsonConfigSerializerBuilder.create(config)
                 .setPath(FabricLoader.getInstance().getConfigDir().resolve("advantimations.json"))
@@ -110,10 +109,10 @@ public class AdvantimationsConfig {
 
     public static Screen getScreen(Screen parent) {
         return YetAnotherConfigLib.create(HANDLER, (defaults, config, builder) -> builder
-            .title(Text.literal("Advantimations Config"))
+            .title(Component.literal("Advantimations Config"))
             .category(ConfigCategory.createBuilder()
-                .name(Text.literal("Item Model"))
-                .tooltip(Text.literal("Options for cancelling item models and animations."))
+                .name(Component.literal("Item Model"))
+                .tooltip(Component.literal("Options for cancelling item models and animations."))
                 .group(EntityOption.createGroup(
                     "Cancel Swings", "Cancel hand and item swing animations.", defaults.cancelSwings, config.cancelSwings,
                     EntityOption.Configuration.PERSPECTIVE_INDEPENDENT_OPTION_CONFIGURATOR
@@ -177,8 +176,8 @@ public class AdvantimationsConfig {
                     ITEM_MODEL_CONFIGURATOR
                 ))
                 .group(OptionGroup.createBuilder()
-                    .name(Text.literal("Item Resets"))
-                    .description(OptionDescription.of(Text.literal("Options for cancelling the item reset animation.")))
+                    .name(Component.literal("Item Resets"))
+                    .description(OptionDescription.of(Component.literal("Options for cancelling the item reset animation.")))
                     .option(SimpleFirstPersonOption.createOption(
                         "Cancel Attack Cooldown Resets", "Cancel the item reset animation when attacking or swapping items with cooldowns, such as in combat.", defaults.cancelAttackCooldownResets,  config.cancelAttackCooldownResets
                     ))
@@ -196,8 +195,8 @@ public class AdvantimationsConfig {
                 .build()
             )
             .category(ConfigCategory.createBuilder()
-                .name(Text.literal("Entity Model"))
-                .tooltip(Text.literal("Options for cancelling entity model animations."))
+                .name(Component.literal("Entity Model"))
+                .tooltip(Component.literal("Options for cancelling entity model animations."))
                 .group(EntityOption.createGroup(
                     "Cancel Limb Movements", "Cancel entity limb movements.", defaults.cancelLimbMovements, config.cancelLimbMovements,
                     EntityOption.Configuration.THIRD_PERSON_OPTION_CONFIGURATOR

@@ -6,19 +6,25 @@ import at.yedel.advantimations.config.AdvantimationsConfig;
 import at.yedel.advantimations.config.EntityOption;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.sugar.Local;
-import net.minecraft.client.render.item.property.bool.UsingItemProperty;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.*;
+import net.minecraft.client.renderer.item.properties.conditional.IsUsingItem;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.BowItem;
+import net.minecraft.world.item.CrossbowItem;
+import net.minecraft.world.item.InstrumentItem;
+import net.minecraft.world.item.ItemDisplayContext;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ShieldItem;
+import net.minecraft.world.item.TridentItem;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
 
 
-@Mixin(UsingItemProperty.class)
-public abstract class UsingItemPropertyMixin {
-    @ModifyExpressionValue(method = "test", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;isUsingItem()Z"))
+@Mixin(IsUsingItem.class)
+public abstract class IsUsingItemMixin {
+    @ModifyExpressionValue(method = "get", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;isUsingItem()Z"))
     private boolean advantimations$cancelItemUseConditions(boolean original, @Local(argsOnly = true) ItemStack stack, @Local(argsOnly = true) LivingEntity entity, @Local(argsOnly = true) ItemDisplayContext displayContext) {
-        boolean firstPerson = displayContext.isFirstPerson();
+        boolean firstPerson = displayContext.firstPerson();
         boolean thirdPerson = !firstPerson;
         boolean shouldCancel = switch (stack.getItem()) {
             case ShieldItem ignored: {
@@ -37,7 +43,7 @@ public abstract class UsingItemPropertyMixin {
                 EntityOption option = AdvantimationsConfig.getInstance().cancelSpearAnimation;
                 yield (option.shouldApplyInFirstPerson() && firstPerson) || (option.getThirdPersonResult(entity, !original,  true) && thirdPerson);
             }
-            case GoatHornItem ignored: {
+            case InstrumentItem ignored: {
                 EntityOption option = AdvantimationsConfig.getInstance().cancelHornTootAnimation;
                 yield (option.shouldApplyInFirstPerson() && firstPerson) || (option.getThirdPersonResult(entity, !original, true) && thirdPerson);
             }

@@ -7,12 +7,11 @@ import dev.isxander.yacl3.api.OptionDescription;
 import dev.isxander.yacl3.api.OptionGroup;
 import dev.isxander.yacl3.api.controller.BooleanControllerBuilder;
 import dev.isxander.yacl3.api.controller.TickBoxControllerBuilder;
-import net.minecraft.client.network.ClientPlayerEntity;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.text.Text;
-
 import java.util.function.Consumer;
+import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
 
 
 
@@ -30,13 +29,13 @@ public class EntityOption implements FirstPersonOption {
 
     public <T> T getThirdPersonResult(Entity entity, T originalValue, T newValue) {
         if (enabled) {
-            if (enabledOnSelf && entity instanceof ClientPlayerEntity) {
+            if (enabledOnSelf && entity instanceof LocalPlayer) {
                 return newValue;
             }
-            if (enabledOnOtherPlayers && entity instanceof PlayerEntity player && !player.isMainPlayer()) {
+            if (enabledOnOtherPlayers && entity instanceof Player player && !player.isLocalPlayer()) {
                 return newValue;
             }
-            if (enabledOnOtherEntities && !(entity instanceof PlayerEntity)) {
+            if (enabledOnOtherEntities && !(entity instanceof Player)) {
                 return newValue;
             }
         }
@@ -47,11 +46,11 @@ public class EntityOption implements FirstPersonOption {
         Configuration configuration = new Configuration();
         configurator.accept(configuration);
         return OptionGroup.createBuilder()
-            .name(Text.literal(groupName))
-            .description(OptionDescription.of(Text.literal(groupDescription)))
+            .name(Component.literal(groupName))
+            .description(OptionDescription.of(Component.literal(groupDescription)))
             .collapsed(configuration.collapsed)
             .option(Option.<Boolean>createBuilder()
-                .name(Text.literal("Enabled"))
+                .name(Component.literal("Enabled"))
                 .binding(
                     defaultValue.isEnabled(),
                     configValue::isEnabled,
@@ -61,8 +60,8 @@ public class EntityOption implements FirstPersonOption {
                 .build()
             )
             .optionIf(configuration.canBeEnabledInFirstPerson, Option.<Boolean>createBuilder()
-                .name(Text.literal("Enabled in First Person"))
-                .description(OptionDescription.of(Text.literal("Enable this option for yourself in first person.")))
+                .name(Component.literal("Enabled in First Person"))
+                .description(OptionDescription.of(Component.literal("Enable this option for yourself in first person.")))
                 .binding(
                     defaultValue.enabledInFirstPerson,
                     configValue::isEnabledInFirstPerson,
@@ -72,8 +71,8 @@ public class EntityOption implements FirstPersonOption {
                 .build()
             )
             .optionIf(configuration.canBeEnabledOnSelf, Option.<Boolean>createBuilder()
-                .name(Text.literal("Enabled on Self"))
-                .description(OptionDescription.of(Text.literal("Enable this option for yourself.")))
+                .name(Component.literal("Enabled on Self"))
+                .description(OptionDescription.of(Component.literal("Enable this option for yourself.")))
                 .binding(
                     defaultValue.isEnabledOnSelf(),
                     configValue::isEnabledOnSelf,
@@ -83,8 +82,8 @@ public class EntityOption implements FirstPersonOption {
                 .build()
             )
             .optionIf(configuration.canBeEnabledOnOtherPlayers, Option.<Boolean>createBuilder()
-                .name(Text.literal("Enabled on Other Players"))
-                .description(OptionDescription.of(Text.literal("Enable this option for other players.")))
+                .name(Component.literal("Enabled on Other Players"))
+                .description(OptionDescription.of(Component.literal("Enable this option for other players.")))
                 .binding(
                     defaultValue.isEnabledOnOtherPlayers(),
                     configValue::isEnabledOnOtherPlayers,
@@ -94,8 +93,8 @@ public class EntityOption implements FirstPersonOption {
                 .build()
             )
             .optionIf(configuration.canBeEnabledOnOtherEntities, Option.<Boolean>createBuilder()
-                .name(Text.literal("Enabled on Other Entities"))
-                .description(OptionDescription.of(Text.literal("Enable this option for other non-player entities, such as zombies.")))
+                .name(Component.literal("Enabled on Other Entities"))
+                .description(OptionDescription.of(Component.literal("Enable this option for other non-player entities, such as zombies.")))
                 .binding(
                     defaultValue.isEnabledOnOtherEntities(),
                     configValue::isEnabledOnOtherEntities,

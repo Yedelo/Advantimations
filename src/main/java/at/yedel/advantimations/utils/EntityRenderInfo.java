@@ -2,7 +2,7 @@ package at.yedel.advantimations.utils;
 
 
 
-import net.minecraft.entity.Entity;
+import net.minecraft.world.entity.Entity;
 
 
 
