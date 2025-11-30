@@ -22,7 +22,7 @@ Client-side mod to cancel animations
 
 ## Features
 
-### Item Model
+<details><summary>Item Model</summary>
 
 - Cancel Swings
 
@@ -47,8 +47,12 @@ Client-side mod to cancel animations
 - Cancel Item Interact Resets
 - Cancel Slot Swapping Resets
 
-### Entity Model
+</details>
+
+<details><summary>Entity Model</summary>
 
 - Cancel Limb Movements
 - Weirder Limb Movements
 - Cancel Sneaking
+
+</details>
