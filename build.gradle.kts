@@ -1,5 +1,4 @@
 val minecraftVersion: String by project
-val yarnVersion: String by project
 val fabricLoaderVersion: String by project
 val fabricApiVersion: String by project
 
