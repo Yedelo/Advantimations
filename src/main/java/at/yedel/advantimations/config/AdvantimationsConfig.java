@@ -108,9 +108,10 @@ public class AdvantimationsConfig {
     public EntityOption cancelSneaking = new EntityOption();
 
     public static Screen getScreen(Screen parent) {
-        return YetAnotherConfigLib.create(HANDLER, (defaults, config, builder) -> builder
-            .title(Component.literal("Advantimations Config"))
-            .category(ConfigCategory.createBuilder()
+        return YetAnotherConfigLib.create(HANDLER, (defaults, config, builder) -> {
+            builder.title(Component.literal("Advantimations Config"));
+
+            ConfigCategory.Builder itemModelCategoryBuilder = ConfigCategory.createBuilder()
                 .name(Component.literal("Item Model"))
                 .tooltip(Component.literal("Options for cancelling item models and animations."))
                 .group(EntityOption.createGroup(
@@ -179,38 +180,41 @@ public class AdvantimationsConfig {
                     .name(Component.literal("Item Resets"))
                     .description(OptionDescription.of(Component.literal("Options for cancelling the item reset animation.")))
                     .option(SimpleFirstPersonOption.createOption(
-                        "Cancel Attack Cooldown Resets", "Cancel the item reset animation when attacking or swapping items with cooldowns, such as in combat.", defaults.cancelAttackCooldownResets,  config.cancelAttackCooldownResets
+                        "Cancel Attack Cooldown Resets", "Cancel the item reset animation when attacking or swapping items with cooldowns, such as in combat.", defaults.cancelAttackCooldownResets, config.cancelAttackCooldownResets
                     ))
                     .option(SimpleFirstPersonOption.createOption(
-                        "Cancel Block Interact Resets", "Cancel the item reset animation when interacting with a block such as a cake.", defaults.cancelBlockInteractResets,  config.cancelBlockInteractResets
+                        "Cancel Block Interact Resets", "Cancel the item reset animation when interacting with a block such as a cake.", defaults.cancelBlockInteractResets, config.cancelBlockInteractResets
                     ))
                     .option(SimpleFirstPersonOption.createOption(
-                        "Cancel Item Interact Resets", "Cancel the item reset animation when interacting with an item such as a fishing rod.", defaults.cancelItemInteractResets,  config.cancelItemInteractResets
+                        "Cancel Item Interact Resets", "Cancel the item reset animation when interacting with an item such as a fishing rod.", defaults.cancelItemInteractResets, config.cancelItemInteractResets
                     ))
                     .option(SimpleFirstPersonOption.createOption(
-                        "Cancel Slot Swapping Resets", "Cancel the item reset animation when swapping items.", defaults.cancelSlotSwappingResets,  config.cancelSlotSwappingResets
+                        "Cancel Slot Swapping Resets", "Cancel the item reset animation when swapping items.", defaults.cancelSlotSwappingResets, config.cancelSlotSwappingResets
                     ))
                     .build()
-                )
-                .build()
-            )
-            .category(ConfigCategory.createBuilder()
-                .name(Component.literal("Entity Model"))
-                .tooltip(Component.literal("Options for cancelling entity model animations."))
-                .group(EntityOption.createGroup(
-                    "Cancel Limb Movements", "Cancel entity limb movements.", defaults.cancelLimbMovements, config.cancelLimbMovements,
-                    EntityOption.Configuration.THIRD_PERSON_OPTION_CONFIGURATOR
-                ))
-                .group(EntityOption.createGroup(
-                    "Weirder Limb Movements", "Cancel entity limbs from moving after they already started (or are in the \"top\" of their movement).", defaults.weirderLimbMovements, config.weirderLimbMovements,
-                    EntityOption.Configuration.THIRD_PERSON_OPTION_CONFIGURATOR
-                ))
-                .group(EntityOption.createGroup(
-                    "Cancel Sneaking", "Cancel the sneaking pose.", defaults.cancelSneaking, config.cancelSneaking,
-                    (configuration) -> configuration.canBeEnabledInFirstPerson().canBeEnabledOnSelf().canBeEnabledOnOtherPlayers()
-                ))
-                .build()
-            )
+                );
+
+                builder.category(itemModelCategoryBuilder.build());
+
+                ConfigCategory.Builder entityModelCategoryBuilder = ConfigCategory.createBuilder()
+                    .name(Component.literal("Entity Model"))
+                    .tooltip(Component.literal("Options for cancelling entity model animations."))
+                    .group(EntityOption.createGroup(
+                        "Cancel Limb Movements", "Cancel entity limb movements.", defaults.cancelLimbMovements, config.cancelLimbMovements,
+                        EntityOption.Configuration.THIRD_PERSON_OPTION_CONFIGURATOR
+                    ))
+                    .group(EntityOption.createGroup(
+                        "Weirder Limb Movements", "Cancel entity limbs from moving after they already started (or are in the \"top\" of their movement).", defaults.weirderLimbMovements, config.weirderLimbMovements,
+                        EntityOption.Configuration.THIRD_PERSON_OPTION_CONFIGURATOR
+                    ))
+                    .group(EntityOption.createGroup(
+                        "Cancel Sneaking", "Cancel the sneaking pose.", defaults.cancelSneaking, config.cancelSneaking,
+                        (configuration) -> configuration.canBeEnabledInFirstPerson().canBeEnabledOnSelf().canBeEnabledOnOtherPlayers()
+                    ));
+
+                builder.category(entityModelCategoryBuilder.build());
+            return builder;
+         }
         ).generateScreen(parent);
     }
 }
