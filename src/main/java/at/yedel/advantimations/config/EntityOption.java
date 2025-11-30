@@ -2,6 +2,7 @@ package at.yedel.advantimations.config;
 
 
 
+import dev.isxander.yacl3.api.ConfigCategory;
 import dev.isxander.yacl3.api.Option;
 import dev.isxander.yacl3.api.OptionDescription;
 import dev.isxander.yacl3.api.OptionGroup;
@@ -42,10 +43,10 @@ public class EntityOption implements FirstPersonOption {
         return originalValue;
     }
 
-    public static OptionGroup createGroup(String groupName, String groupDescription, EntityOption defaultValue, EntityOption configValue, Consumer<Configuration> configurator) {
+    public static void createGroup(String groupName, String groupDescription, EntityOption defaultValue, EntityOption configValue, Consumer<Configuration> configurator, ConfigCategory.Builder builder) {
         Configuration configuration = new Configuration();
         configurator.accept(configuration);
-        return OptionGroup.createBuilder()
+        builder.group(OptionGroup.createBuilder()
             .name(Component.literal(groupName))
             .description(OptionDescription.of(Component.literal(groupDescription)))
             .collapsed(configuration.collapsed)
@@ -103,7 +104,7 @@ public class EntityOption implements FirstPersonOption {
                 .controller(TickBoxControllerBuilder::create)
                 .build()
             )
-            .build();
+            .build());
     }
 
     public EntityOption enabled() {

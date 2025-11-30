@@ -3,6 +3,7 @@ package at.yedel.advantimations.config;
 
 
 import dev.isxander.yacl3.api.Option;
+import dev.isxander.yacl3.api.OptionAddable;
 import dev.isxander.yacl3.api.OptionDescription;
 import dev.isxander.yacl3.api.controller.BooleanControllerBuilder;
 import net.minecraft.network.chat.Component;
@@ -16,17 +17,19 @@ public class SimpleFirstPersonOption implements FirstPersonOption {
         this.enabled = enabled;
     }
 
-    public static Option<Boolean> createOption(String name, String description, SimpleFirstPersonOption defaultValue, SimpleFirstPersonOption configValue) {
-        return Option.<Boolean>createBuilder()
-            .name(Component.literal(name))
-            .description(OptionDescription.of(Component.literal(description)))
-            .binding(
-                defaultValue.isEnabled(),
-                configValue::isEnabled,
-                configValue::setEnabled
-            )
-            .controller(BooleanControllerBuilder::create)
-            .build();
+    public static void createOption(String name, String description, SimpleFirstPersonOption defaultValue, SimpleFirstPersonOption configValue, OptionAddable builder) {
+        builder.option(
+            Option.<Boolean>createBuilder()
+                .name(Component.literal(name))
+                .description(OptionDescription.of(Component.literal(description)))
+                .binding(
+                    defaultValue.isEnabled(),
+                    configValue::isEnabled,
+                    configValue::setEnabled
+                )
+                .controller(BooleanControllerBuilder::create)
+                .build()
+        );
     }
 
     public static SimpleFirstPersonOption trueOption() {
