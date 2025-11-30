@@ -73,7 +73,7 @@ public class EntityOption implements FirstPersonOption {
             )
             .optionIf(configuration.canBeEnabledOnSelf, Option.<Boolean>createBuilder()
                 .name(Component.literal("Enabled on Self"))
-                .description(OptionDescription.of(Component.literal("Enable this option for yourself.")))
+                .description(OptionDescription.of(Component.literal("Enable this option for yourself in third person.")))
                 .binding(
                     defaultValue.isEnabledOnSelf(),
                     configValue::isEnabledOnSelf,
