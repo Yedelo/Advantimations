@@ -18,7 +18,7 @@ Client-side mod to cancel animations
 
 - [Fabric API](https://modrinth.com/mod/fabric-api)
 - [YetAnotherConfigLib (YACL)](https://modrinth.com/mod/yacl)
-- [Mod Menu](https://modrinth.com/mod/modmenu) for configuring the mod (extremely likely)
+- [Mod Menu](https://modrinth.com/mod/modmenu) to reach the config screen (please do it)
 
 ## Features
 
