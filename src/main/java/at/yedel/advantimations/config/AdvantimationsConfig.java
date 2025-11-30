@@ -113,7 +113,9 @@ public class AdvantimationsConfig {
 
             ConfigCategory.Builder itemModelCategoryBuilder = ConfigCategory.createBuilder()
                 .name(Component.literal("Item Model"))
-                .tooltip(Component.literal("Options for cancelling item models and animations."))
+                .tooltip(Component.literal("Options for cancelling item models and animations."));
+
+            itemModelCategoryBuilder
                 .group(EntityOption.createGroup(
                     "Cancel Swings", "Cancel hand and item swing animations.", defaults.cancelSwings, config.cancelSwings,
                     EntityOption.Configuration.PERSPECTIVE_INDEPENDENT_OPTION_CONFIGURATOR
@@ -198,7 +200,9 @@ public class AdvantimationsConfig {
 
                 ConfigCategory.Builder entityModelCategoryBuilder = ConfigCategory.createBuilder()
                     .name(Component.literal("Entity Model"))
-                    .tooltip(Component.literal("Options for cancelling entity model animations."))
+                    .tooltip(Component.literal("Options for cancelling entity model animations."));
+
+                entityModelCategoryBuilder
                     .group(EntityOption.createGroup(
                         "Cancel Limb Movements", "Cancel entity limb movements.", defaults.cancelLimbMovements, config.cancelLimbMovements,
                         EntityOption.Configuration.THIRD_PERSON_OPTION_CONFIGURATOR
