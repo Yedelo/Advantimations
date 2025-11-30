@@ -181,7 +181,9 @@ public class AdvantimationsConfig {
 
                 OptionGroup.Builder itemResetsGroupBuilder = OptionGroup.createBuilder()
                     .name(Component.literal("Item Resets"))
-                    .description(OptionDescription.of(Component.literal("Options for cancelling the item reset animation.")))
+                    .description(OptionDescription.of(Component.literal("Options for cancelling the item reset animation.")));
+
+                itemResetsGroupBuilder
                     .option(SimpleFirstPersonOption.createOption(
                         "Cancel Attack Cooldown Resets", "Cancel the item reset animation when attacking or swapping items with cooldowns, such as in combat.", defaults.cancelAttackCooldownResets, config.cancelAttackCooldownResets
                     ))
