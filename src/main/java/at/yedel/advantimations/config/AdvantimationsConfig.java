@@ -177,8 +177,9 @@ public class AdvantimationsConfig {
                 .group(EntityOption.createGroup(
                     "Cancel Crossbow Arrow Model", "Cancel the arrow in a crossbow being rendered.", defaults.cancelCrossbowArrowModel, config.cancelCrossbowArrowModel,
                     ITEM_MODEL_CONFIGURATOR
-                ))
-                .group(OptionGroup.createBuilder()
+                ));
+
+                OptionGroup.Builder itemResetsGroupBuilder = OptionGroup.createBuilder()
                     .name(Component.literal("Item Resets"))
                     .description(OptionDescription.of(Component.literal("Options for cancelling the item reset animation.")))
                     .option(SimpleFirstPersonOption.createOption(
@@ -192,9 +193,8 @@ public class AdvantimationsConfig {
                     ))
                     .option(SimpleFirstPersonOption.createOption(
                         "Cancel Slot Swapping Resets", "Cancel the item reset animation when swapping items.", defaults.cancelSlotSwappingResets, config.cancelSlotSwappingResets
-                    ))
-                    .build()
-                );
+                    ));
+                itemModelCategoryBuilder.group(itemResetsGroupBuilder.build());
 
                 builder.category(itemModelCategoryBuilder.build());
 
