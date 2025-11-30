@@ -56,3 +56,8 @@ Client-side mod to cancel animations
 - Cancel Sneaking
 
 </details>
+
+## Developing
+
+This mod is only tested on the latest supported version in a development environment (currently 1.21.8),
+and it is tested on very clean versions (Fabric + dependencies) in a production environment.
