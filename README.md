@@ -60,4 +60,4 @@ Client-side mod to cancel animations
 ## Developing
 
 This mod is only tested on the latest supported version in a development environment (currently 1.21.8),
-and it is tested on very clean versions (Fabric + dependencies) in a production environment.
+and it is tested on all supported versions in production (only Fabric + dependencies).
