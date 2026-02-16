@@ -7,7 +7,7 @@ val yaclVersion: String by project
 val devAuthVersion: String by project
 
 plugins {
-	val loomVersion = "1.13-SNAPSHOT"
+	val loomVersion = "1.15-SNAPSHOT"
 	id("fabric-loom") version loomVersion
 }
 
