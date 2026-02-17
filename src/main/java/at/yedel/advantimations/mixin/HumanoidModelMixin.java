@@ -5,16 +5,12 @@ package at.yedel.advantimations.mixin;
 import at.yedel.advantimations.config.AdvantimationsConfig;
 import at.yedel.advantimations.utils.EntityRenderInfo;
 import com.llamalad7.mixinextras.injector.ModifyReceiver;
-import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.entity.LivingEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.ModifyArg;
-import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
 
 
@@ -39,14 +35,13 @@ public abstract class HumanoidModelMixin {
         return original;
     }
 
-    @ModifyVariable(method = "poseLeftArm", at = @At("HEAD"), argsOnly = true)
+    @ModifyReceiver(method = "poseLeftArm", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/model/HumanoidModel$ArmPose;ordinal()I"))
     private HumanoidModel.ArmPose advantimations$cancelLeftArmItemUseAnimations(HumanoidModel.ArmPose original) {
         return advantimations$cancelItemUseAnimations(HumanoidArm.LEFT, original);
     }
 
-    @ModifyVariable(method = "poseLeftArm", at = @At("HEAD"), argsOnly = true)
+    @ModifyReceiver(method = "poseRightArm", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/model/HumanoidModel$ArmPose;ordinal()I"))
     private HumanoidModel.ArmPose advantimations$cancelRightArmItemUseAnimations(HumanoidModel.ArmPose original) {
         return advantimations$cancelItemUseAnimations(HumanoidArm.RIGHT, original);
     }
-
 }
