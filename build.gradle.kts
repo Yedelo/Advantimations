@@ -8,12 +8,12 @@ val yaclVersion: String by project
 val devAuthVersion: String by project
 
 plugins {
-	val loomVersion = "1.10-SNAPSHOT"
+	val loomVersion = "1.15-SNAPSHOT"
 	id("fabric-loom") version loomVersion
 }
 
 repositories {
-	maven("https://maven.terraformersmc.com/releases/")
+ 	maven("https://maven.terraformersmc.com/releases/")
 	maven("https://maven.isxander.dev/releases")
 	maven("https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1")
 }
