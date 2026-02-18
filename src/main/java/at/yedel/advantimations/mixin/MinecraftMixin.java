@@ -21,6 +21,7 @@ public abstract class MinecraftMixin {
 
     @WrapWithCondition(method = "startUseItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/ItemInHandRenderer;itemUsed(Lnet/minecraft/world/InteractionHand;)V", ordinal = 1))
     private boolean advantimations$cancelItemInteractResets(ItemInHandRenderer instance, InteractionHand hand) {
+
         return !AdvantimationsConfig.getInstance().cancelItemInteractResets.shouldApplyInFirstPerson();
     }
 }
