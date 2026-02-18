@@ -12,7 +12,8 @@
     "LevelRendererMixin",
     "LivingEntityRendererMixin",
     "MinecraftMixin",
-    "PlayerItemInHandLayerMixin"
+    "PlayerItemInHandLayerMixin",
+    "UseCycleMixin"
   ],
   "injectors": {
     "defaultRequire": 1
