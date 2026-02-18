@@ -3,12 +3,14 @@ package at.yedel.advantimations.mixin;
 
 
 import at.yedel.advantimations.config.AdvantimationsConfig;
+import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.injector.ModifyReceiver;
 import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.renderer.entity.state.HumanoidRenderState;
 import net.minecraft.client.renderer.item.ItemStackRenderState;
 import net.minecraft.world.entity.HumanoidArm;
+import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -17,6 +19,11 @@ import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(HumanoidModel.class)
 public abstract class HumanoidModelMixin {
+    @ModifyExpressionValue(method = "setupAnim(Lnet/minecraft/client/renderer/entity/state/HumanoidRenderState;)V", at = @At(value = "FIELD", target = "Lnet/minecraft/client/renderer/entity/state/HumanoidRenderState;isFallFlying:Z", opcode = Opcodes.GETFIELD))
+    private boolean advantimations$cancelElytraAnimation(boolean original, @Local(argsOnly = true) HumanoidRenderState state) {
+        return AdvantimationsConfig.getInstance().cancelElytraAnimation.getThirdPersonResult(state, original, false);
+    }
+
     @Unique
     private HumanoidModel.ArmPose advantimations$cancelItemUseAnimations(HumanoidRenderState state, HumanoidArm arm, HumanoidModel.ArmPose original) {
         ItemStackRenderState itemState = arm == HumanoidArm.LEFT ? state.leftHandItem : state.rightHandItem;
