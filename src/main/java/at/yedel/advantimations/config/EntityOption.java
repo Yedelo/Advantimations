@@ -10,6 +10,7 @@ import dev.isxander.yacl3.api.controller.BooleanControllerBuilder;
 import dev.isxander.yacl3.api.controller.TickBoxControllerBuilder;
 import java.util.function.Consumer;
 import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.client.renderer.entity.state.EntityRenderState;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
@@ -28,15 +29,23 @@ public class EntityOption implements FirstPersonOption {
         return enabled && enabledInFirstPerson;
     }
 
+    public <T> T getThirdPersonResult(EntityRenderState state, T originalValue, T newValue) {
+        return getThirdPersonResult(state.advantimations$isPlayer(), state.advantimations$isSelf(), originalValue, newValue);
+    }
+
     public <T> T getThirdPersonResult(Entity entity, T originalValue, T newValue) {
+        return getThirdPersonResult(entity instanceof Player, entity instanceof LocalPlayer, originalValue, newValue);
+    }
+
+    public <T> T getThirdPersonResult(boolean player, boolean self, T originalValue, T newValue) {
         if (enabled) {
-            if (enabledOnSelf && entity instanceof LocalPlayer) {
+            if (enabledOnSelf && self) {
                 return newValue;
             }
-            if (enabledOnOtherPlayers && entity instanceof Player player && !player.isLocalPlayer()) {
+            if (enabledOnOtherPlayers && player && !self) {
                 return newValue;
             }
-            if (enabledOnOtherEntities && !(entity instanceof Player)) {
+            if (enabledOnOtherEntities && !player) {
                 return newValue;
             }
         }

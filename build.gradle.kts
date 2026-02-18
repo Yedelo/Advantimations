@@ -28,6 +28,10 @@ dependencies {
 	modRuntimeOnly("me.djtheredstoner:DevAuth-fabric:$devAuthVersion")
 }
 
+loom {
+    accessWidenerPath = file("src/main/resources/advantimations.classtweaker")
+}
+
 tasks {
 	processResources {
 		filesMatching("fabric.mod.json") {
