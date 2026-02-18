@@ -99,6 +99,9 @@ public class AdvantimationsConfig {
     public SimpleFirstPersonOption cancelSlotSwappingResets = SimpleFirstPersonOption.falseOption();
 
     @SerialEntry
+    public EntityOption cancelElytraAnimation = new EntityOption();
+
+    @SerialEntry
     public EntityOption cancelLimbMovements = new EntityOption();
 
     @SerialEntry
@@ -202,6 +205,10 @@ public class AdvantimationsConfig {
                     .name(Component.literal("Entity Model"))
                     .tooltip(Component.literal("Options for cancelling entity model animations."));
 
+                EntityOption.createGroup(
+                    "Cancel Elytra Animation", "Cancel the third-person elytra animation,", defaults.cancelElytraAnimation, config.cancelElytraAnimation,
+                    EntityOption.Configuration.THIRD_PERSON_OPTION_CONFIGURATOR, entityModelCategoryBuilder
+                );
                 EntityOption.createGroup(
                     "Cancel Limb Movements", "Cancel entity limb movements.", defaults.cancelLimbMovements, config.cancelLimbMovements,
                     EntityOption.Configuration.THIRD_PERSON_OPTION_CONFIGURATOR, entityModelCategoryBuilder
