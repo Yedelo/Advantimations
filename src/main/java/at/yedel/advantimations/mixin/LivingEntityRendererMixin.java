@@ -21,6 +21,4 @@ public abstract class LivingEntityRendererMixin {
         state.walkAnimationSpeed = AdvantimationsConfig.getInstance().cancelLimbMovements.getThirdPersonResult(entity, state.walkAnimationSpeed, 0F);
         state.walkAnimationPos = AdvantimationsConfig.getInstance().weirderLimbMovements.getThirdPersonResult(entity, state.walkAnimationPos, 0F);
     }
-
-
 }
