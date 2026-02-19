@@ -99,6 +99,9 @@ public class AdvantimationsConfig {
     public SimpleFirstPersonOption cancelSlotSwappingResets = SimpleFirstPersonOption.falseOption();
 
     @SerialEntry
+    public EntityOption cancelSneaking = new EntityOption();
+
+    @SerialEntry
     public EntityOption cancelSwimmingAnimation = new EntityOption();
 
     @SerialEntry
@@ -112,9 +115,6 @@ public class AdvantimationsConfig {
 
     @SerialEntry
     public EntityOption weirderLimbMovements = new EntityOption();
-
-    @SerialEntry
-    public EntityOption cancelSneaking = new EntityOption();
 
     public static Screen getScreen(Screen parent) {
         return YetAnotherConfigLib.create(HANDLER, (defaults, config, builder) -> {
@@ -212,6 +212,10 @@ public class AdvantimationsConfig {
                     .tooltip(Component.literal("Options for cancelling entity model animations."));
 
                 EntityOption.createGroup(
+                    "Cancel Sneaking", "Cancel the sneaking pose.", defaults.cancelSneaking, config.cancelSneaking,
+                    (configuration) -> configuration.canBeEnabledInFirstPerson().canBeEnabledOnSelf().canBeEnabledOnOtherPlayers(), entityModelCategoryBuilder
+                );
+                EntityOption.createGroup(
                     "Cancel Swimming Animation", "Cancel the third-person swimming animation.", defaults.cancelSwimmingAnimation, config.cancelSwimmingAnimation,
                     EntityOption.Configuration.THIRD_PERSON_OPTION_CONFIGURATOR, entityModelCategoryBuilder
                 );
@@ -230,10 +234,6 @@ public class AdvantimationsConfig {
                 EntityOption.createGroup(
                     "Weirder Limb Movements", "Cancel entity limbs from moving after they already started (or are in the \"top\" of their movement).", defaults.weirderLimbMovements, config.weirderLimbMovements,
                     EntityOption.Configuration.THIRD_PERSON_OPTION_CONFIGURATOR, entityModelCategoryBuilder
-                );
-                EntityOption.createGroup(
-                    "Cancel Sneaking", "Cancel the sneaking pose.", defaults.cancelSneaking, config.cancelSneaking,
-                    (configuration) -> configuration.canBeEnabledInFirstPerson().canBeEnabledOnSelf().canBeEnabledOnOtherPlayers(), entityModelCategoryBuilder
                 );
 
                 builder.category(entityModelCategoryBuilder.build());

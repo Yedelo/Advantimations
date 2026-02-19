@@ -21,8 +21,8 @@ public abstract class HumanoidMobRendererMixin {
     private static void advantimations$modifyHumanoidRenderState(LivingEntity entity, HumanoidRenderState state, float f, ItemModelResolver itemModelResolver, CallbackInfo ci) {
         state.attackTime = AdvantimationsConfig.getInstance().cancelSwings.getThirdPersonResult(entity, state.attackTime, 0F);
         state.isCrouching = AdvantimationsConfig.getInstance().cancelSneaking.getThirdPersonResult(entity, state.isCrouching, false);
-        state.isFallFlying = AdvantimationsConfig.getInstance().cancelElytraAnimation.getThirdPersonResult(entity, state.isFallFlying, false);
         EntityOption option = state.isInWater ? AdvantimationsConfig.getInstance().cancelSwimmingAnimation : AdvantimationsConfig.getInstance().cancelCrawlingAnimation;
         state.swimAmount = option.getThirdPersonResult(entity, state.swimAmount, 0F);
+        state.isFallFlying = AdvantimationsConfig.getInstance().cancelElytraAnimation.getThirdPersonResult(entity, state.isFallFlying, false);
     }
 }
