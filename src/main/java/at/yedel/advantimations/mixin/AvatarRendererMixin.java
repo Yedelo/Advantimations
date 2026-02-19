@@ -6,7 +6,6 @@ import at.yedel.advantimations.config.AdvantimationsConfig;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.client.renderer.entity.player.AvatarRenderer;
-import net.minecraft.client.renderer.entity.state.AvatarRenderState;
 import net.minecraft.world.entity.Avatar;
 import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;

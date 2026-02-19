@@ -41,7 +41,7 @@ public abstract class IsUsingItemMixin {
             }
             case TridentItem ignored: {
                 EntityOption option = AdvantimationsConfig.getInstance().cancelSpearAnimation;
-                yield (option.shouldApplyInFirstPerson() && firstPerson) || (option.getThirdPersonResult(entity, !original,  true) && thirdPerson);
+                yield (option.shouldApplyInFirstPerson() && firstPerson) || (option.getThirdPersonResult(entity, !original, true) && thirdPerson);
             }
             case InstrumentItem ignored: {
                 EntityOption option = AdvantimationsConfig.getInstance().cancelHornTootAnimation;
