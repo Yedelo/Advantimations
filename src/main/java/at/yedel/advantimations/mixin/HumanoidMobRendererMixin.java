@@ -21,5 +21,6 @@ public abstract class HumanoidMobRendererMixin {
         state.attackTime = AdvantimationsConfig.getInstance().cancelSwings.getThirdPersonResult(entity, state.attackTime, 0F);
         state.isCrouching = AdvantimationsConfig.getInstance().cancelSneaking.getThirdPersonResult(entity, state.isCrouching, false);
         state.isFallFlying = AdvantimationsConfig.getInstance().cancelElytraAnimation.getThirdPersonResult(entity, state.isFallFlying, false);
+        if (state.isInWater) state.swimAmount = AdvantimationsConfig.getInstance().cancelSwimmingAnimation.getThirdPersonResult(entity, state.swimAmount, 0F);
     }
 }
