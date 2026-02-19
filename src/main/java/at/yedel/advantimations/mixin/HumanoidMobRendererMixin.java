@@ -3,6 +3,7 @@ package at.yedel.advantimations.mixin;
 
 
 import at.yedel.advantimations.config.AdvantimationsConfig;
+import at.yedel.advantimations.config.EntityOption;
 import net.minecraft.client.renderer.entity.HumanoidMobRenderer;
 import net.minecraft.client.renderer.entity.state.HumanoidRenderState;
 import net.minecraft.client.renderer.item.ItemModelResolver;
@@ -21,6 +22,7 @@ public abstract class HumanoidMobRendererMixin {
         state.attackTime = AdvantimationsConfig.getInstance().cancelSwings.getThirdPersonResult(entity, state.attackTime, 0F);
         state.isCrouching = AdvantimationsConfig.getInstance().cancelSneaking.getThirdPersonResult(entity, state.isCrouching, false);
         state.isFallFlying = AdvantimationsConfig.getInstance().cancelElytraAnimation.getThirdPersonResult(entity, state.isFallFlying, false);
-        if (state.isInWater) state.swimAmount = AdvantimationsConfig.getInstance().cancelSwimmingAnimation.getThirdPersonResult(entity, state.swimAmount, 0F);
+        EntityOption option = state.isInWater ? AdvantimationsConfig.getInstance().cancelSwimmingAnimation : AdvantimationsConfig.getInstance().cancelCrawlingAnimation;
+        state.swimAmount = option.getThirdPersonResult(entity, state.swimAmount, 0F);
     }
 }

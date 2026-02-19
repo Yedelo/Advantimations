@@ -102,6 +102,9 @@ public class AdvantimationsConfig {
     public EntityOption cancelSwimmingAnimation = new EntityOption();
 
     @SerialEntry
+    public EntityOption cancelCrawlingAnimation = new EntityOption();
+
+    @SerialEntry
     public EntityOption cancelElytraAnimation = new EntityOption();
 
     @SerialEntry
@@ -210,6 +213,10 @@ public class AdvantimationsConfig {
 
                 EntityOption.createGroup(
                     "Cancel Swimming Animation", "Cancel the third-person swimming animation.", defaults.cancelSwimmingAnimation, config.cancelSwimmingAnimation,
+                    EntityOption.Configuration.THIRD_PERSON_OPTION_CONFIGURATOR, entityModelCategoryBuilder
+                );
+                EntityOption.createGroup(
+                    "Cancel Crawling Animation", "Cancel the third-person crawling animation.", defaults.cancelCrawlingAnimation, config.cancelCrawlingAnimation,
                     EntityOption.Configuration.THIRD_PERSON_OPTION_CONFIGURATOR, entityModelCategoryBuilder
                 );
                 EntityOption.createGroup(
