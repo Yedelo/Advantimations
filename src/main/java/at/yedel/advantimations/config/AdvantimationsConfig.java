@@ -81,6 +81,9 @@ public class AdvantimationsConfig {
     public EntityOption cancelBundleAnimation = new EntityOption();
 
     @SerialEntry
+    public EntityOption cancelSpearAnimation = new EntityOption();
+
+    @SerialEntry
     public EntityOption cancelBowArrowModel = new EntityOption();
 
     @SerialEntry
@@ -163,7 +166,7 @@ public class AdvantimationsConfig {
                     ITEM_MODEL_CONFIGURATOR, itemModelCategoryBuilder
                 );
                 EntityOption.createGroup(
-                    "Cancel Trident Spear Animation", "Cancel the trident spear drawing animation of items with component \nconsumable{animation:'spear'}, \nmainly the trident. (<1.21.11)", defaults.cancelTridentSpearAnimation, config.cancelTridentSpearAnimation,
+                    "Cancel Trident Spear Animation", "Cancel the trident spear drawing animation of items with component \nconsumable{animation:'trident'}, \nmainly the trident. (1.21.11+)", defaults.cancelTridentSpearAnimation, config.cancelTridentSpearAnimation,
                     ITEM_MODEL_CONFIGURATOR, itemModelCategoryBuilder
                 );
                 EntityOption.createGroup(
@@ -176,6 +179,10 @@ public class AdvantimationsConfig {
                 );
                 EntityOption.createGroup(
                     "Cancel Bundle Animation", "Cancel the bundle use swing animation.", defaults.cancelBundleAnimation, config.cancelBundleAnimation,
+                    ITEM_MODEL_CONFIGURATOR, itemModelCategoryBuilder
+                );
+                EntityOption.createGroup(
+                    "Cancel Spear Animation", "Cancel the spear animation for items with component \nconsumable{animation:'spear'}, \nmainly the spear.", defaults.cancelSpearAnimation, config.cancelSpearAnimation,
                     ITEM_MODEL_CONFIGURATOR, itemModelCategoryBuilder
                 );
                 EntityOption.createGroup(
