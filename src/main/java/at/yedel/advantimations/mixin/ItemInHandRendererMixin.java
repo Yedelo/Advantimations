@@ -59,7 +59,7 @@ public abstract class ItemInHandRendererMixin {
         return AdvantimationsConfig.getInstance().cancelRiptideAnimation.getFirstPersonResult(original, false);
     }
 
-    @ModifyExpressionValue(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/player/LocalPlayer;getAttackStrengthScale(F)F"))
+    @ModifyExpressionValue(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/player/LocalPlayer;getItemSwapScale(F)F"))
     private float advantimations$cancelAttackCooldownResets(float original) {
         return AdvantimationsConfig.getInstance().cancelAttackCooldownResets.getFirstPersonResult(original, 1F);
     }
