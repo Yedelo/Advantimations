@@ -14,7 +14,6 @@ plugins {
 repositories {
 	maven("https://maven.terraformersmc.com/releases/")
 	maven("https://maven.isxander.dev/releases")
-	maven("https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1")
 }
 
 dependencies {
@@ -25,7 +24,6 @@ dependencies {
 
 	modApi("com.terraformersmc:modmenu:$modMenuVersion")
 	modImplementation("dev.isxander:yet-another-config-lib:${yaclVersion}")
-	modRuntimeOnly("me.djtheredstoner:DevAuth-fabric:$devAuthVersion")
 }
 
 loom {
