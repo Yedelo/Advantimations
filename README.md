@@ -35,7 +35,7 @@ Client-side mod to cancel animations
 - Cancel Charged Crossbow Animation
 - Cancel Spyglass Animation
 - Cancel Horn Toot Animation
-- Cancel Spear Animation
+- Cancel Trident Spear Animation
 - Cancel Riptide Animation
 - Cancel Brushing Animation
 - Cancel Bundle Animation

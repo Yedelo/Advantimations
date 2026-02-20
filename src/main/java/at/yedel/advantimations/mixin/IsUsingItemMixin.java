@@ -40,7 +40,7 @@ public abstract class IsUsingItemMixin {
                 yield (option.shouldApplyInFirstPerson() && firstPerson) || (option.getThirdPersonResult(entity, !original, true) && thirdPerson);
             }
             case TridentItem ignored: {
-                EntityOption option = AdvantimationsConfig.getInstance().cancelSpearAnimation;
+                EntityOption option = AdvantimationsConfig.getInstance().cancelTridentSpearAnimation;
                 yield (option.shouldApplyInFirstPerson() && firstPerson) || (option.getThirdPersonResult(entity, !original, true) && thirdPerson);
             }
             case InstrumentItem ignored: {
