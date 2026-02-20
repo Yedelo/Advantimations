@@ -30,6 +30,7 @@ public abstract class HumanoidModelMixin {
             case SPYGLASS -> AdvantimationsConfig.getInstance().cancelSpyglassAnimation.getThirdPersonResult(state, original, defaultPose);
             case TOOT_HORN -> AdvantimationsConfig.getInstance().cancelHornTootAnimation.getThirdPersonResult(state, original, defaultPose);
             case BRUSH -> AdvantimationsConfig.getInstance().cancelBrushingAnimation.getThirdPersonResult(state, original, defaultPose);
+            case SPEAR -> AdvantimationsConfig.getInstance().cancelSpearAnimation.getThirdPersonResult(state, original, defaultPose);
             default -> original;
         };
     }
