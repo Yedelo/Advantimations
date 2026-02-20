@@ -29,7 +29,7 @@ public abstract class ItemInHandRendererMixin {
             case BLOCK -> AdvantimationsConfig.getInstance().cancelBlockingAnimation.shouldApplyInFirstPerson();
             case BOW -> AdvantimationsConfig.getInstance().cancelBowAnimation.shouldApplyInFirstPerson();
             case TOOT_HORN -> AdvantimationsConfig.getInstance().cancelHornTootAnimation.shouldApplyInFirstPerson();
-            case SPEAR -> AdvantimationsConfig.getInstance().cancelTridentSpearAnimation.shouldApplyInFirstPerson();
+            case TRIDENT -> AdvantimationsConfig.getInstance().cancelTridentSpearAnimation.shouldApplyInFirstPerson();
             case BRUSH -> AdvantimationsConfig.getInstance().cancelBrushingAnimation.shouldApplyInFirstPerson();
             case BUNDLE -> AdvantimationsConfig.getInstance().cancelBundleAnimation.shouldApplyInFirstPerson();
             default -> false;
