@@ -24,34 +24,6 @@ public class EntityOption implements FirstPersonOption {
     protected boolean enabledOnOtherPlayers;
     protected boolean enabledOnOtherEntities;
 
-    @Override
-    public boolean shouldApplyInFirstPerson() {
-        return enabled && enabledInFirstPerson;
-    }
-
-    public <T> T getThirdPersonResult(EntityRenderState state, T originalValue, T newValue) {
-        return getThirdPersonResult(state.advantimations$isPlayer(), state.advantimations$isSelf(), originalValue, newValue);
-    }
-
-    public <T> T getThirdPersonResult(Entity entity, T originalValue, T newValue) {
-        return getThirdPersonResult(entity instanceof Player, entity instanceof LocalPlayer, originalValue, newValue);
-    }
-
-    public <T> T getThirdPersonResult(boolean player, boolean self, T originalValue, T newValue) {
-        if (enabled) {
-            if (enabledOnSelf && self) {
-                return newValue;
-            }
-            if (enabledOnOtherPlayers && player && !self) {
-                return newValue;
-            }
-            if (enabledOnOtherEntities && !player) {
-                return newValue;
-            }
-        }
-        return originalValue;
-    }
-
     public static void createGroup(String groupName, String groupDescription, EntityOption defaultValue, EntityOption configValue, Consumer<Configuration> configurator, ConfigCategory.Builder builder) {
         Configuration configuration = new Configuration();
         configurator.accept(configuration);
@@ -114,6 +86,38 @@ public class EntityOption implements FirstPersonOption {
                 .build()
             )
             .build());
+    }
+
+    @Override
+    public boolean shouldApplyInFirstPerson() {
+        return enabled && enabledInFirstPerson;
+    }
+
+    public boolean shouldApplyInThirdPerson(EntityRenderState state) {
+        return getThirdPersonResult(state, false, true);
+    }
+
+    public <T> T getThirdPersonResult(EntityRenderState state, T originalValue, T newValue) {
+        return getThirdPersonResult(state.advantimations$isPlayer(), state.advantimations$isSelf(), originalValue, newValue);
+    }
+
+    public <T> T getThirdPersonResult(Entity entity, T originalValue, T newValue) {
+        return getThirdPersonResult(entity instanceof Player, entity instanceof LocalPlayer, originalValue, newValue);
+    }
+
+    public <T> T getThirdPersonResult(boolean player, boolean self, T originalValue, T newValue) {
+        if (enabled) {
+            if (enabledOnSelf && self) {
+                return newValue;
+            }
+            if (enabledOnOtherPlayers && player && !self) {
+                return newValue;
+            }
+            if (enabledOnOtherEntities && !player) {
+                return newValue;
+            }
+        }
+        return originalValue;
     }
 
     public EntityOption enabled() {
