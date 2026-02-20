@@ -228,11 +228,11 @@ public class AdvantimationsConfig {
                     EntityOption.Configuration.THIRD_PERSON_OPTION_CONFIGURATOR, entityModelCategoryBuilder
                 );
                 EntityOption.createGroup(
-                    "Cancel Limb Movements", "Cancel entity limb movements.", defaults.cancelLimbMovements, config.cancelLimbMovements,
+                    "Cancel Limb Movements", "Cancel entity limb movements.\nOverrides Weirder Limb Movements.", defaults.cancelLimbMovements, config.cancelLimbMovements,
                     EntityOption.Configuration.THIRD_PERSON_OPTION_CONFIGURATOR, entityModelCategoryBuilder
                 );
                 EntityOption.createGroup(
-                    "Weirder Limb Movements", "Cancel entity limbs from moving after they already started (or are in the \"top\" of their movement).", defaults.weirderLimbMovements, config.weirderLimbMovements,
+                    "Weirder Limb Movements", "Cancel entity limbs from moving after they already started (or are in the \"top\" of their movement).\nOverriden by Cancel Limb Movements.", defaults.weirderLimbMovements, config.weirderLimbMovements,
                     EntityOption.Configuration.THIRD_PERSON_OPTION_CONFIGURATOR, entityModelCategoryBuilder
                 );
 
