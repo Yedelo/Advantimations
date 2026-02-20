@@ -40,6 +40,7 @@ tasks {
 				"yaclVersion" to yaclVersion
 			))
 		}
+        outputs.upToDateWhen { false }
 	}
 }
 
