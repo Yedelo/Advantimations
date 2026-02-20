@@ -31,6 +31,9 @@ loom {
 }
 
 tasks {
+    remapJar {
+        archiveFileName.set("Advantimations-$version-1.21.11.jar")
+    }
 	processResources {
 		filesMatching("fabric.mod.json") {
 			expand(mapOf(
