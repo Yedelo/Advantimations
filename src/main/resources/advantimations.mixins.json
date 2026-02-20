@@ -3,17 +3,17 @@
   "package": "at.yedel.advantimations.mixin",
   "compatibilityLevel": "JAVA_21",
   "client": [
-    "AvatarRendererMixin",
+    "EntityRenderDispatcherMixin",
     "EntityRenderStateMixin",
     "GuiMixin",
     "HumanoidMobRendererMixin",
     "HumanoidModelMixin",
     "IsUsingItemMixin",
     "ItemInHandRendererMixin",
-    "LevelRendererMixin",
     "LivingEntityRendererMixin",
     "MinecraftMixin",
     "PlayerItemInHandLayerMixin",
+    "PlayerRendererMixin",
     "UseCycleMixin"
   ],
   "injectors": {
