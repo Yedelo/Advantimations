@@ -24,7 +24,7 @@ public abstract class HumanoidModelMixin {
         return switch (original) {
             case BLOCK -> AdvantimationsConfig.getInstance().cancelBlockingAnimation.getThirdPersonResult(state, original, defaultPose);
             case BOW_AND_ARROW -> AdvantimationsConfig.getInstance().cancelBowAnimation.getThirdPersonResult(state, original, defaultPose);
-            case THROW_SPEAR -> AdvantimationsConfig.getInstance().cancelSpearAnimation.getThirdPersonResult(state, original, defaultPose);
+            case THROW_SPEAR -> AdvantimationsConfig.getInstance().cancelTridentSpearAnimation.getThirdPersonResult(state, original, defaultPose);
             case CROSSBOW_CHARGE -> AdvantimationsConfig.getInstance().cancelCrossbowAnimation.getThirdPersonResult(state, original, defaultPose);
             case CROSSBOW_HOLD -> AdvantimationsConfig.getInstance().cancelChargedCrossbowAnimation.getThirdPersonResult(state, original, defaultPose);
             case SPYGLASS -> AdvantimationsConfig.getInstance().cancelSpyglassAnimation.getThirdPersonResult(state, original, defaultPose);
