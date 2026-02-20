@@ -39,6 +39,7 @@ Client-side mod to cancel animations
 - Cancel Riptide Animation
 - Cancel Brushing Animation
 - Cancel Bundle Animation
+- Cancel Spear Animation
 - Cancel Bow Arrow Model
 - Cancel Crossbow Arrow Model
 
@@ -51,9 +52,12 @@ Client-side mod to cancel animations
 
 <details><summary>Entity Model</summary>
 
+- Cancel Sneaking
+- Cancel Swimming Animation
+- Cancel Crawling Animation
+- Cancel Elytra Animation
 - Cancel Limb Movements
 - Weirder Limb Movements
-- Cancel Sneaking
 
 </details>
 
