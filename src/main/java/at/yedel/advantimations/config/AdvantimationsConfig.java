@@ -155,7 +155,7 @@ public class AdvantimationsConfig {
                     ITEM_MODEL_CONFIGURATOR, itemModelCategoryBuilder
                 );
                 EntityOption.createGroup(
-                    "Cancel Spyglass Animation", "Cancel the spyglass animation of items with component \nconsumable{animation:'spyglass'}.", defaults.cancelSpyglassAnimation, config.cancelSpyglassAnimation,
+                    "Cancel Spyglass Animation", "Cancel the spyglass animation of items with component \nconsumable{animation:'spyglass'}.\nOnly hides the frame of the spyglass in first person.", defaults.cancelSpyglassAnimation, config.cancelSpyglassAnimation,
                     ITEM_MODEL_CONFIGURATOR, itemModelCategoryBuilder
                 );
                 EntityOption.createGroup(
