@@ -9,14 +9,14 @@ import dev.isxander.yacl3.config.v2.api.serializer.GsonConfigSerializerBuilder;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import java.util.function.Consumer;
 
 
 
 public class AdvantimationsConfig {
     public static final ConfigClassHandler<AdvantimationsConfig> HANDLER = ConfigClassHandler.createBuilder(AdvantimationsConfig.class)
-        .id(ResourceLocation.fromNamespaceAndPath("advantimations", "advantimations-config"))
+        .id(Identifier.fromNamespaceAndPath("advantimations", "advantimations-config"))
         .serializer(
             config -> GsonConfigSerializerBuilder.create(config)
                 .setPath(FabricLoader.getInstance().getConfigDir().resolve("advantimations.json"))
