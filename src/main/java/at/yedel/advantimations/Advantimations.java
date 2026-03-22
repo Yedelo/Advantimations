@@ -7,7 +7,7 @@ import net.fabricmc.api.ClientModInitializer;
 
 
 
-// Mod...
+// Modification
 public class Advantimations implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
