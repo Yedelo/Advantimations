@@ -8,7 +8,7 @@ val devAuthVersion: String by project
 
 plugins {
 	val loomVersion = "1.15-SNAPSHOT"
-	id("fabric-loom") version loomVersion
+	id("net.fabricmc.fabric-loom") version loomVersion
 }
 
 repositories {
@@ -18,12 +18,11 @@ repositories {
 
 dependencies {
 	minecraft("com.mojang:minecraft:$minecraftVersion")
-	mappings(loom.officialMojangMappings())
-	modImplementation("net.fabricmc:fabric-loader:$fabricLoaderVersion")
-	modImplementation("net.fabricmc.fabric-api:fabric-api:$fabricApiVersion")
+	implementation("net.fabricmc:fabric-loader:$fabricLoaderVersion")
+	implementation("net.fabricmc.fabric-api:fabric-api:$fabricApiVersion")
 
-	modApi("com.terraformersmc:modmenu:$modMenuVersion")
-	modImplementation("dev.isxander:yet-another-config-lib:${yaclVersion}")
+	api("com.terraformersmc:modmenu:$modMenuVersion")
+	implementation("dev.isxander:yet-another-config-lib:${yaclVersion}")
 }
 
 loom {
@@ -31,7 +30,7 @@ loom {
 }
 
 tasks {
-    remapJar {
+    jar {
         archiveFileName.set("Advantimations-$version-1.21.11.jar")
     }
 	processResources {
@@ -48,6 +47,6 @@ tasks {
 java {
 	withSourcesJar()
 
-	sourceCompatibility = JavaVersion.VERSION_21
-	targetCompatibility = JavaVersion.VERSION_21
+	sourceCompatibility = JavaVersion.VERSION_25
+	targetCompatibility = JavaVersion.VERSION_25
 }
