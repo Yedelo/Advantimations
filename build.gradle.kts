@@ -31,7 +31,7 @@ loom {
 
 tasks {
     jar {
-        archiveFileName.set("Advantimations-$version-26.1.jar")
+        archiveFileName.set("Advantimations-$version-26.1-26.1.1.jar")
     }
 	processResources {
 		filesMatching("fabric.mod.json") {
