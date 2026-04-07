@@ -1,0 +1,16 @@
+# `versions`: The actual version to use in development
+# `targets`: The dependency to target in fabric.mod.json
+
+versions.fabricloader = "0.18.4"
+targets.fabricloader = "*"
+
+["26.1.1"]
+targets.minecraft = ">=26.1 <=26.1.1"
+
+versions.fabric-api = "0.145.3+26.1.1"
+targets.fabric-api = "*"
+versions.modmenu = "18.0.0-alpha.8"
+# unused
+targets.modmenu = "*"
+versions.yet_another_config_lib_v3 = "3.9.2+26.1-fabric"
+targets.yet_another_config_lib_v3 = "*"
