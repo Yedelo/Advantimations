@@ -30,14 +30,11 @@
   ],
   "accessWidener": "advantimations.classtweaker",
   "depends": {
-    "fabricloader": ">=0.18.4",
-    "minecraft": [
-      "26.1",
-      "26.1.1"
-    ],
-    "java": ">=25",
-    "fabric-api": "*",
-    "yet_another_config_lib_v3": ">=3.9.0"
+    "java": "${java}",
+    "fabricloader": "${fabricLoader}",
+    "minecraft": "${minecraft}",
+    "fabric-api": "${fabricApi}",
+    "yet_another_config_lib_v3": "${yacl}"
   },
   "custom": {
     "modmenu": {

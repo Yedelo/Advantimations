@@ -1,14 +1,16 @@
-version = "2.0.2"
-group = "at.yedel.advantimations"
-
 # `versions`: The actual version to use in development
 # `targets`: The dependency to target in fabric.mod.json
+
+version = "2.0.2"
+group = "at.yedel.advantimations"
 
 versions.fabricLoader = "0.18.4"
 targets.fabricLoader = "*"
 
+mc.min = "26.1"
+mc.max = "26.1.1"
+
 ["26.1.1"]
-targets.minecraft = ">=26.1 <=26.1.1"
 
 versions.fabricApi = "0.145.3+26.1.1"
 targets.fabricApi = "*"
