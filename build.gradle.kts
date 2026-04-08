@@ -90,6 +90,14 @@ tasks {
 		into(rootProject.layout.buildDirectory.file("libs"))
 		dependsOn("build")
 	}
+
+	register<Delete>("deleteOldBuilds") {
+		delete(rootProject.layout.buildDirectory.file("libs"))
+	}
+
+	named("build") {
+		dependsOn("deleteOldBuilds")
+	}
 }
 
 java {
