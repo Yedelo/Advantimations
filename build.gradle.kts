@@ -12,7 +12,6 @@ val devAuthVersion: String by project
 
 plugins {
 	id("dev.kikugie.loom-back-compat")
-	id("net.fabricmc.fabric-loom") version "1.15-SNAPSHOT"
 }
 
 repositories {
