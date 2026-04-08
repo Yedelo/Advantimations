@@ -97,7 +97,7 @@ tasks {
 	}
 
 	jar {
-		archiveFileName.set("Advantimations-$version-${minMc}-${maxMc}.jar")
+		archiveFileName.set("Advantimations-$version+${minMc}-${maxMc}.jar")
 	}
 }
 
