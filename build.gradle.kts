@@ -15,6 +15,11 @@ plugins {
 	id("net.fabricmc.fabric-loom") version "1.15-SNAPSHOT"
 }
 
+repositories {
+	maven("https://maven.terraformersmc.com/releases/")
+	maven("https://maven.isxander.dev/releases")
+}
+
 val javaVersion: JavaVersion = when {
 	sc.current.parsed >= "26.1" -> JavaVersion.VERSION_25
 	sc.current.parsed >= "1.20.5" -> JavaVersion.VERSION_21
@@ -25,11 +30,6 @@ val javaVersion: JavaVersion = when {
 
 val minMc: String = sc.properties["mc.min"]
 val maxMc: String = sc.properties["mc.max"]
-
-repositories {
-	maven("https://maven.terraformersmc.com/releases/")
-	maven("https://maven.isxander.dev/releases")
-}
 
 dependencies {
 	minecraft("com.mojang:minecraft:${sc.current.version}")
@@ -52,9 +52,6 @@ loom {
 }
 
 tasks {
-    jar {
-        archiveFileName.set("Advantimations-$version-${minMc}-${maxMc}.jar")
-    }
 	processResources {
 		fun MutableMap<String, String>.register(key: String, property: String) {
 			val value: String = sc.properties[property]
@@ -98,11 +95,14 @@ tasks {
 	named("build") {
 		dependsOn("deleteOldBuilds")
 	}
+
+	jar {
+		archiveFileName.set("Advantimations-$version-${minMc}-${maxMc}.jar")
+	}
 }
 
 java {
-	// withSourcesJar()
-
 	sourceCompatibility = javaVersion
 	targetCompatibility = javaVersion
+	// withSourcesJar()
 }
