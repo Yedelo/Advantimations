@@ -85,12 +85,6 @@ tasks {
 		into(rootProject.layout.buildDirectory.file("libs"))
 		dependsOn("build")
 	}
-	register<Delete>("deleteOldBuilds") {
-		delete(rootProject.layout.buildDirectory.file("libs"))
-	}
-	named("build") {
-		dependsOn("deleteOldBuilds")
-	}
 	jar {
 		archiveFileName.set("Advantimations-$version+${minMc}-${maxMc}.jar")
 	}
