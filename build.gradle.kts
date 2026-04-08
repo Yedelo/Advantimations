@@ -11,8 +11,8 @@ val yaclVersion: String by project
 val devAuthVersion: String by project
 
 plugins {
-	val loomVersion = "1.15-SNAPSHOT"
-	id("net.fabricmc.fabric-loom") version loomVersion
+	id("dev.kikugie.loom-back-compat")
+	id("net.fabricmc.fabric-loom") version "1.15-SNAPSHOT"
 }
 
 val javaVersion: JavaVersion = when {
@@ -33,11 +33,12 @@ repositories {
 
 dependencies {
 	minecraft("com.mojang:minecraft:${sc.current.version}")
-	implementation("net.fabricmc:fabric-loader:${property("versions.fabricLoader")}")
-	implementation("net.fabricmc.fabric-api:fabric-api:${property("versions.fabricApi")}")
+	loomx.applyMojangMappings()
+	modImplementation("net.fabricmc:fabric-loader:${property("versions.fabricLoader")}")
+	modImplementation("net.fabricmc.fabric-api:fabric-api:${property("versions.fabricApi")}")
 
-	api("com.terraformersmc:modmenu:${property("versions.modMenu")}")
-	implementation("dev.isxander:yet-another-config-lib:${property("versions.yacl")}")
+	modApi("com.terraformersmc:modmenu:${property("versions.modMenu")}")
+	modImplementation("dev.isxander:yet-another-config-lib:${property("versions.yacl")}")
 }
 
 loom {
@@ -84,7 +85,8 @@ tasks {
 	register<Copy>("buildAndCollect") {
 		group = "build"
 
-		from(jar.map { it.archiveFile })
+		// loomx.mod(Sources)Jar returns the jar task for the applied loom variant (but i said it louder)
+		from(loomx.modJar.map { it.archiveFile }, loomx.modSourcesJar.map { it.archiveFile })
 		into(rootProject.layout.buildDirectory.file("libs"))
 		dependsOn("build")
 	}
