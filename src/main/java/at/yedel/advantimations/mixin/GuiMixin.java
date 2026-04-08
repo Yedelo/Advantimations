@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(Gui.class)
 public abstract class GuiMixin {
-    @ModifyExpressionValue(method = "extractCameraOverlays", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/player/LocalPlayer;isScoping()Z"))
+    @ModifyExpressionValue(method = /*? >= 26.1 {*/"extractCameraOverlays"/*?} else {*//*"renderCameraOverlays"*//*?}*/, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/player/LocalPlayer;isScoping()Z"))
     private boolean advantimations$cancelSpyglassAnimation(boolean original) {
         return AdvantimationsConfig.getInstance().cancelSpyglassAnimation.getFirstPersonResult(original, false);
     }
