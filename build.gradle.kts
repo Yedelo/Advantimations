@@ -85,7 +85,7 @@ tasks {
 		into(rootProject.layout.buildDirectory.file("libs"))
 		dependsOn("build")
 	}
-	jar {
+	loomx.modJar {
 		archiveFileName.set("Advantimations-$version+${minMc}-${maxMc}.jar")
 	}
 }
