@@ -5,7 +5,7 @@ version = "2.0.2"
 group = "at.yedel.advantimations"
 
 versions.fabricLoader = "0.18.4"
-targets.fabricLoader = "*"
+targets.fabricLoader = ">=0.18.4"
 
 ["26.1.1"]
 mc.min = "26.1"
@@ -17,4 +17,4 @@ versions.modMenu = "18.0.0-alpha.8"
 # unused
 targets.modMenu = "*"
 versions.yacl = "3.9.2+26.1-fabric"
-targets.yacl = "*"
+targets.yacl = ">=3.9.2+26.1-fabric"
