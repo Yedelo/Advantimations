@@ -23,3 +23,12 @@ versions.fabricApi = "0.141.3+1.21.11"
 versions.modMenu = "17.0.0"
 versions.yacl = "3.8.2+1.21.11-fabric"
 targets.yacl = ">=3.8.2+1.21.11-fabric"
+
+["1.21.10"]
+versioning = "range"
+mc.min = "1.21.9"
+mc.max = "1.21.10"
+versions.fabricApi = "0.138.4+1.21.10"
+versions.modMenu = "16.0.1"
+versions.yacl = "3.8.2+1.21.10-fabric"
+targets.yacl = ">=3.8.2+1.21.10-fabric"
