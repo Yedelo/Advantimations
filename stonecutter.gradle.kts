@@ -10,8 +10,8 @@ stonecutter parameters {
             replace("ResourceLocation", "Identifier")
         }
 
-        string(current.parsed >= "26.1") {
-            replace("classTweaker v1 named", "classTweaker v1 official")
+        string(current.parsed < "26.1") {
+            replace("classTweaker v1 official", "classTweaker v1 named")
         }
     }
 }
