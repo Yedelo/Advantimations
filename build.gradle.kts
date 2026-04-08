@@ -52,23 +52,22 @@ loom {
 
 tasks {
 	processResources {
-		fun MutableMap<String, String>.register(key: String, property: String) {
-			val value: String = sc.properties[property]
+		fun MutableMap<String, String>.register(key: String, value: String) {
 			inputs.property(key, value)
 			set(key, value)
 		}
 
 		fun MutableMap<String, String>.registerDependencies(vararg names: String) {
 			for (name in names) {
-				register(name, "targets.$name")
+				register(name, sc.properties["targets.$name"])
 			}
 		}
 
 		val props = buildMap {
-			register("version", "version")
+			register("version", version.toString())
 			registerDependencies("fabricLoader", "fabricApi", "yacl")
-			set("java", ">=${javaVersion.majorVersion}")
-			set("minecraft", ">=${minMc} <=${maxMc}")
+			register("java", ">=${javaVersion.majorVersion}")
+			register("minecraft", ">=${minMc} <=${maxMc}")
 		}
 		filesMatching("fabric.mod.json") { expand(props) }
 
@@ -86,15 +85,12 @@ tasks {
 		into(rootProject.layout.buildDirectory.file("libs"))
 		dependsOn("build")
 	}
-
 	register<Delete>("deleteOldBuilds") {
 		delete(rootProject.layout.buildDirectory.file("libs"))
 	}
-
 	named("build") {
 		dependsOn("deleteOldBuilds")
 	}
-
 	jar {
 		archiveFileName.set("Advantimations-$version+${minMc}-${maxMc}.jar")
 	}
