@@ -1,3 +1,4 @@
+/*? if spear {*/
 package at.yedel.advantimations.mixin;
 
 
@@ -50,3 +51,4 @@ public abstract class SpearAnimationsMixin {
         if (AdvantimationsConfig.getInstance().cancelSpearAnimation.shouldApplyInFirstPerson()) ci.cancel();
     }
 }
+/*?}*/

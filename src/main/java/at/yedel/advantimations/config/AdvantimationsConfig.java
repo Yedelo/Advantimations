@@ -80,8 +80,10 @@ public class AdvantimationsConfig {
     @SerialEntry
     public EntityOption cancelBundleAnimation = new EntityOption();
 
+    /*? if spear {*/
     @SerialEntry
     public EntityOption cancelSpearAnimation = new EntityOption();
+    /*?}*/
 
     @SerialEntry
     public EntityOption cancelBowArrowModel = new EntityOption();
@@ -181,10 +183,12 @@ public class AdvantimationsConfig {
                     "Cancel Bundle Animation", "Cancel the bundle use swing animation.", defaults.cancelBundleAnimation, config.cancelBundleAnimation,
                     ITEM_MODEL_CONFIGURATOR, itemModelCategoryBuilder
                 );
+                /*? if spear {*/
                 EntityOption.createGroup(
                     "Cancel Spear Animation", "Cancel the spear animation for items with component \nconsumable{animation:'spear'}, \nmainly the spear.", defaults.cancelSpearAnimation, config.cancelSpearAnimation,
                     ITEM_MODEL_CONFIGURATOR, itemModelCategoryBuilder
                 );
+                /*?}*/
                 EntityOption.createGroup(
                     "Cancel Bow Arrow Model", "Cancel the arrow in a bow being rendered.", defaults.cancelBowArrowModel, config.cancelBowArrowModel,
                     ITEM_MODEL_CONFIGURATOR, itemModelCategoryBuilder
