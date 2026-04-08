@@ -77,7 +77,7 @@ tasks {
 		filesMatching("fabric.mod.json") { expand(props) }
 
 		val mixinJava = "JAVA_${javaVersion.majorVersion}"
-		filesMatching("*.mixins.json") { expand("java" to mixinJava) }
+		filesMatching("*.mixins.json") { expand("mixinJava" to mixinJava) }
 
         outputs.upToDateWhen { false }
 	}
