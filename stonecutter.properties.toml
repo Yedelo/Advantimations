@@ -7,10 +7,9 @@ group = "at.yedel.advantimations"
 versions.fabricLoader = "0.18.4"
 targets.fabricLoader = "*"
 
+["26.1.1"]
 mc.min = "26.1"
 mc.max = "26.1.1"
-
-["26.1.1"]
 
 versions.fabricApi = "0.145.3+26.1.1"
 targets.fabricApi = "*"
