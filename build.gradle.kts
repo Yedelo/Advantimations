@@ -93,7 +93,7 @@ tasks {
 }
 
 java {
-	withSourcesJar()
+	// withSourcesJar()
 
 	sourceCompatibility = javaVersion
 	targetCompatibility = javaVersion
