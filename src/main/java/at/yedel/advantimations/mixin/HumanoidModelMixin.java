@@ -19,12 +19,12 @@ import org.spongepowered.asm.mixin.injection.At;
 public abstract class HumanoidModelMixin {
     @Unique
     private HumanoidModel.ArmPose advantimations$cancelItemUseAnimations(HumanoidRenderState state, HumanoidArm arm, HumanoidModel.ArmPose original) {
-        ItemStackRenderState itemState = arm == HumanoidArm.LEFT ? state.leftHandItemState : state.rightHandItemState;
+        ItemStackRenderState itemState = arm == HumanoidArm.LEFT ? /*? >= 1.21.11 {*/state.leftHandItemState/*?} else {*//*state.leftHandItem*//*?}*/ : /*? >= 1.21.11 {*/state.rightHandItemState/*?} else {*//*state.rightHandItem*//*?}*/;
         HumanoidModel.ArmPose defaultPose = !itemState.isEmpty() ? HumanoidModel.ArmPose.ITEM : HumanoidModel.ArmPose.EMPTY;
         return switch (original) {
             case BLOCK -> AdvantimationsConfig.getInstance().cancelBlockingAnimation.getThirdPersonResult(state, original, defaultPose);
             case BOW_AND_ARROW -> AdvantimationsConfig.getInstance().cancelBowAnimation.getThirdPersonResult(state, original, defaultPose);
-            case THROW_TRIDENT -> AdvantimationsConfig.getInstance().cancelTridentSpearAnimation.getThirdPersonResult(state, original, defaultPose);
+            case /*? spear {*/ THROW_TRIDENT /*?}else {*//*THROW_SPEAR*//*?}*/ -> AdvantimationsConfig.getInstance().cancelTridentSpearAnimation.getThirdPersonResult(state, original, defaultPose);
             case CROSSBOW_CHARGE -> AdvantimationsConfig.getInstance().cancelCrossbowAnimation.getThirdPersonResult(state, original, defaultPose);
             case CROSSBOW_HOLD -> AdvantimationsConfig.getInstance().cancelChargedCrossbowAnimation.getThirdPersonResult(state, original, defaultPose);
             case SPYGLASS -> AdvantimationsConfig.getInstance().cancelSpyglassAnimation.getThirdPersonResult(state, original, defaultPose);
