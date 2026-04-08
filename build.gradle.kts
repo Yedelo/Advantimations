@@ -86,7 +86,7 @@ tasks {
 		group = "build"
 
 		// loomx.mod(Sources)Jar returns the jar task for the applied loom variant (but i said it louder)
-		from(loomx.modJar.map { it.archiveFile }, loomx.modSourcesJar.map { it.archiveFile })
+		from(loomx.modJar.map { it.archiveFile }/*, loomx.modSourcesJar.map { it.archiveFile }*/)
 		into(rootProject.layout.buildDirectory.file("libs"))
 		dependsOn("build")
 	}
