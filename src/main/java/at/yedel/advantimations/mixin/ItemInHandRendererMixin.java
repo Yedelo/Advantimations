@@ -29,7 +29,7 @@ public abstract class ItemInHandRendererMixin {
             case BLOCK -> AdvantimationsConfig.getInstance().cancelBlockingAnimation.shouldApplyInFirstPerson();
             case BOW -> AdvantimationsConfig.getInstance().cancelBowAnimation.shouldApplyInFirstPerson();
             case TOOT_HORN -> AdvantimationsConfig.getInstance().cancelHornTootAnimation.shouldApplyInFirstPerson();
-            case TRIDENT -> AdvantimationsConfig.getInstance().cancelTridentSpearAnimation.shouldApplyInFirstPerson();
+            case /*? if spear {*/ TRIDENT /*?} else {*//*SPEAR*//*?}*/ -> AdvantimationsConfig.getInstance().cancelTridentSpearAnimation.shouldApplyInFirstPerson();
             case BRUSH -> AdvantimationsConfig.getInstance().cancelBrushingAnimation.shouldApplyInFirstPerson();
             case BUNDLE -> AdvantimationsConfig.getInstance().cancelBundleAnimation.shouldApplyInFirstPerson();
             /*? if spear {*/
@@ -62,7 +62,7 @@ public abstract class ItemInHandRendererMixin {
         return AdvantimationsConfig.getInstance().cancelRiptideAnimation.getFirstPersonResult(original, false);
     }
 
-    @ModifyExpressionValue(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/player/LocalPlayer;getItemSwapScale(F)F"))
+    @ModifyExpressionValue(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/player/LocalPlayer;" + /*? >=1.21.11 {*/"getItemSwapScale(F)F"/*?} else {*//*"getAttackStrengthScale(F)F"*//*?}*/))
     private float advantimations$cancelAttackCooldownResets(float original) {
         return AdvantimationsConfig.getInstance().cancelAttackCooldownResets.getFirstPersonResult(original, 1F);
     }
