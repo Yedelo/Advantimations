@@ -14,7 +14,7 @@
     "LivingEntityRendererMixin",
     "MinecraftMixin",
     "PlayerItemInHandLayerMixin",
-    "SpearAnimationsMixin",
+    /*? if spear {*/ "SpearAnimationsMixin", /*?}*/
     "UseCycleMixin"
   ],
   // hello comment
