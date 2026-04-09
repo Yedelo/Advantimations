@@ -13,17 +13,27 @@ package at.yedel.advantimations.mixin;
 import at.yedel.advantimations.config.AdvantimationsConfig;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.sugar.Local;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import org.spongepowered.asm.mixin.injection.At;
+/*? >= 1.21.10 {*/
 import net.minecraft.client.renderer.entity.player.AvatarRenderer;
 import net.minecraft.world.entity.Avatar;
+/*?} else {*/
+
+/*import net.minecraft.client.renderer.entity.player.PlayerRenderer;
+import net.minecraft.client.player.AbstractClientPlayer;
+
+*//*?}*/
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
 
 
-@Mixin(AvatarRenderer.class)
+@Mixin(/*? >= 1.21.10 {*/ AvatarRenderer.class /*?} else {*//*PlayerRenderer.class*//*?}*/)
 public abstract class AvatarRendererMixin {
-    @ModifyExpressionValue(method = "extractRenderState(Lnet/minecraft/world/entity/Avatar;Lnet/minecraft/client/renderer/entity/state/AvatarRenderState;F)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;is" + /*? >= 26.1 {*/"(Ljava/lang/Object;)Z"/*?} else {*//*"(Lnet/minecraft/world/item/Item;)Z"*//*?}*/))
-    private boolean advantimations$cancelSpyglassAnimation(boolean original, @Local(argsOnly = true) Avatar avatar) {
-        return AdvantimationsConfig.getInstance().cancelSpyglassAnimation.getThirdPersonResult(avatar.asLivingEntity(), original, false);
+    @ModifyExpressionValue(method = /*? >=1.21.10 {*/"extractRenderState(Lnet/minecraft/world/entity/Avatar;Lnet/minecraft/client/renderer/entity/state/AvatarRenderState;F)V"/*?} else {*//*"Lnet/minecraft/client/renderer/entity/player/PlayerRenderer;extractRenderState(Lnet/minecraft/client/player/AbstractClientPlayer;Lnet/minecraft/client/renderer/entity/state/PlayerRenderState;F)V"*//*?}*/, at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;is" + /*? >= 26.1 {*/"(Ljava/lang/Object;)Z"/*?} else {*//*"(Lnet/minecraft/world/item/Item;)Z"*//*?}*/))
+    private boolean advantimations$cancelSpyglassAnimation(boolean original, @Local(argsOnly = true) /*? >= 1.21.10 {*/ Avatar /*?} else {*/ /*AbstractClientPlayer *//*?}*/ player) {
+        return AdvantimationsConfig.getInstance().cancelSpyglassAnimation.getThirdPersonResult(/*? >= 1.21.10 {*/player.asLivingEntity() /*?} else {*//*player*//*?}*/, original, false);
     }
 }
