@@ -1,3 +1,4 @@
+/*? >= 1.21.10 {*/
 package at.yedel.advantimations.mixin;
 
 
@@ -20,3 +21,4 @@ public abstract class LevelRendererMixin {
         return state;
     }
 }
+/*?}*/

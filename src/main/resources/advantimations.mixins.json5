@@ -10,7 +10,8 @@
     "HumanoidModelMixin",
     "IsUsingItemMixin",
     "ItemInHandRendererMixin",
-    "LevelRendererMixin",
+    /*? >= 1.21.10 {*/ "LevelRendererMixin",
+    /*?} else {*//*"EntityRenderDispatcherMixin",*//*?}*/
     "LivingEntityRendererMixin",
     "MinecraftMixin",
     "PlayerItemInHandLayerMixin",
