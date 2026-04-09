@@ -17,6 +17,8 @@
     "SpearAnimationsMixin",
     "UseCycleMixin"
   ],
+  // hello comment
+  /* multiline comment */
   "injectors": {
     "defaultRequire": 1
   }
