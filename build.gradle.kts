@@ -8,7 +8,6 @@ val fabricApiVersion: String by project
 
 val modMenuVersion: String by project
 val yaclVersion: String by project
-val devAuthVersion: String by project
 
 plugins {
 	id("dev.kikugie.loom-back-compat")
