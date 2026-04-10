@@ -26,11 +26,9 @@ val javaVersion: JavaVersion = when {
 	else -> JavaVersion.VERSION_1_8
 }
 
-lateinit var minMc: String
 lateinit var maxMc: String
 val rangedVersion = sc.properties.get<String>("versioning") == "range"
 if (rangedVersion) {
-	minMc = sc.properties["mc.min"]
 	maxMc = sc.properties["mc.max"]
 }
 
@@ -71,7 +69,7 @@ tasks {
 			register("version", version.toString())
 			registerDependencies("fabricLoader", "fabricApi", "yacl")
 			register("java", ">=${javaVersion.majorVersion}")
-			val minecraftDependency = if (rangedVersion) ">=${minMc} <=${maxMc}" else sc.current.version
+			val minecraftDependency = if (rangedVersion) ">=${sc.current.version} <=${maxMc}" else sc.current.version
 			register("minecraft", minecraftDependency)
 		}
 		filesMatching("fabric.mod.json") { expand(props) }
@@ -91,7 +89,7 @@ tasks {
 		dependsOn("build")
 	}
 	loomx.modJar {
-		val minecraftVersion = if (rangedVersion) "$minMc-$maxMc" else sc.current.version
+		val minecraftVersion = if (rangedVersion) "${sc.current.version}-$maxMc" else sc.current.version
 		archiveFileName.set("Advantimations-$version+$minecraftVersion.jar")
 	}
 }

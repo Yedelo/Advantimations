@@ -10,7 +10,6 @@ targets.modMenu = "*"
 
 ["26.1"]
 versioning = "range"
-mc.min = "26.1"
 mc.max = "26.1.1"
 versions.fabricApi = "0.145.1+26.1"
 versions.modMenu = "18.0.0-alpha.8"
@@ -26,7 +25,6 @@ targets.yacl = ">=3.8.2+1.21.11-fabric"
 
 ["1.21.9"]
 versioning = "range"
-mc.min = "1.21.9"
 mc.max = "1.21.10"
 versions.fabricApi = "0.134.1+1.21.9"
 versions.modMenu = "16.0.1"
@@ -35,7 +33,6 @@ targets.yacl = "3.8.0+1.21.9-fabric"
 
 ["1.21.4"]
 versioning = "range"
-mc.min = "1.21.4"
 mc.max = "1.21.8"
 versions.fabricApi = "0.119.4+1.21.4"
 versions.modMenu = "13.0.4"
