@@ -10,7 +10,7 @@ targets.modMenu = "*"
 
 ["26.1"]
 versioning = "range"
-mc.max = "26.1.1"
+mc.max = "26.1.2"
 versions.fabricApi = "0.145.1+26.1"
 versions.modMenu = "18.0.0-alpha.8"
 versions.yacl = "3.9.3+26.1-fabric"
