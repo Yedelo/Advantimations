@@ -16,12 +16,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(ItemInHandRenderer.class)
 public abstract class ItemInHandRendererMixin {
-    @ModifyExpressionValue(method = "renderHandsWithItems", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/player/LocalPlayer;getAttackAnim(F)F"))
+    @ModifyExpressionValue(method = /*? >=26.2 {*/"submitHandsWithItems" /*?} else {*//*"renderHandsWithItems"*//*?}*/, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/player/LocalPlayer;getAttackAnim(F)F"))
     private float advantimations$cancelFirstPersonSwings(float original) {
         return AdvantimationsConfig.getInstance().cancelSwings.getFirstPersonResult(original, 0F);
     }
 
-    @ModifyExpressionValue(method = "renderArmWithItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;getUseAnimation()Lnet/minecraft/world/item/ItemUseAnimation;"))
+    @ModifyExpressionValue(method = /*? >=26.2 {*/"submitArmWithItem" /*?} else {*//*"renderArmWithItem"*//*?}*/, at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;getUseAnimation()Lnet/minecraft/world/item/ItemUseAnimation;"))
     private ItemUseAnimation advantimations$cancelUseAnimations(ItemUseAnimation original) {
         if (switch (original) {
             case EAT -> AdvantimationsConfig.getInstance().cancelEatingAnimation.shouldApplyInFirstPerson();
@@ -42,22 +42,22 @@ public abstract class ItemInHandRendererMixin {
         return original;
     }
 
-    @ModifyExpressionValue(method = "renderArmWithItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/player/AbstractClientPlayer;isUsingItem()Z", ordinal = 0))
+    @ModifyExpressionValue(method = /*? >=26.2 {*/"submitArmWithItem" /*?} else {*//*"renderArmWithItem"*//*?}*/, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/player/AbstractClientPlayer;isUsingItem()Z", ordinal = 0))
     private boolean advantimations$cancelCrossbowAnimation(boolean original) {
         return AdvantimationsConfig.getInstance().cancelCrossbowAnimation.getFirstPersonResult(original, false);
     }
 
-    @ModifyExpressionValue(method = "renderArmWithItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/CrossbowItem;isCharged(Lnet/minecraft/world/item/ItemStack;)Z"))
+    @ModifyExpressionValue(method = /*? >=26.2 {*/"submitArmWithItem" /*?} else {*//*"renderArmWithItem"*//*?}*/, at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/CrossbowItem;isCharged(Lnet/minecraft/world/item/ItemStack;)Z"))
     private boolean advantimations$cancelChargedCrossbowAnimation(boolean original) {
         return AdvantimationsConfig.getInstance().cancelChargedCrossbowAnimation.getFirstPersonResult(original, false);
     }
 
-    @ModifyExpressionValue(method = "renderArmWithItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/player/AbstractClientPlayer;isScoping()Z"))
+    @ModifyExpressionValue(method = /*? >=26.2 {*/"submitArmWithItem" /*?} else {*//*"renderArmWithItem"*//*?}*/, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/player/AbstractClientPlayer;isScoping()Z"))
     private boolean advantimations$cancelSpyglassAnimation(boolean original) {
         return AdvantimationsConfig.getInstance().cancelSpyglassAnimation.getFirstPersonResult(original, false);
     }
 
-    @ModifyExpressionValue(method = "renderArmWithItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/player/AbstractClientPlayer;isAutoSpinAttack()Z"))
+    @ModifyExpressionValue(method = /*? >=26.2 {*/"submitArmWithItem" /*?} else {*//*"renderArmWithItem"*//*?}*/, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/player/AbstractClientPlayer;isAutoSpinAttack()Z"))
     private boolean advantimations$cancelRiptideAnimation(boolean original) {
         return AdvantimationsConfig.getInstance().cancelRiptideAnimation.getFirstPersonResult(original, false);
     }
