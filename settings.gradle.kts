@@ -13,7 +13,7 @@ plugins {
 	id("dev.kikugie.loom-back-compat") version "0.2"
 }
 
-loomx.loomVersion = "1.15-SNAPSHOT"
+loomx.loomVersion = "1.16-SNAPSHOT"
 
 stonecutter {
 	create(rootProject) {
