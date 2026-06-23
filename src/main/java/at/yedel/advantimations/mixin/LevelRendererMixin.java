@@ -1,5 +1,5 @@
-/*? >= 1.21.9 {*/
-package at.yedel.advantimations.mixin;
+/*? >= 1.21.9 && < 26.2 {*/
+/*package at.yedel.advantimations.mixin;
 
 
 
@@ -21,4 +21,4 @@ public abstract class LevelRendererMixin {
         return state;
     }
 }
-/*?}*/
+*//*?}*/
