@@ -5,7 +5,7 @@
   "client": [
     "AvatarRendererMixin",
     "EntityRenderStateMixin",
-    "GuiMixin",
+    "CameraOverlaysMixin",
     "HumanoidMobRendererMixin",
     "HumanoidModelMixin",
     "IsUsingItemMixin",
