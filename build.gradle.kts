@@ -43,10 +43,10 @@ dependencies {
 }
 
 loom {
-		accessWidenerPath = sc.process(
-			rootProject.file("src/main/resources/advantimations.classtweaker"),
-			"build/processed.classtweaker"
-		)
+	accessWidenerPath = sc.process(
+		rootProject.file("src/main/resources/advantimations.classtweaker"),
+		"build/processed.classtweaker"
+	)
 	runConfigs.all {
 		runDir = "../../run"
 	}
