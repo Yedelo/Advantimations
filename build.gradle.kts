@@ -2,17 +2,16 @@
 
 import dev.kikugie.stonecutter.StonecutterExperimentalAPI
 
-
-val loader = sc.current.project.toString().split("-")[1]
+val loader = sc.current.project.split("-")[1]
 val fabric = loader == "fabric"
-val neoforge = !fabric
+val neoforge = loader == "neoforge"
 
 plugins {
 	id("dev.kikugie.loom-back-compat")
 }
 
 repositories {
-	if (neoforge) maven("https://maven.neoforged.net/releases/")
+	maven("https://maven.neoforged.net/releases/")
 	maven("https://maven.terraformersmc.com/releases/")
 	maven("https://maven.isxander.dev/releases")
 }
@@ -40,10 +39,15 @@ dependencies {
 
 		modApi("com.terraformersmc:modmenu:${property("versions.modMenu")}")
 	}
-	else {
+	else if (neoforge) {
 		implementation("net.neoforged:neoforge:${property("versions.neoforge")}")
+		implementation("net.neoforged.fancymodloader:loader:${property("versions.fancymodloader")}")
 	}
 	modImplementation("dev.isxander:yet-another-config-lib:${property("versions.yacl")}")
+}
+
+stonecutter {
+	constants.match(loader, "fabric", "neoforge")
 }
 
 loom {

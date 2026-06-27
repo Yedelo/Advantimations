@@ -3,6 +3,7 @@
 
 versions.fabricLoader = "0.19.3"
 targets.fabricLoader = ">=0.19.2"
+versions.fancymodloader = "4.0.43"
 
 targets.fabricApi = "*"
 # unused
