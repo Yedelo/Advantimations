@@ -17,7 +17,10 @@ loomx.loomVersion = "1.16-SNAPSHOT"
 
 stonecutter {
 	create(rootProject) {
-		versions("1.21.4", "1.21.9", "1.21.11", "26.1", "26.2")
-		vcsVersion = "26.2"
+		for (versionString in listOf("1.21.4", "1.21.9", "1.21.11", "26.1", "26.2")) {
+			version("$versionString-fabric", versionString)
+			version("$versionString-neoforge", versionString)
+		}
+		vcsVersion = "26.2-fabric"
 	}
 }

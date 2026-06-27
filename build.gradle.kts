@@ -2,12 +2,10 @@
 
 import dev.kikugie.stonecutter.StonecutterExperimentalAPI
 
-val minecraftVersion: String by project
-val fabricLoaderVersion: String by project
-val fabricApiVersion: String by project
 
-val modMenuVersion: String by project
-val yaclVersion: String by project
+val loader = sc.current.project.toString().split("-")[1]
+val fabric = loader == "fabric"
+val neoforge = !fabric
 
 plugins {
 	id("dev.kikugie.loom-back-compat")
@@ -35,18 +33,20 @@ if (rangedVersion) {
 dependencies {
 	minecraft("com.mojang:minecraft:${sc.current.version}")
 	loomx.applyMojangMappings()
-	modImplementation("net.fabricmc:fabric-loader:${property("versions.fabricLoader")}")
-	modImplementation("net.fabricmc.fabric-api:fabric-api:${property("versions.fabricApi")}")
+	if (fabric) {
+		modImplementation("net.fabricmc:fabric-loader:${property("versions.fabricLoader")}")
+		modImplementation("net.fabricmc.fabric-api:fabric-api:${property("versions.fabricApi")}")
 
-	modApi("com.terraformersmc:modmenu:${property("versions.modMenu")}")
+		modApi("com.terraformersmc:modmenu:${property("versions.modMenu")}")
+	}
 	modImplementation("dev.isxander:yet-another-config-lib:${property("versions.yacl")}")
 }
 
 loom {
-	accessWidenerPath = sc.process(
-		rootProject.file("src/main/resources/advantimations.classtweaker"),
-		"build/processed.classtweaker"
-	)
+		accessWidenerPath = sc.process(
+			rootProject.file("src/main/resources/advantimations.classtweaker"),
+			"build/processed.classtweaker"
+		)
 	runConfigs.all {
 		runDir = "../../run"
 	}
@@ -65,14 +65,18 @@ tasks {
 			}
 		}
 
-		val props = buildMap {
-			register("version", version.toString())
-			registerDependencies("fabricLoader", "fabricApi", "yacl")
-			register("java", ">=${javaVersion.majorVersion}")
-			val minecraftDependency = if (rangedVersion) ">=${sc.current.version} <=${maxMc}" else sc.current.version
-			register("minecraft", minecraftDependency)
+		if (fabric) {
+			include("fabric.mod.json")
+			val props = buildMap {
+				register("version", version.toString())
+				registerDependencies("fabricLoader", "fabricApi", "yacl")
+				register("java", ">=${javaVersion.majorVersion}")
+				val minecraftDependency =
+					if (rangedVersion) ">=${sc.current.version} <=${maxMc}" else sc.current.version
+				register("minecraft", minecraftDependency)
+			}
+			filesMatching("fabric.mod.json") { expand(props) }
 		}
-		filesMatching("fabric.mod.json") { expand(props) }
 
 		val mixinJava = "JAVA_${javaVersion.majorVersion}"
 		filesMatching("advantimations.mixins.json5") { expand("mixinJava" to mixinJava) }
@@ -90,7 +94,7 @@ tasks {
 	}
 	loomx.modJar {
 		val minecraftVersion = if (rangedVersion) "${sc.current.version}-$maxMc" else sc.current.version
-		archiveFileName.set("Advantimations-$version+$minecraftVersion.jar")
+		archiveFileName.set("Advantimations-$version+$minecraftVersion+$loader.jar")
 	}
 }
 
