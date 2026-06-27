@@ -73,14 +73,15 @@ tasks {
 
 		fun MutableMap<String, String>.registerDependencies(vararg names: String) {
 			for (name in names) {
-				register(name, sc.properties["targets.$name"])
+				val minVersion: String = sc.properties["versions.$name"]
+				register(name, ">=$minVersion")
 			}
 		}
 
 		if (fabric) {
 			val props = buildMap {
 				register("version", version.toString())
-				registerDependencies("fabricLoader", "fabricApi", "yacl")
+				registerDependencies("fabricLoader", "yacl")
 				register("java", ">=${javaVersion.majorVersion}")
 				val minecraftDependency =
 					if (rangedVersion) ">=${sc.current.version} <=${maxMc}" else sc.current.version
