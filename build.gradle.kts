@@ -12,6 +12,7 @@ plugins {
 }
 
 repositories {
+	if (neoforge) maven("https://maven.neoforged.net/releases/")
 	maven("https://maven.terraformersmc.com/releases/")
 	maven("https://maven.isxander.dev/releases")
 }
@@ -38,6 +39,9 @@ dependencies {
 		modImplementation("net.fabricmc.fabric-api:fabric-api:${property("versions.fabricApi")}")
 
 		modApi("com.terraformersmc:modmenu:${property("versions.modMenu")}")
+	}
+	else {
+		implementation("net.neoforged:neoforge:${property("versions.neoforge")}")
 	}
 	modImplementation("dev.isxander:yet-another-config-lib:${property("versions.yacl")}")
 }
