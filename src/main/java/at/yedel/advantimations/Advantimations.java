@@ -3,14 +3,25 @@ package at.yedel.advantimations;
 
 
 import at.yedel.advantimations.config.AdvantimationsConfig;
-import net.fabricmc.api.ClientModInitializer;
+/*? if fabric {*/
+/*import net.fabricmc.api.ClientModInitializer;
+*//*?} else if neoforge {*/
+import net.neoforged.fml.common.Mod;
+/*?}*/
 
 
 
 // Maud
-public class Advantimations implements ClientModInitializer {
-	@Override
+/*? if neoforge */ @Mod("advantimations")
+public class Advantimations /*? if fabric {*//*implements ClientModInitializer*//*?}*/ {
+	/*? if fabric {*/
+	/*@Override
 	public void onInitializeClient() {
 		AdvantimationsConfig.init();
 	}
+	*//*?} elif neoforge {*/
+	public Advantimations() {
+		AdvantimationsConfig.init();
+	}
+	/*?}*/
 }

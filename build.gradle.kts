@@ -41,7 +41,11 @@ dependencies {
 	}
 	else if (neoforge) {
 		implementation("net.neoforged:neoforge:${property("versions.neoforge")}")
-		implementation("net.neoforged.fancymodloader:loader:${property("versions.fancymodloader")}")
+		implementation("net.neoforged.fancymodloader:loader:${property("versions.fancyModLoader")}")
+		// highly unfortunate because nfml already includes fabric mixin, but it's whatever
+		compileOnly("net.fabricmc:sponge-mixin:${property("versions.neoforgeMixin")}")
+		// highly unfortunate because neoforge already includes mixinextras, but it's whatever
+		compileOnly("io.github.llamalad7:mixinextras-fabric:${property("versions.mixinExtras")}")
 	}
 	modImplementation("dev.isxander:yet-another-config-lib:${property("versions.yacl")}")
 }
@@ -74,7 +78,6 @@ tasks {
 		}
 
 		if (fabric) {
-			include("fabric.mod.json")
 			val props = buildMap {
 				register("version", version.toString())
 				registerDependencies("fabricLoader", "fabricApi", "yacl")

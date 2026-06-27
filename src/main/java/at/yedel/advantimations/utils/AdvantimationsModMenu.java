@@ -1,4 +1,6 @@
-package at.yedel.advantimations.utils;
+/*? if fabric {*/
+
+/*package at.yedel.advantimations.utils;
 
 
 
@@ -14,3 +16,5 @@ public class AdvantimationsModMenu implements ModMenuApi {
         return AdvantimationsConfig::getScreen;
     }
 }
+
+*//*?}*/
