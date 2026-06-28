@@ -1,0 +1,26 @@
+modLoader = "javafml"
+loaderVersion = "[1,)"
+license = "None!"
+issueTrackerURL = "https://github.com/Yedelo/Advantimations/issues"
+
+[[mods]]
+modId = "advantimations"
+version = "${version}"
+displayName = "Advantimations"
+description = "Client-side mod to cancel animations"
+logo = "assets/advantimations/advantimations.png"
+logoBlur = false
+credits = "thebaum64 for original sword texture in icon"
+authors = "Yedel"
+displayURL = "https://modrinth.com/mod/advantimations/"
+
+[[mixins]]
+config = "advantimations.mixins.json5"
+
+[[dependencies.advantimations]]
+modId = "neoforge"
+versionRange = "${neoforge}"
+
+[[dependencies.advantimations]]
+modId = "minecraft"
+versionRange = "${minecraft}"

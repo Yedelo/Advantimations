@@ -71,24 +71,27 @@ tasks {
 			set(key, value)
 		}
 
-		fun MutableMap<String, String>.registerDependencies(vararg names: String) {
-			for (name in names) {
-				val minVersion: String = sc.properties["versions.$name"]
-				register(name, ">=$minVersion")
-			}
-		}
+		fun target(version: String) = if (fabric) ">=$version" else "[$version,)"
 
-		if (fabric) {
 			val props = buildMap {
 				register("version", version.toString())
-				registerDependencies("fabricLoader", "yacl")
-				register("java", ">=${javaVersion.majorVersion}")
-				val minecraftDependency =
-					if (rangedVersion) ">=${sc.current.version} <=${maxMc}" else sc.current.version
-				register("minecraft", minecraftDependency)
+				register("yacl", target(sc.properties["versions.yacl"]))
+				register("java", target(javaVersion.majorVersion))
+				// for certain versions, don't cause problems with missing template properties
+				if (fabric) {
+					exclude("neoforge.mods.toml")
+					register("fabricLoader", target(sc.properties["versions.fabricLoader"]))
+					val minecraftDependency = if (rangedVersion) ">=${sc.current.version} <=${maxMc}" else sc.current.version
+					register("minecraft", minecraftDependency)
+				}
+				else if (neoforge) {
+					exclude("fabric.mod.json")
+					register("neoforge", target(sc.properties["versions.neoforge"]))
+					val minecraftDependency = if (rangedVersion) "[${sc.current.version},${maxMc}]" else "[${sc.current.version}]"
+					register("minecraft", minecraftDependency)
+				}
 			}
-			filesMatching("fabric.mod.json") { expand(props) }
-		}
+			filesMatching(listOf("fabric.mod.json", "META-INF/neoforge.mods.toml")) { expand(props) }
 
 		val mixinJava = "JAVA_${javaVersion.majorVersion}"
 		filesMatching("advantimations.mixins.json5") { expand("mixinJava" to mixinJava) }
