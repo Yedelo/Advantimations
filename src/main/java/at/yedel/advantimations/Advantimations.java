@@ -6,8 +6,11 @@ import at.yedel.advantimations.config.AdvantimationsConfig;
 /*? if fabric {*/
 /*import net.fabricmc.api.ClientModInitializer;
 *//*?} else if neoforge {*/
+import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
-/*?}*/
+import net.neoforged.neoforge.client.gui.ConfigurationScreen;
+import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
+    /*?}*/
 
 
 
@@ -20,8 +23,9 @@ public class Advantimations /*? if fabric {*//*implements ClientModInitializer*/
 		AdvantimationsConfig.init();
 	}
 	*//*?} elif neoforge {*/
-	public Advantimations() {
+	public Advantimations(ModContainer container) {
 		AdvantimationsConfig.init();
+		container.registerExtensionPoint(IConfigScreenFactory.class, (_, parent) -> AdvantimationsConfig.getScreen(parent));
 	}
 	/*?}*/
 }
