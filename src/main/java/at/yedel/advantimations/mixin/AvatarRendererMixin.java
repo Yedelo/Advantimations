@@ -38,9 +38,9 @@ public abstract class AvatarRendererMixin {
             value = "INVOKE",
             target =
                 /*? if neoforge && >=1.21.8 {*/
-                "Lnet/minecraft/world/item/ItemStack;canPerformAction(Lnet/neoforged/neoforge/common/ItemAbility;)Z"
-                /*?} else {*/
-                //"Lnet/minecraft/world/item/ItemStack;is" + /*? >= 26.1 {*/"(Ljava/lang/Object;)Z"/*?} else {*//*"(Lnet/minecraft/world/item/Item;)Z"*//*?}*/
+                /*"Lnet/minecraft/world/item/ItemStack;canPerformAction(Lnet/neoforged/neoforge/common/ItemAbility;)Z"
+                *//*?} else {*/
+                "Lnet/minecraft/world/item/ItemStack;is" + /*? >= 26.1 {*/"(Ljava/lang/Object;)Z"/*?} else {*//*"(Lnet/minecraft/world/item/Item;)Z"*//*?}*/
                 /*?}*/
         )
     )

@@ -1,6 +1,6 @@
 /*? if fabric {*/
 
-/*package at.yedel.advantimations.utils;
+package at.yedel.advantimations.utils;
 
 
 
@@ -17,4 +17,4 @@ public class AdvantimationsModMenu implements ModMenuApi {
     }
 }
 
-*//*?}*/
+/*?}*/
