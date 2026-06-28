@@ -43,7 +43,8 @@ dependencies {
 	}
 	else if (neoforge) {
 		implementation("net.neoforged:neoforge:${property("versions.neoforge")}")
-		implementation("net.neoforged.fancymodloader:loader:${property("versions.fancyModLoader")}")
+		// highly unfortunate because neoforge already includes nfml, but it's whatever
+		compileOnly("net.neoforged.fancymodloader:loader:${property("versions.fancyModLoader")}")
 		// highly unfortunate because nfml already includes fabric mixin, but it's whatever
 		compileOnly("net.fabricmc:sponge-mixin:${property("versions.neoforgeMixin")}")
 		// highly unfortunate because neoforge already includes mixinextras, but it's whatever
