@@ -25,7 +25,7 @@ public class Advantimations /*? if fabric {*//*implements ClientModInitializer*/
 	*//*?} elif neoforge {*/
 	public Advantimations(ModContainer container) {
 		AdvantimationsConfig.init();
-		container.registerExtensionPoint(IConfigScreenFactory.class, (_, parent) -> AdvantimationsConfig.getScreen(parent));
+		container.registerExtensionPoint(IConfigScreenFactory.class, (tainer, parent) -> AdvantimationsConfig.getScreen(parent));
 	}
 	/*?}*/
 }
