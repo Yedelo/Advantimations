@@ -27,3 +27,7 @@ versionRange = "${neoforge}"
 [[dependencies.advantimations]]
 modId = "minecraft"
 versionRange = "${minecraft}"
+
+[[dependencies.advantimations]]
+modId = "yet_another_config_lib_v3"
+versionRange = "${yacl}"
