@@ -6,6 +6,8 @@ val loader = sc.current.project.split("-")[1]
 val fabric = loader == "fabric"
 val neoforge = loader == "neoforge"
 
+val yaclVersion = "${sc.properties.get<String>("versions.yacl")}+${sc.current.project}"
+
 plugins {
 	id("dev.kikugie.loom-back-compat")
 }
@@ -47,7 +49,7 @@ dependencies {
 		// highly unfortunate because neoforge already includes mixinextras, but it's whatever
 		compileOnly("io.github.llamalad7:mixinextras-fabric:${property("versions.mixinExtras")}")
 	}
-	modImplementation("dev.isxander:yet-another-config-lib:${property("versions.yacl")}")
+	modImplementation("dev.isxander:yet-another-config-lib:$yaclVersion")
 }
 
 stonecutter {
@@ -75,7 +77,7 @@ tasks {
 
 			val props = buildMap {
 				register("version", version.toString())
-				register("yacl", target(sc.properties["versions.yacl"]))
+				register("yacl", target(yaclVersion))
 				register("java", target(javaVersion.majorVersion))
 				// for certain versions, don't cause problems with missing template properties
 				if (fabric) {
