@@ -17,6 +17,9 @@ displayURL = "https://modrinth.com/mod/advantimations/"
 [[mixins]]
 config = "advantimations.mixins.json5"
 
+[features.advantimations]
+javaVersion = "${java}"
+
 [[dependencies.advantimations]]
 modId = "neoforge"
 versionRange = "${neoforge}"
