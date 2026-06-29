@@ -1,8 +1,6 @@
 @file:OptIn(StonecutterExperimentalAPI::class)
 
 import dev.kikugie.stonecutter.StonecutterExperimentalAPI
-import org.gradle.api.services.BuildService
-import org.gradle.api.services.BuildServiceParameters
 import org.gradle.api.tasks.Copy
 import org.gradle.kotlin.dsl.invoke
 
@@ -13,16 +11,8 @@ val yaclVersion: String
 		return "$rawVersionProperty+${sc.current.version}-neoforge"
 	}
 
-
-interface NeoForgeMutex : BuildService<BuildServiceParameters.None>
-
-val mutex = gradle.sharedServices.registerIfAbsent("createMinecraftArtifactsMutex", NeoForgeMutex::class.java) {
-	maxParallelUsages.set(1)
-}
-
 plugins {
 	id("net.neoforged.moddev") version "2.0.140"
-	id("neoforge-mutex")
 }
 
 repositories {
@@ -107,11 +97,6 @@ tasks {
 		val minecraftVersion = if (rangedVersion) "${sc.current.version}-$maxMc" else sc.current.version
 		archiveFileName.set("Advantimations-$version+$minecraftVersion-neoforge.jar")
 	}
-}
-
-// prevents neoforge from frying your computer by recompiling Minecraft on multiple versions
-tasks.named { it == "createMinecraftArtifacts" }.configureEach {
-	usesService(mutex)
 }
 
 java {
