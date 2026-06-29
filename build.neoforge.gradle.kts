@@ -48,6 +48,12 @@ neoForge {
 
 	interfaceInjectionData.from("../../neoforge.injections.json")
 
+	mods {
+		register("advantimations") {
+			sourceSet(sourceSets.main.get())
+		}
+	}
+
 	runs {
 		register("client") {
 			gameDirectory = file("../../run/")
