@@ -47,6 +47,11 @@ mc.max = "1.21.10"
 versions.neoforge = "21.9.16-beta"
 versions.yacl = "3.8.0"
 
+["1.21.8-neoforge"]
+versioning = "single"
+versions.neoforge = "21.8.53"
+versions.yacl = "3.8.2+1.21.6-neoforge"
+
 ["1.21.4-fabric"]
 versioning = "range"
 mc.max = "1.21.8"
@@ -55,6 +60,6 @@ versions.modMenu = "13.0.4"
 versions.yacl = "3.8.2"
 ["1.21.4-neoforge"]
 versioning = "range"
-mc.max = "1.21.8"
+mc.max = "1.21.7"
 versions.neoforge = "21.4.157"
 versions.yacl = "3.8.2"

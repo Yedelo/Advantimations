@@ -8,8 +8,8 @@ import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import net.minecraft.client.gui.Hud;
 import org.spongepowered.asm.mixin.injection.At;
 /*?} else {*/
-/*import net.minecraft.client.gui.Gui;*/
-/*?}*/
+/*import net.minecraft.client.gui.Gui;
+*//*?}*/
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 

@@ -6,7 +6,13 @@ import org.gradle.api.services.BuildServiceParameters
 import org.gradle.api.tasks.Copy
 import org.gradle.kotlin.dsl.invoke
 
-val yaclVersion = "${sc.properties.get<String>("versions.yacl")}+${sc.current.version}-neoforge"
+val yaclVersion: String
+	get() {
+		val rawVersionProperty = sc.properties.get<String>("versions.yacl")
+		if (rawVersionProperty.endsWith("neoforge")) return rawVersionProperty
+		return "$rawVersionProperty+${sc.current.version}-neoforge"
+	}
+
 
 interface NeoForgeMutex : BuildService<BuildServiceParameters.None>
 

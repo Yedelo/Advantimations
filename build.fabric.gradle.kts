@@ -4,7 +4,12 @@ import dev.kikugie.stonecutter.StonecutterExperimentalAPI
 import org.gradle.api.tasks.Copy
 import org.gradle.kotlin.dsl.invoke
 
-val yaclVersion = "${sc.properties.get<String>("versions.yacl")}+${sc.current.version}-fabric"
+val yaclVersion: String
+	get() {
+		val rawVersionProperty = sc.properties.get<String>("versions.yacl")
+		if (rawVersionProperty.endsWith("fabric")) return rawVersionProperty
+		return "$rawVersionProperty+${sc.current.version}-fabric"
+	}
 
 plugins {
 	id("dev.kikugie.loom-back-compat")
