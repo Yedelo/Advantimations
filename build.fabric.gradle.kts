@@ -3,13 +3,7 @@
 import dev.kikugie.stonecutter.StonecutterExperimentalAPI
 import org.gradle.api.tasks.Copy
 import org.gradle.kotlin.dsl.invoke
-
-val yaclVersion: String
-	get() {
-		val rawVersionProperty = sc.properties.get<String>("versions.yacl")
-		if (rawVersionProperty.endsWith("fabric")) return rawVersionProperty
-		return "$rawVersionProperty+${sc.current.version}-fabric"
-	}
+import kotlin.reflect.KProperty
 
 plugins {
 	id("dev.kikugie.loom-back-compat")
@@ -20,19 +14,16 @@ repositories {
 	maven("https://maven.isxander.dev/releases")
 }
 
-val javaVersion: JavaVersion = when {
-	sc.current.parsed >= "26.1" -> JavaVersion.VERSION_25
-	sc.current.parsed >= "1.20.5" -> JavaVersion.VERSION_21
-	sc.current.parsed >= "1.18" -> JavaVersion.VERSION_17
-	sc.current.parsed >= "1.17" -> JavaVersion.VERSION_16
-	else -> JavaVersion.VERSION_1_8
+// in stonecutter.gradle.kts
+class CommonProperty<T> {
+	operator fun getValue(thisRef: Any?, property: KProperty<*>): T = (rootProject.extra[sc.current.project] as Map<String, Any?>)[property.name] as T
 }
 
-lateinit var maxMc: String
-val rangedVersion = sc.properties.get<String>("versioning") == "range"
-if (rangedVersion) {
-	maxMc = sc.properties["mc.max"]
-}
+val rangedVersion by CommonProperty<Boolean>()
+val maxMc by CommonProperty<String?>()
+val javaVersion by CommonProperty<JavaVersion>()
+val yaclVersion by CommonProperty<String>()
+val finalFileName by CommonProperty<String>()
 
 dependencies {
 	minecraft("com.mojang:minecraft:${sc.current.version}")
