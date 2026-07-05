@@ -141,71 +141,107 @@ public class AdvantimationsConfig {
                     .tooltip(Component.literal("Options for cancelling item models and animations."));
 
                 EntityOption.createGroup(
-                    "Cancel Swings", "Cancel hand and item swing animations.", defaults.cancelSwings, config.cancelSwings,
+                    "Cancel Swings",
+                    "Cancel hand and item swing animations.",
+                    defaults.cancelSwings, config.cancelSwings,
                     EntityOption.Configuration.PERSPECTIVE_INDEPENDENT_OPTION_CONFIGURATOR, itemModelCategoryBuilder
                 );
                 SimpleFirstPersonOption.createOption(
-                    "Cancel Eating Animation", "Cancel the first-person eating animation of items with component \nconsumable{animation:'eat'}.", defaults.cancelEatingAnimation, config.cancelEatingAnimation, itemModelCategoryBuilder
+                    "Cancel Eating Animation",
+                    "Cancel the first-person eating animation of items with component \nconsumable{animation:'eat'}.",
+                    defaults.cancelEatingAnimation, config.cancelEatingAnimation,
+                    itemModelCategoryBuilder
                 );
                 SimpleFirstPersonOption.createOption(
-                    "Cancel Drinking Animation", "Cancel the first-person drinking animation of items with component \nconsumable{animation:'drink'}.", defaults.cancelDrinkingAnimation, config.cancelDrinkingAnimation, itemModelCategoryBuilder
+                    "Cancel Drinking Animation",
+                    "Cancel the first-person drinking animation of items with component \nconsumable{animation:'drink'}.",
+                    defaults.cancelDrinkingAnimation, config.cancelDrinkingAnimation,
+                    itemModelCategoryBuilder
                 );
                 EntityOption.createGroup(
-                    "Cancel Blocking Animation", "Cancel the item blocking animation of items with component \nconsumable{animation:'block'} \n(except shields).", defaults.cancelBlockingAnimation, config.cancelBlockingAnimation,
+                    "Cancel Blocking Animation",
+                    "Cancel the item blocking animation of items with component \nconsumable{animation:'block'} \n(except shields).",
+                    defaults.cancelBlockingAnimation, config.cancelBlockingAnimation,
                     ITEM_MODEL_CONFIGURATOR, itemModelCategoryBuilder
                 );
                 EntityOption.createGroup(
-                    "Cancel Shield Animation", "Cancel the shield blocking animation.", defaults.cancelShieldAnimation, config.cancelShieldAnimation,
+                    "Cancel Shield Animation",
+                    "Cancel the shield blocking animation.",
+                    defaults.cancelShieldAnimation, config.cancelShieldAnimation,
                     ITEM_MODEL_CONFIGURATOR, itemModelCategoryBuilder
                 );
                 EntityOption.createGroup(
-                    "Cancel Bow Animation", "Cancel the bow drawing animation of items with component \nconsumable{animation:'bow'}.", defaults.cancelBowAnimation, config.cancelBowAnimation,
+                    "Cancel Bow Animation",
+                    "Cancel the bow drawing animation of items with component \nconsumable{animation:'bow'}.",
+                    defaults.cancelBowAnimation, config.cancelBowAnimation,
                     ITEM_MODEL_CONFIGURATOR, itemModelCategoryBuilder
                 );
                 EntityOption.createGroup(
-                    "Cancel Crossbow Animation", "Cancel the crossbow drawing animation of items with component \nconsumable{animation:'crossbow'}.", defaults.cancelCrossbowAnimation, config.cancelCrossbowAnimation,
+                    "Cancel Crossbow Animation",
+                    "Cancel the crossbow drawing animation of items with component \nconsumable{animation:'crossbow'}.",
+                    defaults.cancelCrossbowAnimation, config.cancelCrossbowAnimation,
                     ITEM_MODEL_CONFIGURATOR, itemModelCategoryBuilder
                 );
                 EntityOption.createGroup(
-                    "Cancel Charged Crossbow Animation", "Cancel the charged crossbow model.", defaults.cancelChargedCrossbowAnimation, config.cancelChargedCrossbowAnimation,
+                    "Cancel Charged Crossbow Animation",
+                    "Cancel the charged crossbow model.",
+                    defaults.cancelChargedCrossbowAnimation, config.cancelChargedCrossbowAnimation,
                     ITEM_MODEL_CONFIGURATOR, itemModelCategoryBuilder
                 );
                 EntityOption.createGroup(
-                    "Cancel Spyglass Animation", "Cancel the spyglass animation of items with component \nconsumable{animation:'spyglass'}.\nOnly hides the frame of the spyglass in first person.", defaults.cancelSpyglassAnimation, config.cancelSpyglassAnimation,
+                    "Cancel Spyglass Animation",
+                    "Cancel the spyglass animation of items with component \nconsumable{animation:'spyglass'}.\nOnly hides the frame of the spyglass in first person.",
+                    defaults.cancelSpyglassAnimation, config.cancelSpyglassAnimation,
                     ITEM_MODEL_CONFIGURATOR, itemModelCategoryBuilder
                 );
                 EntityOption.createGroup(
-                    "Cancel Horn Toot Animation", "Cancel the horn tooting animation of items with component \nconsumable{animation:'toot_horn'}, \nmainly the goat horn.", defaults.cancelHornTootAnimation, config.cancelHornTootAnimation,
+                    "Cancel Horn Toot Animation",
+                    "Cancel the horn tooting animation of items with component \nconsumable{animation:'toot_horn'}, \nmainly the goat horn.",
+                    defaults.cancelHornTootAnimation, config.cancelHornTootAnimation,
                     ITEM_MODEL_CONFIGURATOR, itemModelCategoryBuilder
                 );
                 EntityOption.createGroup(
-                    "Cancel Trident Spear Animation", "Cancel the trident spear drawing animation of items with component \nconsumable{animation:'trident'}, \nmainly the trident. (1.21.11+)", defaults.cancelTridentSpearAnimation, config.cancelTridentSpearAnimation,
+                    "Cancel Trident Spear Animation",
+                    "Cancel the trident spear drawing animation of items with component \nconsumable{animation:'trident'}, \nmainly the trident. (1.21.11+)",
+                    defaults.cancelTridentSpearAnimation, config.cancelTridentSpearAnimation,
                     ITEM_MODEL_CONFIGURATOR, itemModelCategoryBuilder
                 );
                 EntityOption.createGroup(
-                    "Cancel Riptide Animation", "Cancel the trident riptide animation.", defaults.cancelRiptideAnimation, config.cancelRiptideAnimation,
+                    "Cancel Riptide Animation",
+                    "Cancel the trident riptide animation.",
+                    defaults.cancelRiptideAnimation, config.cancelRiptideAnimation,
                     ITEM_MODEL_CONFIGURATOR, itemModelCategoryBuilder
                 );
                 EntityOption.createGroup(
-                    "Cancel Brushing Animation", "Cancel the brushing animation.", defaults.cancelBrushingAnimation, config.cancelBrushingAnimation,
+                    "Cancel Brushing Animation",
+                    "Cancel the brushing animation.",
+                    defaults.cancelBrushingAnimation, config.cancelBrushingAnimation,
                     ITEM_MODEL_CONFIGURATOR, itemModelCategoryBuilder
                 );
                 EntityOption.createGroup(
-                    "Cancel Bundle Animation", "Cancel the bundle use swing animation.", defaults.cancelBundleAnimation, config.cancelBundleAnimation,
+                    "Cancel Bundle Animation",
+                    "Cancel the bundle use swing animation.",
+                    defaults.cancelBundleAnimation, config.cancelBundleAnimation,
                     ITEM_MODEL_CONFIGURATOR, itemModelCategoryBuilder
                 );
                 /*? if spear {*/
                 EntityOption.createGroup(
-                    "Cancel Spear Animation", "Cancel the spear animation for items with component \nconsumable{animation:'spear'}, \nmainly the spear.", defaults.cancelSpearAnimation, config.cancelSpearAnimation,
+                    "Cancel Spear Animation",
+                    "Cancel the spear animation for items with component \nconsumable{animation:'spear'}, \nmainly the spear.",
+                    defaults.cancelSpearAnimation, config.cancelSpearAnimation,
                     ITEM_MODEL_CONFIGURATOR, itemModelCategoryBuilder
                 );
                 /*?}*/
                 EntityOption.createGroup(
-                    "Cancel Bow Arrow Model", "Cancel the arrow in a bow being rendered.", defaults.cancelBowArrowModel, config.cancelBowArrowModel,
+                    "Cancel Bow Arrow Model",
+                    "Cancel the arrow in a bow being rendered.",
+                    defaults.cancelBowArrowModel, config.cancelBowArrowModel,
                     ITEM_MODEL_CONFIGURATOR, itemModelCategoryBuilder
                 );
                 EntityOption.createGroup(
-                    "Cancel Crossbow Arrow Model", "Cancel the arrow in a crossbow being rendered.", defaults.cancelCrossbowArrowModel, config.cancelCrossbowArrowModel,
+                    "Cancel Crossbow Arrow Model",
+                    "Cancel the arrow in a crossbow being rendered.",
+                    defaults.cancelCrossbowArrowModel, config.cancelCrossbowArrowModel,
                     ITEM_MODEL_CONFIGURATOR, itemModelCategoryBuilder
                 );
 
@@ -214,16 +250,28 @@ public class AdvantimationsConfig {
                     .description(OptionDescription.of(Component.literal("Options for cancelling the item reset animation.")));
 
                 SimpleFirstPersonOption.createOption(
-                    "Cancel Attack Cooldown Resets", "Cancel the item reset animation when attacking or swapping items with cooldowns, such as in combat.", defaults.cancelAttackCooldownResets, config.cancelAttackCooldownResets, itemResetsGroupBuilder
+                    "Cancel Attack Cooldown Resets",
+                    "Cancel the item reset animation when attacking or swapping items with cooldowns, such as in combat.",
+                    defaults.cancelAttackCooldownResets, config.cancelAttackCooldownResets,
+                    itemResetsGroupBuilder
                 );
                 SimpleFirstPersonOption.createOption(
-                    "Cancel Block Interact Resets", "Cancel the item reset animation when interacting with a block such as a cake.", defaults.cancelBlockInteractResets, config.cancelBlockInteractResets, itemResetsGroupBuilder
+                    "Cancel Block Interact Resets",
+                    "Cancel the item reset animation when interacting with a block such as a cake.",
+                    defaults.cancelBlockInteractResets, config.cancelBlockInteractResets,
+                    itemResetsGroupBuilder
                 );
                 SimpleFirstPersonOption.createOption(
-                    "Cancel Item Interact Resets", "Cancel the item reset animation when interacting with an item such as a fishing rod.", defaults.cancelItemInteractResets, config.cancelItemInteractResets, itemResetsGroupBuilder
+                    "Cancel Item Interact Resets",
+                    "Cancel the item reset animation when interacting with an item such as a fishing rod.",
+                    defaults.cancelItemInteractResets, config.cancelItemInteractResets,
+                    itemResetsGroupBuilder
                 );
                 SimpleFirstPersonOption.createOption(
-                    "Cancel Slot Swapping Resets", "Cancel the item reset animation when swapping items.", defaults.cancelSlotSwappingResets, config.cancelSlotSwappingResets, itemResetsGroupBuilder
+                    "Cancel Slot Swapping Resets",
+                    "Cancel the item reset animation when swapping items.",
+                    defaults.cancelSlotSwappingResets, config.cancelSlotSwappingResets,
+                    itemResetsGroupBuilder
                 );
                 itemModelCategoryBuilder.group(itemResetsGroupBuilder.build());
 
@@ -234,27 +282,39 @@ public class AdvantimationsConfig {
                     .tooltip(Component.literal("Options for cancelling entity model animations."));
 
                 EntityOption.createGroup(
-                    "Cancel Sneaking", "Cancel the sneaking pose.", defaults.cancelSneaking, config.cancelSneaking,
+                    "Cancel Sneaking",
+                    "Cancel the sneaking pose.",
+                    defaults.cancelSneaking, config.cancelSneaking,
                     (configuration) -> configuration.canBeEnabledInFirstPerson().canBeEnabledOnSelf().canBeEnabledOnOtherPlayers(), entityModelCategoryBuilder
                 );
                 EntityOption.createGroup(
-                    "Cancel Swimming Animation", "Cancel the third-person swimming animation.", defaults.cancelSwimmingAnimation, config.cancelSwimmingAnimation,
+                    "Cancel Swimming Animation",
+                    "Cancel the third-person swimming animation.",
+                    defaults.cancelSwimmingAnimation, config.cancelSwimmingAnimation,
                     EntityOption.Configuration.THIRD_PERSON_OPTION_CONFIGURATOR, entityModelCategoryBuilder
                 );
                 EntityOption.createGroup(
-                    "Cancel Crawling Animation", "Cancel the third-person crawling animation.", defaults.cancelCrawlingAnimation, config.cancelCrawlingAnimation,
+                    "Cancel Crawling Animation",
+                    "Cancel the third-person crawling animation.",
+                    defaults.cancelCrawlingAnimation, config.cancelCrawlingAnimation,
                     EntityOption.Configuration.THIRD_PERSON_OPTION_CONFIGURATOR, entityModelCategoryBuilder
                 );
                 EntityOption.createGroup(
-                    "Cancel Elytra Animation", "Cancel the third-person elytra animation.", defaults.cancelElytraAnimation, config.cancelElytraAnimation,
+                    "Cancel Elytra Animation",
+                    "Cancel the third-person elytra animation.",
+                    defaults.cancelElytraAnimation, config.cancelElytraAnimation,
                     EntityOption.Configuration.THIRD_PERSON_OPTION_CONFIGURATOR, entityModelCategoryBuilder
                 );
                 EntityOption.createGroup(
-                    "Cancel Limb Movements", "Cancel entity limb movements.\nOverrides Weirder Limb Movements.", defaults.cancelLimbMovements, config.cancelLimbMovements,
+                    "Cancel Limb Movements",
+                    "Cancel entity limb movements.\nOverrides Weirder Limb Movements.",
+                    defaults.cancelLimbMovements, config.cancelLimbMovements,
                     EntityOption.Configuration.THIRD_PERSON_OPTION_CONFIGURATOR, entityModelCategoryBuilder
                 );
                 EntityOption.createGroup(
-                    "Weirder Limb Movements", "Cancel entity limbs from moving after they already started (or are in the \"top\" of their movement).\nOverriden by Cancel Limb Movements.", defaults.weirderLimbMovements, config.weirderLimbMovements,
+                    "Weirder Limb Movements",
+                    "Cancel entity limbs from moving after they already started (or are in the \"top\" of their movement).\nOverriden by Cancel Limb Movements.",
+                    defaults.weirderLimbMovements, config.weirderLimbMovements,
                     EntityOption.Configuration.THIRD_PERSON_OPTION_CONFIGURATOR, entityModelCategoryBuilder
                 );
 
