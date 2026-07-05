@@ -88,7 +88,7 @@ public class AdvantimationsConfig {
     public EntityOption cancelRiptideAnimation = new EntityOption();
 
     @SerialEntry
-    public EntityOption cancelBrushingAnimation = new EntityOption();
+    public EntityOption cancelBrushingAnimation = new EntityOption().scalingMultiplier(0f);
 
     @SerialEntry
     public EntityOption cancelBundleAnimation = new EntityOption();
@@ -218,7 +218,7 @@ public class AdvantimationsConfig {
                     "Cancel Brushing Animation",
                     "Cancel the brushing animation.",
                     defaults.cancelBrushingAnimation, config.cancelBrushingAnimation,
-                    ITEM_MODEL_CONFIGURATOR, itemModelCategoryBuilder
+                    ITEM_MODEL_CONFIGURATOR.andThen(EntityOption.Configuration::canBeScaled), itemModelCategoryBuilder
                 );
                 EntityOption.createGroup(
                     "Cancel Bundle Animation",
