@@ -45,18 +45,20 @@ public class AdvantimationsConfig {
     }
 
     private static final Consumer<EntityOption.Configuration> ITEM_MODEL_CONFIGURATOR = EntityOption.Configuration.PERSPECTIVE_INDEPENDENT_OPTION_CONFIGURATOR.andThen(EntityOption.Configuration::collapsed);
+    private static final Consumer<EntityOption.Configuration> THIRD_PERSON_SCALABLE_CONFIGURATOR = EntityOption.Configuration.THIRD_PERSON_OPTION_CONFIGURATOR.andThen(EntityOption.Configuration::canBeScaled); // woah they line up horizontally
 
     @SerialEntry
     public EntityOption cancelSwings = new EntityOption()
         .enabled()
+        .scalingMultiplier(0f)
         .enabledInFirstPerson()
         .enabledOnSelf();
 
     @SerialEntry
-    public SimpleFirstPersonOption cancelEatingAnimation = SimpleFirstPersonOption.falseOption();
+    public SimpleFirstPersonOption cancelEatingAnimation = new SimpleFirstPersonOption(false);
 
     @SerialEntry
-    public SimpleFirstPersonOption cancelDrinkingAnimation = SimpleFirstPersonOption.falseOption();
+    public SimpleFirstPersonOption cancelDrinkingAnimation = new SimpleFirstPersonOption(false);
 
     @SerialEntry
     public EntityOption cancelBlockingAnimation = new EntityOption();
@@ -103,34 +105,34 @@ public class AdvantimationsConfig {
     public EntityOption cancelCrossbowArrowModel = new EntityOption();
 
     @SerialEntry
-    public SimpleFirstPersonOption cancelAttackCooldownResets = SimpleFirstPersonOption.trueOption();
+    public SimpleFirstPersonOption cancelAttackCooldownResets = new SimpleFirstPersonOption(true, 1f);
 
     @SerialEntry
-    public SimpleFirstPersonOption cancelBlockInteractResets = SimpleFirstPersonOption.trueOption();
+    public SimpleFirstPersonOption cancelBlockInteractResets = new SimpleFirstPersonOption(true);
 
     @SerialEntry
-    public SimpleFirstPersonOption cancelItemInteractResets = SimpleFirstPersonOption.trueOption();
+    public SimpleFirstPersonOption cancelItemInteractResets = new SimpleFirstPersonOption(true);
 
     @SerialEntry
-    public SimpleFirstPersonOption cancelSlotSwappingResets = SimpleFirstPersonOption.falseOption();
+    public SimpleFirstPersonOption cancelSlotSwappingResets = new SimpleFirstPersonOption(true);
 
     @SerialEntry
     public EntityOption cancelSneaking = new EntityOption();
 
     @SerialEntry
-    public EntityOption cancelSwimmingAnimation = new EntityOption();
+    public EntityOption cancelSwimmingAnimation = new EntityOption().scalingMultiplier(0f);
 
     @SerialEntry
-    public EntityOption cancelCrawlingAnimation = new EntityOption();
+    public EntityOption cancelCrawlingAnimation = new EntityOption().scalingMultiplier(0f);
 
     @SerialEntry
     public EntityOption cancelElytraAnimation = new EntityOption();
 
     @SerialEntry
-    public EntityOption cancelLimbMovements = new EntityOption();
+    public EntityOption cancelLimbMovements = new EntityOption().scalingMultiplier(0f);
 
     @SerialEntry
-    public EntityOption weirderLimbMovements = new EntityOption();
+    public EntityOption weirderLimbMovements = new EntityOption().scalingMultiplier(0f);
 
     public static Screen getScreen(Screen parent) {
         return YetAnotherConfigLib.create(HANDLER, (defaults, config, builder) -> {
@@ -144,7 +146,7 @@ public class AdvantimationsConfig {
                     "Cancel Swings",
                     "Cancel hand and item swing animations.",
                     defaults.cancelSwings, config.cancelSwings,
-                    EntityOption.Configuration.PERSPECTIVE_INDEPENDENT_OPTION_CONFIGURATOR, itemModelCategoryBuilder
+                    EntityOption.Configuration.PERSPECTIVE_INDEPENDENT_OPTION_CONFIGURATOR.andThen(EntityOption.Configuration::canBeScaled), itemModelCategoryBuilder
                 );
                 SimpleFirstPersonOption.createOption(
                     "Cancel Eating Animation",
@@ -253,7 +255,8 @@ public class AdvantimationsConfig {
                     "Cancel Attack Cooldown Resets",
                     "Cancel the item reset animation when attacking or swapping items with cooldowns, such as in combat.",
                     defaults.cancelAttackCooldownResets, config.cancelAttackCooldownResets,
-                    itemResetsGroupBuilder
+                    itemResetsGroupBuilder,
+                    true
                 );
                 SimpleFirstPersonOption.createOption(
                     "Cancel Block Interact Resets",
@@ -291,13 +294,13 @@ public class AdvantimationsConfig {
                     "Cancel Swimming Animation",
                     "Cancel the third-person swimming animation.",
                     defaults.cancelSwimmingAnimation, config.cancelSwimmingAnimation,
-                    EntityOption.Configuration.THIRD_PERSON_OPTION_CONFIGURATOR, entityModelCategoryBuilder
+                    THIRD_PERSON_SCALABLE_CONFIGURATOR, entityModelCategoryBuilder
                 );
                 EntityOption.createGroup(
                     "Cancel Crawling Animation",
                     "Cancel the third-person crawling animation.",
                     defaults.cancelCrawlingAnimation, config.cancelCrawlingAnimation,
-                    EntityOption.Configuration.THIRD_PERSON_OPTION_CONFIGURATOR, entityModelCategoryBuilder
+                    THIRD_PERSON_SCALABLE_CONFIGURATOR, entityModelCategoryBuilder
                 );
                 EntityOption.createGroup(
                     "Cancel Elytra Animation",
@@ -309,13 +312,13 @@ public class AdvantimationsConfig {
                     "Cancel Limb Movements",
                     "Cancel entity limb movements.\nOverrides Weirder Limb Movements.",
                     defaults.cancelLimbMovements, config.cancelLimbMovements,
-                    EntityOption.Configuration.THIRD_PERSON_OPTION_CONFIGURATOR, entityModelCategoryBuilder
+                    THIRD_PERSON_SCALABLE_CONFIGURATOR, entityModelCategoryBuilder
                 );
                 EntityOption.createGroup(
                     "Weirder Limb Movements",
                     "Cancel entity limbs from moving after they already started (or are in the \"top\" of their movement).\nOverriden by Cancel Limb Movements.",
                     defaults.weirderLimbMovements, config.weirderLimbMovements,
-                    EntityOption.Configuration.THIRD_PERSON_OPTION_CONFIGURATOR, entityModelCategoryBuilder
+                    THIRD_PERSON_SCALABLE_CONFIGURATOR, entityModelCategoryBuilder
                 );
 
                 builder.category(entityModelCategoryBuilder.build());

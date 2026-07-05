@@ -17,8 +17,9 @@ import net.minecraft.world.entity.player.Player;
 
 
 
-public class EntityOption implements FirstPersonOption {
+public class EntityOption implements FirstPersonOption, ScalableOption {
     protected boolean enabled;
+    protected float scalingMultiplier;
     protected boolean enabledInFirstPerson;
     protected boolean enabledOnSelf;
     protected boolean enabledOnOtherPlayers;
@@ -41,6 +42,7 @@ public class EntityOption implements FirstPersonOption {
                 .controller(BooleanControllerBuilder::create)
                 .build()
             )
+            .optionIf(configuration.canBeScaled, ScalableOption.createScalingMultiplierOption(defaultValue, configValue))
             .optionIf(configuration.canBeEnabledInFirstPerson, Option.<Boolean>createBuilder()
                 .name(Component.literal("Enabled in First Person"))
                 .description(OptionDescription.of(Component.literal("Enable this option for yourself in first person.")))
@@ -125,6 +127,11 @@ public class EntityOption implements FirstPersonOption {
         return this;
     }
 
+    public EntityOption scalingMultiplier(float scalingMultiplier) {
+        this.scalingMultiplier = scalingMultiplier;
+        return this;
+    }
+
     public EntityOption enabledInFirstPerson() {
         this.enabledInFirstPerson = true;
         return this;
@@ -151,6 +158,16 @@ public class EntityOption implements FirstPersonOption {
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
+    }
+
+    @Override
+    public float getScalingMultiplier() {
+        return scalingMultiplier;
+    }
+
+    @Override
+    public void setScalingMultiplier(float scalingMultiplier) {
+        this.scalingMultiplier = scalingMultiplier;
     }
 
     public boolean isEnabledInFirstPerson() {
@@ -192,11 +209,17 @@ public class EntityOption implements FirstPersonOption {
         public static final Consumer<Configuration> THIRD_PERSON_OPTION_CONFIGURATOR = (configuration) ->
             configuration.canBeEnabledOnSelf().canBeEnabledOnOtherPlayers().canBeEnabledOnOtherEntities();
 
+        private boolean canBeScaled;
         private boolean canBeEnabledInFirstPerson;
         private boolean canBeEnabledOnSelf;
         private boolean canBeEnabledOnOtherPlayers;
         private boolean canBeEnabledOnOtherEntities;
         private boolean collapsed;
+
+        public Configuration canBeScaled() {
+            this.canBeScaled = true;
+            return this;
+        }
 
         public Configuration canBeEnabledInFirstPerson() {
             this.canBeEnabledInFirstPerson = true;
