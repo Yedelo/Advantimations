@@ -1,13 +1,9 @@
 @file:OptIn(StonecutterExperimentalAPI::class)
 
 import dev.kikugie.stonecutter.StonecutterExperimentalAPI
-
-val minecraftVersion: String by project
-val fabricLoaderVersion: String by project
-val fabricApiVersion: String by project
-
-val modMenuVersion: String by project
-val yaclVersion: String by project
+import org.gradle.api.tasks.Copy
+import org.gradle.kotlin.dsl.invoke
+import kotlin.reflect.KProperty
 
 plugins {
 	id("dev.kikugie.loom-back-compat")
@@ -18,19 +14,16 @@ repositories {
 	maven("https://maven.isxander.dev/releases")
 }
 
-val javaVersion: JavaVersion = when {
-	sc.current.parsed >= "26.1" -> JavaVersion.VERSION_25
-	sc.current.parsed >= "1.20.5" -> JavaVersion.VERSION_21
-	sc.current.parsed >= "1.18" -> JavaVersion.VERSION_17
-	sc.current.parsed >= "1.17" -> JavaVersion.VERSION_16
-	else -> JavaVersion.VERSION_1_8
+// in stonecutter.gradle.kts
+class CommonProperty<T> {
+	operator fun getValue(thisRef: Any?, property: KProperty<*>): T = (rootProject.extra[sc.current.project] as Map<String, Any?>)[property.name] as T
 }
 
-lateinit var maxMc: String
-val rangedVersion = sc.properties.get<String>("versioning") == "range"
-if (rangedVersion) {
-	maxMc = sc.properties["mc.max"]
-}
+val rangedVersion by CommonProperty<Boolean>()
+val maxMc by CommonProperty<String?>()
+val javaVersion by CommonProperty<JavaVersion>()
+val yaclVersion by CommonProperty<String>()
+val finalFileName by CommonProperty<String>()
 
 dependencies {
 	minecraft("com.mojang:minecraft:${sc.current.version}")
@@ -39,7 +32,7 @@ dependencies {
 	modImplementation("net.fabricmc.fabric-api:fabric-api:${property("versions.fabricApi")}")
 
 	modApi("com.terraformersmc:modmenu:${property("versions.modMenu")}")
-	modImplementation("dev.isxander:yet-another-config-lib:${property("versions.yacl")}")
+	modImplementation("dev.isxander:yet-another-config-lib:$yaclVersion")
 }
 
 loom {
@@ -58,21 +51,19 @@ tasks {
 			inputs.property(key, value)
 			set(key, value)
 		}
+		exclude("META-INF/neoforge.mods.toml")
 
-		fun MutableMap<String, String>.registerDependencies(vararg names: String) {
-			for (name in names) {
-				register(name, sc.properties["targets.$name"])
-			}
-		}
-
+		fun target(version: String) = ">=$version"
 		val props = buildMap {
 			register("version", version.toString())
-			registerDependencies("fabricLoader", "fabricApi", "yacl")
-			register("java", ">=${javaVersion.majorVersion}")
-			val minecraftDependency = if (rangedVersion) ">=${sc.current.version} <=${maxMc}" else sc.current.version
+			register("yacl", target(yaclVersion))
+			register("java", target(javaVersion.majorVersion))
+			register("fabricLoader", target(sc.properties["versions.fabricLoader"]))
+			val minecraftDependency =
+				if (rangedVersion) ">=${sc.current.version} <=${maxMc}" else sc.current.version
 			register("minecraft", minecraftDependency)
 		}
-		filesMatching("fabric.mod.json") { expand(props) }
+		filesMatching(listOf("fabric.mod.json")) { expand(props) }
 
 		val mixinJava = "JAVA_${javaVersion.majorVersion}"
 		filesMatching("advantimations.mixins.json5") { expand("mixinJava" to mixinJava) }
@@ -83,19 +74,17 @@ tasks {
 	register<Copy>("buildAndCollect") {
 		group = "build"
 
-		// loomx.mod(Sources)Jar returns the jar task for the applied loom variant (but i said it louder)
-		from(loomx.modJar.map { it.archiveFile }/*, loomx.modSourcesJar.map { it.archiveFile }*/)
+		from(loomx.modJar.map { it.archiveFile })
 		into(rootProject.layout.buildDirectory.file("libs"))
 		dependsOn("build")
 	}
 	loomx.modJar {
 		val minecraftVersion = if (rangedVersion) "${sc.current.version}-$maxMc" else sc.current.version
-		archiveFileName.set("Advantimations-$version+$minecraftVersion.jar")
+		archiveFileName.set("Advantimations-$version+$minecraftVersion-fabric.jar")
 	}
 }
 
 java {
 	sourceCompatibility = javaVersion
 	targetCompatibility = javaVersion
-	// withSourcesJar()
 }

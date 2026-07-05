@@ -33,7 +33,7 @@
     "java": "${java}",
     "fabricloader": "${fabricLoader}",
     "minecraft": "${minecraft}",
-    "fabric-api": "${fabricApi}",
+    "fabric-api": "*",
     "yet_another_config_lib_v3": "${yacl}"
   },
   "custom": {
