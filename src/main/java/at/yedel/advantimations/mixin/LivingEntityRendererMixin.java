@@ -18,7 +18,7 @@ public abstract class LivingEntityRendererMixin {
     @Inject(method = "extractRenderState(Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/client/renderer/entity/state/LivingEntityRenderState;F)V", at = @At("RETURN"))
     private void advantimations$modifyLivingEntityRenderState(LivingEntity entity, LivingEntityRenderState state, float f, CallbackInfo ci) {
         state.isAutoSpinAttack = AdvantimationsConfig.getInstance().cancelRiptideAnimation.getThirdPersonResult(entity, state.isAutoSpinAttack, false);
-        state.walkAnimationSpeed = AdvantimationsConfig.getInstance().cancelLimbMovements.getThirdPersonResult(entity, state.walkAnimationSpeed, 0F);
-        state.walkAnimationPos = AdvantimationsConfig.getInstance().weirderLimbMovements.getThirdPersonResult(entity, state.walkAnimationPos, 0F);
+        state.walkAnimationSpeed = AdvantimationsConfig.getInstance().cancelLimbMovements.getScaledThirdPersonResult(entity, state.walkAnimationSpeed);
+        state.walkAnimationPos = AdvantimationsConfig.getInstance().weirderLimbMovements.getScaledThirdPersonResult(entity, state.walkAnimationPos);
     }
 }

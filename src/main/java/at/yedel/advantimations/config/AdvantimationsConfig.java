@@ -55,10 +55,10 @@ public class AdvantimationsConfig {
         .enabledOnSelf();
 
     @SerialEntry
-    public SimpleFirstPersonOption cancelEatingAnimation = new SimpleFirstPersonOption(false);
+    public SimpleFirstPersonOption cancelEatingAnimation = SimpleFirstPersonOption.disabledOption();
 
     @SerialEntry
-    public SimpleFirstPersonOption cancelDrinkingAnimation = new SimpleFirstPersonOption(false);
+    public SimpleFirstPersonOption cancelDrinkingAnimation = SimpleFirstPersonOption.disabledOption();
 
     @SerialEntry
     public EntityOption cancelBlockingAnimation = new EntityOption();
@@ -105,16 +105,16 @@ public class AdvantimationsConfig {
     public EntityOption cancelCrossbowArrowModel = new EntityOption();
 
     @SerialEntry
-    public SimpleFirstPersonOption cancelAttackCooldownResets = new SimpleFirstPersonOption(true, 1f);
+    public SimpleFirstPersonOption cancelAttackCooldownResets = SimpleFirstPersonOption.enabledOption();
 
     @SerialEntry
-    public SimpleFirstPersonOption cancelBlockInteractResets = new SimpleFirstPersonOption(true);
+    public SimpleFirstPersonOption cancelBlockInteractResets = SimpleFirstPersonOption.enabledOption();
 
     @SerialEntry
-    public SimpleFirstPersonOption cancelItemInteractResets = new SimpleFirstPersonOption(true);
+    public SimpleFirstPersonOption cancelItemInteractResets = SimpleFirstPersonOption.enabledOption();
 
     @SerialEntry
-    public SimpleFirstPersonOption cancelSlotSwappingResets = new SimpleFirstPersonOption(true);
+    public SimpleFirstPersonOption cancelSlotSwappingResets = SimpleFirstPersonOption.enabledOption();
 
     @SerialEntry
     public EntityOption cancelSneaking = new EntityOption();
@@ -255,8 +255,7 @@ public class AdvantimationsConfig {
                     "Cancel Attack Cooldown Resets",
                     "Cancel the item reset animation when attacking or swapping items with cooldowns, such as in combat.",
                     defaults.cancelAttackCooldownResets, config.cancelAttackCooldownResets,
-                    itemResetsGroupBuilder,
-                    true
+                    itemResetsGroupBuilder
                 );
                 SimpleFirstPersonOption.createOption(
                     "Cancel Block Interact Resets",

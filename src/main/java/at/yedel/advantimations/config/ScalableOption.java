@@ -4,7 +4,7 @@ package at.yedel.advantimations.config;
 
 import dev.isxander.yacl3.api.Option;
 import dev.isxander.yacl3.api.OptionDescription;
-import dev.isxander.yacl3.api.controller.FloatFieldControllerBuilder;
+import dev.isxander.yacl3.gui.controllers.slider.FloatSliderController;
 import net.minecraft.network.chat.Component;
 
 
@@ -23,7 +23,7 @@ public interface ScalableOption {
                 configValue::getScalingMultiplier,
                 configValue::setScalingMultiplier
             )
-            .controller(option -> FloatFieldControllerBuilder.create(option).range(0f, 2f))
+            .customController(option -> new FloatSliderController(option, -2f, 2f, 0.01f))
             .build();
     }
 }

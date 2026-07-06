@@ -95,12 +95,22 @@ public class EntityOption implements FirstPersonOption, ScalableOption {
         return enabled && enabledInFirstPerson;
     }
 
+    public <T extends Number> float getScaledFirstPersonResult(T originalValue) {
+        float asFloat = originalValue.floatValue();
+        return getFirstPersonResult(asFloat, asFloat * scalingMultiplier);
+    }
+
     public boolean shouldApplyInThirdPerson(EntityRenderState state) {
         return getThirdPersonResult(state, false, true);
     }
 
     public <T> T getThirdPersonResult(EntityRenderState state, T originalValue, T newValue) {
         return getThirdPersonResult(state.advantimations$isPlayer(), state.advantimations$isSelf(), originalValue, newValue);
+    }
+
+    public <T extends Number> float getScaledThirdPersonResult(Entity entity, T originalValue) {
+        float asFloat = originalValue.floatValue();
+        return getThirdPersonResult(entity, asFloat, asFloat * getScalingMultiplier());
     }
 
     public <T> T getThirdPersonResult(Entity entity, T originalValue, T newValue) {

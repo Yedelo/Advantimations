@@ -16,6 +16,6 @@ import org.spongepowered.asm.mixin.injection.At;
 public class UseCycleMixin {
     @ModifyExpressionValue(method = "get", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;getUseItemRemainingTicks()I"))
     private int advantimations$cancelBrushingAnimation(int original, @Local LivingEntity holder) {
-        return AdvantimationsConfig.getInstance().cancelBrushingAnimation.getThirdPersonResult(holder, original, 0);
+        return (int) AdvantimationsConfig.getInstance().cancelBrushingAnimation.getScaledThirdPersonResult(holder, original);
     }
 }

@@ -18,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class ItemInHandRendererMixin {
     @ModifyExpressionValue(method = /*? >=26.2 {*/"submitHandsWithItems" /*?} else {*//*"renderHandsWithItems"*//*?}*/, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/player/LocalPlayer;getAttackAnim(F)F"))
     private float advantimations$cancelFirstPersonSwings(float original) {
-        return AdvantimationsConfig.getInstance().cancelSwings.getFirstPersonResult(original, 0F);
+        return AdvantimationsConfig.getInstance().cancelSwings.getScaledFirstPersonResult(original);
     }
 
     @ModifyExpressionValue(method = /*? >=26.2 {*/"submitArmWithItem" /*?} else {*//*"renderArmWithItem"*//*?}*/, at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;getUseAnimation()Lnet/minecraft/world/item/ItemUseAnimation;"))

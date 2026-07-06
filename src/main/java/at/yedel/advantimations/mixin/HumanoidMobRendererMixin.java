@@ -19,10 +19,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class HumanoidMobRendererMixin {
     @Inject(method = "extractHumanoidRenderState", at = @At(value = "RETURN"))
     private static void advantimations$modifyHumanoidRenderState(LivingEntity entity, HumanoidRenderState state, float f, ItemModelResolver itemModelResolver, CallbackInfo ci) {
-        state.attackTime = AdvantimationsConfig.getInstance().cancelSwings.getThirdPersonResult(entity, state.attackTime, 0F);
+        state.attackTime = AdvantimationsConfig.getInstance().cancelSwings.getScaledThirdPersonResult(entity, state.attackTime);
         state.isCrouching = AdvantimationsConfig.getInstance().cancelSneaking.getThirdPersonResult(entity, state.isCrouching, false);
         EntityOption option = state.isInWater ? AdvantimationsConfig.getInstance().cancelSwimmingAnimation : AdvantimationsConfig.getInstance().cancelCrawlingAnimation;
-        state.swimAmount = option.getThirdPersonResult(entity, state.swimAmount, 0F);
+        state.swimAmount = option.getScaledThirdPersonResult(entity, state.swimAmount);
         state.isFallFlying = AdvantimationsConfig.getInstance().cancelElytraAnimation.getThirdPersonResult(entity, state.isFallFlying, false);
     }
 }
