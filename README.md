@@ -8,7 +8,7 @@
 
 ![discord yedel](https://img.shields.io/badge/discord-yedel-blue)
 
-![github release version](https://img.shields.io/github/v/release/Yedelo/Advantimations?label=github)
+![github release version](https://img.shields.io/github/v/release/Yedelo/Advantimations?include_prereleases&label=github)
 
 ![modrinth latest version](https://img.shields.io/modrinth/v/c0aI2COX?label=modrinth)
 
