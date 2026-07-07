@@ -4,9 +4,11 @@ import dev.kikugie.stonecutter.StonecutterExperimentalAPI
 import org.gradle.api.tasks.Copy
 import org.gradle.kotlin.dsl.invoke
 import kotlin.reflect.KProperty
+import me.modmuss50.mpp.ReleaseType
 
 plugins {
 	id("dev.kikugie.loom-back-compat")
+	id("me.modmuss50.mod-publish-plugin")
 }
 
 repositories {
@@ -24,6 +26,8 @@ val maxMc by CommonProperty<String?>()
 val javaVersion by CommonProperty<JavaVersion>()
 val yaclVersion by CommonProperty<String>()
 val finalFileName by CommonProperty<String>()
+val versionType: String by project
+val modrinthReadme by CommonProperty<String>()
 
 dependencies {
 	minecraft("com.mojang:minecraft:${sc.current.version}")
@@ -79,8 +83,35 @@ tasks {
 		dependsOn("build")
 	}
 	loomx.modJar {
-		val minecraftVersion = if (rangedVersion) "${sc.current.version}-$maxMc" else sc.current.version
-		archiveFileName.set("Advantimations-$version+$minecraftVersion-fabric.jar")
+		archiveFileName.set(finalFileName)
+	}
+}
+
+publishMods {
+	file.set(loomx.modJar.map { it.archiveFile.get() })
+	changelog.set(rootProject.file("CHANGELOG.md").readText())
+	type.set(ReleaseType.of(versionType))
+	modLoaders.add("fabric")
+
+	modrinth {
+		displayName.set("${project.version.toString()} for Fabric ${sc.current.version}")
+		accessToken = System.getenv("MODRINTH_TOKEN")
+		projectId.set("c0aI2COX")
+		environment = CLIENT_ONLY
+		projectDescription = modrinthReadme
+		if (rangedVersion) {
+			minecraftVersionRange {
+				start = sc.current.version
+				end = maxMc
+			}
+		}
+		else {
+			minecraftVersions.add(sc.current.version)
+		}
+
+		requires("fabric-api")
+		requires("yacl")
+		optional("modmenu")
 	}
 }
 

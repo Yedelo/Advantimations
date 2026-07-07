@@ -1,8 +1,12 @@
 import kotlin.reflect.KProperty
+import kotlin.text.replace
 
 plugins {
     id("dev.kikugie.stonecutter")
+    id("me.modmuss50.mod-publish-plugin") version "2.1.1"
 }
+
+val modrinthLogoLink: String by project
 
 stonecutter active "26.2-fabric"
 
@@ -56,6 +60,12 @@ stonecutter parameters {
     val rangedVersion by Declare(properties.get<String>("versioning") == "range")
     val maxMc by Declare(if (rangedVersion) properties.get<String>("mc.max") else null)
 
-    val minecraftTarget = if (rangedVersion) "${current.version}-$maxMc" else current.version
+    val minecraftTarget by Declare(if (rangedVersion) "${current.version}-$maxMc" else current.version)
     val finalFileName by Declare("Advantimations-$version+$minecraftTarget-$loader.jar")
+
+    val modrinthReadme by Declare(rootProject.file("README.md").readText()
+        .replace("src/main/resources/assets/advantimations/advantimations.png", modrinthLogoLink)
+    )
 }
+
+// there is a lot of repetition for publishMods between the two buildscripts, but it's just not worth the effort of deduplicating

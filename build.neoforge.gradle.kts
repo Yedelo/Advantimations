@@ -4,9 +4,11 @@ import dev.kikugie.stonecutter.StonecutterExperimentalAPI
 import org.gradle.api.tasks.Copy
 import org.gradle.kotlin.dsl.invoke
 import kotlin.reflect.KProperty
+import me.modmuss50.mpp.ReleaseType
 
 plugins {
 	id("net.neoforged.moddev") version "2.0.140"
+	id("me.modmuss50.mod-publish-plugin")
 }
 
 repositories {
@@ -25,6 +27,8 @@ val maxMc by CommonProperty<String?>()
 val javaVersion by CommonProperty<JavaVersion>()
 val yaclVersion by CommonProperty<String>()
 val finalFileName by CommonProperty<String>()
+val versionType: String by project
+val modrinthReadme by CommonProperty<String>()
 
 dependencies {
 	implementation("dev.isxander:yet-another-config-lib:$yaclVersion")
@@ -85,6 +89,32 @@ tasks {
 	}
 	jar {
 		archiveFileName.set(finalFileName)
+	}
+}
+
+publishMods {
+	file.set(tasks.jar.map { it.archiveFile.get() })
+	changelog.set(rootProject.file("CHANGELOG.md").readText())
+	type.set(ReleaseType.of(versionType))
+	modLoaders.add("neoforge")
+
+	modrinth {
+		displayName.set("${project.version.toString()} for NeoForge ${sc.current.version}")
+		accessToken = System.getenv("MODRINTH_TOKEN")
+		projectId.set("c0aI2COX")
+		environment = CLIENT_ONLY
+		projectDescription = modrinthReadme
+		if (rangedVersion) {
+			minecraftVersionRange {
+				start = sc.current.version
+				end = maxMc
+			}
+		}
+		else {
+			minecraftVersions.add(sc.current.version)
+		}
+
+		requires("yacl")
 	}
 }
 
