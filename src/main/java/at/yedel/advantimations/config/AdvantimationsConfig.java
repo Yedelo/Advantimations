@@ -48,11 +48,7 @@ public class AdvantimationsConfig {
     private static final Consumer<EntityOption.Configuration> THIRD_PERSON_SCALABLE_CONFIGURATOR = EntityOption.Configuration.THIRD_PERSON_OPTION_CONFIGURATOR.andThen(EntityOption.Configuration::canBeScaled); // woah they line up horizontally
 
     @SerialEntry
-    public EntityOption cancelSwings = new EntityOption()
-        .enabled()
-        .scalingMultiplier(0f)
-        .enabledInFirstPerson()
-        .enabledOnSelf();
+    public EntityOption cancelSwings = EntityOption.selfConfiguredOption().scalingMultiplier(0f);
 
     @SerialEntry
     public SimpleFirstPersonOption cancelEatingAnimation = SimpleFirstPersonOption.disabledOption();
@@ -61,78 +57,78 @@ public class AdvantimationsConfig {
     public SimpleFirstPersonOption cancelDrinkingAnimation = SimpleFirstPersonOption.disabledOption();
 
     @SerialEntry
-    public EntityOption cancelBlockingAnimation = new EntityOption();
+    public EntityOption cancelBlockingAnimation = EntityOption.selfConfiguredOption();
 
     @SerialEntry
-    public EntityOption cancelShieldAnimation = new EntityOption();
+    public EntityOption cancelShieldAnimation = EntityOption.selfConfiguredOption();
 
     @SerialEntry
-    public EntityOption cancelBowAnimation = new EntityOption();
+    public EntityOption cancelBowAnimation = EntityOption.selfConfiguredOption();
 
     @SerialEntry
-    public EntityOption cancelCrossbowAnimation = new EntityOption();
+    public EntityOption cancelCrossbowAnimation = EntityOption.selfConfiguredOption();
 
     @SerialEntry
-    public EntityOption cancelChargedCrossbowAnimation = new EntityOption();
+    public EntityOption cancelChargedCrossbowAnimation = EntityOption.selfConfiguredOption();
 
     @SerialEntry
-    public EntityOption cancelSpyglassAnimation = new EntityOption();
+    public EntityOption cancelSpyglassAnimation = EntityOption.selfConfiguredOption();
 
     @SerialEntry
-    public EntityOption cancelHornTootAnimation = new EntityOption();
+    public EntityOption cancelHornTootAnimation = EntityOption.selfConfiguredOption();
 
     @SerialEntry
-    public EntityOption cancelTridentSpearAnimation = new EntityOption();
+    public EntityOption cancelTridentSpearAnimation = EntityOption.selfConfiguredOption();
 
     @SerialEntry
-    public EntityOption cancelRiptideAnimation = new EntityOption();
+    public EntityOption cancelRiptideAnimation = EntityOption.selfConfiguredOption();
 
     @SerialEntry
-    public EntityOption cancelBrushingAnimation = new EntityOption().scalingMultiplier(0f);
+    public EntityOption cancelBrushingAnimation = EntityOption.selfConfiguredOption().scalingMultiplier(0f);
 
     @SerialEntry
-    public EntityOption cancelBundleAnimation = new EntityOption();
+    public EntityOption cancelBundleAnimation = EntityOption.selfConfiguredOption();
 
     /*? if spear {*/
     @SerialEntry
-    public EntityOption cancelSpearAnimation = new EntityOption();
+    public EntityOption cancelSpearAnimation = EntityOption.selfConfiguredOption();
     /*?}*/
 
     @SerialEntry
-    public EntityOption cancelBowArrowModel = new EntityOption();
+    public EntityOption cancelBowArrowModel = EntityOption.selfConfiguredOption();
 
     @SerialEntry
-    public EntityOption cancelCrossbowArrowModel = new EntityOption();
+    public EntityOption cancelCrossbowArrowModel = EntityOption.selfConfiguredOption();
 
     @SerialEntry
-    public SimpleFirstPersonOption cancelAttackCooldownResets = SimpleFirstPersonOption.enabledOption();
+    public SimpleFirstPersonOption cancelAttackCooldownResets = SimpleFirstPersonOption.disabledOption();
 
     @SerialEntry
-    public SimpleFirstPersonOption cancelBlockInteractResets = SimpleFirstPersonOption.enabledOption();
+    public SimpleFirstPersonOption cancelBlockInteractResets = SimpleFirstPersonOption.disabledOption();
 
     @SerialEntry
-    public SimpleFirstPersonOption cancelItemInteractResets = SimpleFirstPersonOption.enabledOption();
+    public SimpleFirstPersonOption cancelItemInteractResets = SimpleFirstPersonOption.disabledOption();
 
     @SerialEntry
-    public SimpleFirstPersonOption cancelSlotSwappingResets = SimpleFirstPersonOption.enabledOption();
+    public SimpleFirstPersonOption cancelSlotSwappingResets = SimpleFirstPersonOption.disabledOption();
 
     @SerialEntry
-    public EntityOption cancelSneaking = new EntityOption();
+    public EntityOption cancelSneaking = EntityOption.selfConfiguredOption();
 
     @SerialEntry
-    public EntityOption cancelSwimmingAnimation = new EntityOption().scalingMultiplier(0f);
+    public EntityOption cancelSwimmingAnimation = EntityOption.selfConfiguredOption().scalingMultiplier(0f);
 
     @SerialEntry
-    public EntityOption cancelCrawlingAnimation = new EntityOption().scalingMultiplier(0f);
+    public EntityOption cancelCrawlingAnimation = EntityOption.selfConfiguredOption().scalingMultiplier(0f);
 
     @SerialEntry
-    public EntityOption cancelElytraAnimation = new EntityOption();
+    public EntityOption cancelElytraAnimation = EntityOption.selfConfiguredOption();
 
     @SerialEntry
-    public EntityOption cancelLimbMovements = new EntityOption().scalingMultiplier(0f);
+    public EntityOption cancelLimbMovements = EntityOption.selfConfiguredOption().scalingMultiplier(0f);
 
     @SerialEntry
-    public EntityOption weirderLimbMovements = new EntityOption().scalingMultiplier(0f);
+    public EntityOption weirderLimbMovements = EntityOption.selfConfiguredOption().scalingMultiplier(0f);
 
     public static Screen getScreen(Screen parent) {
         return YetAnotherConfigLib.create(HANDLER, (defaults, config, builder) -> {

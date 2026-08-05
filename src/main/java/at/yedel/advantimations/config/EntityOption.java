@@ -212,6 +212,10 @@ public class EntityOption implements FirstPersonOption, ScalableOption {
         this.enabledOnOtherEntities = enabledOnOtherEntities;
     }
 
+    public static EntityOption selfConfiguredOption() {
+        return new EntityOption().enabledInFirstPerson().enabledOnSelf();
+    }
+
     public static class Configuration {
         public static final Consumer<Configuration> PERSPECTIVE_INDEPENDENT_OPTION_CONFIGURATOR = (configuration) ->
             configuration.canBeEnabledInFirstPerson().canBeEnabledOnSelf().canBeEnabledOnOtherPlayers().canBeEnabledOnOtherEntities();
