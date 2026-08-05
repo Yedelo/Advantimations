@@ -29,6 +29,7 @@ val yaclVersion by CommonProperty<String>()
 val finalFileName by CommonProperty<String>()
 val versionType: String by project
 val modrinthReadme by CommonProperty<String>()
+val license: String by project
 
 dependencies {
 	implementation("dev.isxander:yet-another-config-lib:$yaclVersion")
@@ -65,6 +66,7 @@ tasks {
 		fun target(version: String) = "[$version,)"
 		val props = buildMap {
 			register("version", version.toString())
+			register("license", license)
 			register("yacl", target(yaclVersion))
 			register("java", target(javaVersion.majorVersion))
 			register("neoforge", target(sc.properties["versions.neoforge"]))

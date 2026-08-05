@@ -1,6 +1,6 @@
 modLoader = "javafml"
 loaderVersion = "[1,)"
-license = "None!"
+license = "${license}"
 issueTrackerURL = "https://github.com/Yedelo/Advantimations/issues"
 
 [[mods]]

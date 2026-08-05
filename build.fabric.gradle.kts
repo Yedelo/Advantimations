@@ -28,6 +28,7 @@ val yaclVersion by CommonProperty<String>()
 val finalFileName by CommonProperty<String>()
 val versionType: String by project
 val modrinthReadme by CommonProperty<String>()
+val license: String by project
 
 dependencies {
 	minecraft("com.mojang:minecraft:${sc.current.version}")
@@ -60,6 +61,7 @@ tasks {
 		fun target(version: String) = ">=$version"
 		val props = buildMap {
 			register("version", version.toString())
+			register("license", license)
 			register("yacl", target(yaclVersion))
 			register("java", target(javaVersion.majorVersion))
 			register("fabricLoader", target(sc.properties["versions.fabricLoader"]))

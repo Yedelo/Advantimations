@@ -15,7 +15,7 @@
     "issues": "https://github.com/Yedelo/Advantimations/issues",
     "sources": "https://github.com/Yedelo/Advantimations"
   },
-  "license": "LGPL-3.0-or-later",
+  "license": "${license}",
   "icon": "assets/advantimations/advantimations.png",
   "environment": "client",
   "entrypoints": {
