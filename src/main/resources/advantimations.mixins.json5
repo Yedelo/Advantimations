@@ -16,7 +16,8 @@
     "MinecraftMixin",
     "PlayerItemInHandLayerMixin",
     /*? if spear {*/ "SpearAnimationsMixin", /*?}*/
-    "UseCycleMixin"
+    "UseCycleMixin",
+    "PreparedFontBuilderMixin"
   ],
   // hello comment
   /* multiline comment */
