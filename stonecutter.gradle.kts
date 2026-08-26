@@ -6,6 +6,9 @@ plugins {
     id("me.modmuss50.mod-publish-plugin") version "2.1.1"
 }
 
+val modName: String by project
+val modId: String by project
+val modIcon: String by project
 val modrinthLogoLink: String by project
 
 stonecutter active "26.2-fabric"
@@ -61,10 +64,10 @@ stonecutter parameters {
     val maxMc by Declare(if (rangedVersion) properties.get<String>("mc.max") else null)
 
     val minecraftTarget by Declare(if (rangedVersion) "${current.version}-$maxMc" else current.version)
-    val finalFileName by Declare("Advantimations-$version+$minecraftTarget-$loader.jar")
+    val finalFileName by Declare("$modName-$version+$minecraftTarget-$loader.jar")
 
     val modrinthReadme by Declare(rootProject.file("README.md").readText()
-        .replace("src/main/resources/assets/advantimations/advantimations.png", modrinthLogoLink)
+        .replace("src/main/resources/$modIcon", modrinthLogoLink)
     )
 }
 

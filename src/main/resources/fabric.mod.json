@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "id": "advantimations",
+  "id": "${modId}",
   "version": "${version}",
-  "name": "Advantimations",
-  "description": "Client-side mod to cancel animations",
+  "name": "${modName}",
+  "description": "${modDescription}",
   "authors": [
     "Yedel"
   ],
@@ -11,25 +11,25 @@
     "thebaum64 for original sword texture in icon"
   ],
   "contact": {
-    "homepage": "https://modrinth.com/mod/advantimations",
-    "issues": "https://github.com/Yedelo/Advantimations/issues",
-    "sources": "https://github.com/Yedelo/Advantimations"
+    "homepage": "https://modrinth.com/mod/${modId}",
+    "issues": "https://github.com/Yedelo/${modName}/issues",
+    "sources": "https://github.com/Yedelo/${modName}"
   },
   "license": "${license}",
-  "icon": "assets/advantimations/advantimations.png",
+  "icon": "${modIcon}",
   "environment": "client",
   "entrypoints": {
     "client": [
-      "at.yedel.advantimations.Advantimations"
+      "at.yedel.${modId}.${modName}"
     ],
     "modmenu": [
-      "at.yedel.advantimations.utils.AdvantimationsModMenu"
+      "at.yedel.${modId}.utils.${modName}ModMenu"
     ]
   },
   "mixins": [
-    "advantimations.mixins.json5"
+    "${modId}.mixins.json5"
   ],
-  "accessWidener": "advantimations.classtweaker",
+  "accessWidener": "${modId}.classtweaker",
   "depends": {
     "java": "${java}",
     "fabricloader": "${fabricLoader}",
@@ -40,8 +40,8 @@
   "custom": {
     "modmenu": {
       "links": {
-        "modmenu.github_releases": "https://github.com/Yedelo/Advantimations/releases/",
-        "modmenu.modrinth": "https://modrinth.com/mod/advantimations"
+        "modmenu.github_releases": "https://github.com/Yedelo/${modName}/releases/",
+        "modmenu.modrinth": "https://modrinth.com/mod/${modId}"
       }
     }
   }

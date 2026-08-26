@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "at.yedel.advantimations.mixin",
+  "package": "at.yedel.${modId}.mixin",
   "compatibilityLevel": "${mixinJava}",
   "client": [
     "AvatarRendererMixin",

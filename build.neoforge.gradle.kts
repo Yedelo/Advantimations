@@ -22,14 +22,19 @@ class CommonProperty<T> {
 	operator fun getValue(thisRef: Any?, property: KProperty<*>): T = (rootProject.extra[sc.current.project] as Map<String, Any?>)[property.name] as T
 }
 
+val modName: String by project
+val modId: String by project
+val modDescription: String by project
+val modIcon: String by project
+val versionType: String by project
+val license: String by project
+val modrinthId: String by project
+val yaclVersion by CommonProperty<String>()
+val javaVersion by CommonProperty<JavaVersion>()
 val rangedVersion by CommonProperty<Boolean>()
 val maxMc by CommonProperty<String?>()
-val javaVersion by CommonProperty<JavaVersion>()
-val yaclVersion by CommonProperty<String>()
 val finalFileName by CommonProperty<String>()
-val versionType: String by project
 val modrinthReadme by CommonProperty<String>()
-val license: String by project
 
 dependencies {
 	implementation("dev.isxander:yet-another-config-lib:$yaclVersion")
@@ -41,7 +46,7 @@ neoForge {
 	interfaceInjectionData.from("../../neoforge.injections.json")
 
 	mods {
-		register("advantimations") {
+		register(modId) {
 			sourceSet(sourceSets.main.get())
 		}
 	}
@@ -61,10 +66,14 @@ tasks {
 			set(key, value)
 		}
 		exclude("fabric.mod.json")
-		exclude("advantimations.classtweaker")
+		exclude("$modId.classtweaker")
 
 		fun target(version: String) = "[$version,)"
 		val props = buildMap {
+			register("modName", modName)
+			register("modId", modId)
+			register("modDescription", modDescription)
+			register("modIcon", modIcon)
 			register("version", version.toString())
 			register("license", license)
 			register("yacl", target(yaclVersion))
@@ -73,11 +82,9 @@ tasks {
 			val minecraftDependency =
 				if (rangedVersion) "[${sc.current.version},${maxMc}]" else "[${sc.current.version}]"
 			register("minecraft", minecraftDependency)
+			register("mixinJava", "JAVA_${javaVersion.majorVersion}")
 		}
-		filesMatching(listOf("META-INF/neoforge.mods.toml")) { expand(props) }
-
-		val mixinJava = "JAVA_${javaVersion.majorVersion}"
-		filesMatching("advantimations.mixins.json5") { expand("mixinJava" to mixinJava) }
+		filesMatching(listOf("META-INF/neoforge.mods.toml", "$modId.mixins.json5")) { expand(props) }
 
         outputs.upToDateWhen { false }
 	}
@@ -103,7 +110,7 @@ publishMods {
 	modrinth {
 		displayName.set("${project.version.toString()} for NeoForge ${sc.current.version}")
 		accessToken = System.getenv("MODRINTH_TOKEN")
-		projectId.set("c0aI2COX")
+		projectId.set(modrinthId)
 		environment = CLIENT_ONLY
 		projectDescription = modrinthReadme
 		if (rangedVersion) {
