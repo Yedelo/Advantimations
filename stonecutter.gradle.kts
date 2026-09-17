@@ -45,7 +45,7 @@ stonecutter parameters {
     }
 
     val yaclVersion by Declare(run {
-        val rawVersionProperty = properties.get<String>("versions.yacl")
+        val rawVersionProperty = properties.getAs<String>("versions.yacl")
         if (rawVersionProperty.endsWith(loader)) rawVersionProperty else "$rawVersionProperty+${current.project}"
     })
 
@@ -60,8 +60,8 @@ stonecutter parameters {
         }
     })
 
-    val rangedVersion by Declare(properties.get<String>("versioning") == "range")
-    val maxMc by Declare(if (rangedVersion) properties.get<String>("mc.max") else null)
+    val rangedVersion by Declare(properties.getAs<String>("versioning") == "range")
+    val maxMc by Declare(if (rangedVersion) properties.getAs<String>("mc.max") else null)
 
     val minecraftTarget by Declare(if (rangedVersion) "${current.version}-$maxMc" else current.version)
     val finalFileName by Declare("$modName-$version+$minecraftTarget-$loader.jar")
