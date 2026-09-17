@@ -3,6 +3,12 @@ versions.fancyModLoader = "4.0.43"
 versions.neoforgeMixin = "0.17.1+mixin.0.8.7"
 versions.mixinExtras = "0.5.4"
 
+["26.3-fabric"]
+versioning = "single"
+versions.fabricApi = "0.160.6+26.3"
+versions.modMenu = "21.0.0-beta.1"
+versions.yacl = "3.9.6"
+
 ["26.2-fabric"]
 versioning = "single"
 versions.fabricApi = "0.153.0+26.2"
