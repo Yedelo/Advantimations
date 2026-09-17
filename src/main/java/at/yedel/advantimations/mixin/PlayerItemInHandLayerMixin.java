@@ -11,8 +11,8 @@ import org.spongepowered.asm.mixin.injection.At;
 /*? >= 1.21.9 {*/
 import net.minecraft.client.renderer.entity.state.AvatarRenderState;
 /*?} else {*/
-/*import net.minecraft.client.renderer.entity.state.PlayerRenderState;
-*//*?}*/
+//import net.minecraft.client.renderer.entity.state.PlayerRenderState;
+/*?}*/
 import org.spongepowered.asm.mixin.Mixin;
 
 
@@ -26,11 +26,11 @@ public abstract class PlayerItemInHandLayerMixin {
             /*/^? >= 1.21.11 {^/
             method = "submitArmWithItem(Lnet/minecraft/client/renderer/entity/state/AvatarRenderState;Lnet/minecraft/client/renderer/item/ItemStackRenderState;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/HumanoidArm;Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/SubmitNodeCollector;I)V",
             /^?} else {^/
-                /^/^¹? >= 1.21.9 {¹^/
+                /^/^? >= 1.21.9 {^/
                     method = "submitArmWithItem(Lnet/minecraft/client/renderer/entity/state/AvatarRenderState;Lnet/minecraft/client/renderer/item/ItemStackRenderState;Lnet/minecraft/world/entity/HumanoidArm;Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/SubmitNodeCollector;I)V",
-                /^¹?} else {¹^/
-                    /^¹method = "renderArmWithItem(Lnet/minecraft/client/renderer/entity/state/PlayerRenderState;Lnet/minecraft/client/renderer/item/ItemStackRenderState;Lnet/minecraft/world/entity/HumanoidArm;Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;I)V",
-                ¹^//^¹?}¹^/
+                /^?} else {^/
+                    //method = "renderArmWithItem(Lnet/minecraft/client/renderer/entity/state/PlayerRenderState;Lnet/minecraft/client/renderer/item/ItemStackRenderState;Lnet/minecraft/world/entity/HumanoidArm;Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;I)V",
+                /^?}^/
             ^//^?}^/
         *//*?}*/
         at = @At(value = "FIELD", target = /*? >= 1.21.9 {*/"Lnet/minecraft/client/renderer/entity/state/AvatarRenderState;isUsingItem:Z"/*?} else {*//*"Lnet/minecraft/client/renderer/entity/state/PlayerRenderState;isUsingItem:Z"*//*?}*/, opcode = Opcodes.GETFIELD)
