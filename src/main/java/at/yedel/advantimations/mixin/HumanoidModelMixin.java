@@ -4,6 +4,8 @@ package at.yedel.advantimations.mixin;
 
 import at.yedel.advantimations.config.AdvantimationsConfig;
 import com.llamalad7.mixinextras.injector.ModifyReceiver;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.renderer.entity.state.HumanoidRenderState;
@@ -46,4 +48,21 @@ public abstract class HumanoidModelMixin {
     private HumanoidModel.ArmPose advantimations$cancelRightArmItemUseAnimations(HumanoidModel.ArmPose original, @Local(argsOnly = true) HumanoidRenderState state) {
         return advantimations$cancelItemUseAnimations(state, HumanoidArm.RIGHT, original);
     }
+
+    //? if spear {
+    //? if >= 26.3 {
+    @WrapOperation(method = "setupAttackAnimation", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/model/effects/SpearAnimations;thirdPersonAttackHand(Lnet/minecraft/client/model/HumanoidModel;FLnet/minecraft/world/entity/HumanoidArm;)V"))
+    private <T extends HumanoidRenderState> void advantimations$cancelSpearAnimation(HumanoidModel<T> model, float animation, HumanoidArm arm, Operation<Void> original, @Local(argsOnly = true, name = "state") HumanoidRenderState state) {
+    //?} else {
+    /*@WrapOperation(method = "setupAttackAnimation", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/model/effects/SpearAnimations;thirdPersonAttackHand(Lnet/minecraft/client/model/HumanoidModel;Lnet/minecraft/client/renderer/entity/state/HumanoidRenderState;)V"))
+    private <T extends HumanoidRenderState> void advantimations$cancelSpearAnimation(HumanoidModel humanoidModel, HumanoidRenderState state, Operation<Void> original) {
+    *///?}
+        if (AdvantimationsConfig.getInstance().cancelSpearAnimation.shouldApplyInThirdPerson(state)) return;
+        //? if >= 26.3 {
+         original.call(model, animation, arm);
+        //?} else {
+        //original.call(humanoidModel, state);
+        //?}
+    }
+    //?}
 }

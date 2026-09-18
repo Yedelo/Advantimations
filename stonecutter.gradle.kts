@@ -11,7 +11,7 @@ val modId: String by project
 val modIcon: String by project
 val modrinthLogoLink: String by project
 
-stonecutter active "26.2-fabric"
+stonecutter active "26.3-fabric"
 
 stonecutter parameters {
     val loader = current.project.split("-")[1]

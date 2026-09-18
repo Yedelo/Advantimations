@@ -9,7 +9,9 @@
     "HumanoidMobRendererMixin",
     "HumanoidModelMixin",
     "IsUsingItemMixin",
-    "ItemInHandRendererMixin",
+    "FirstPersonRendererMixin",
+    //? if >= 26.3
+    "FirstPersonHandsAndItemsMixin",
     /*? < 1.21.9 || >= 26.2 {*/ "EntityRenderDispatcherMixin",
     /*?} else {*//*"LevelRendererMixin",*//*?}*/
     "LivingEntityRendererMixin",
