@@ -7,7 +7,7 @@ import kotlin.reflect.KProperty
 import me.modmuss50.mpp.ReleaseType
 
 plugins {
-	id("net.neoforged.moddev") version "2.0.140"
+	id("net.neoforged.moddev") version "2.0.147"
 	id("me.modmuss50.mod-publish-plugin")
 }
 
