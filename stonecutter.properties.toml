@@ -7,7 +7,11 @@ versions.mixinExtras = "0.5.4"
 versioning = "single"
 versions.fabricApi = "0.160.6+26.3"
 versions.modMenu = "21.0.0-beta.1"
-versions.yacl = "3.9.6"
+versions.yacl = "3.9.7"
+["26.3-neoforge"]
+versioning = "single"
+versions.neoforge = "26.3.0.8-beta"
+versions.yacl = "3.9.7"
 
 ["26.2-fabric"]
 versioning = "single"
