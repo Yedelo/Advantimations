@@ -24,9 +24,8 @@ stonecutter {
 
 		for (versionString in listOf("1.21.4", "1.21.9", "1.21.11", "26.1", "26.2", "26.3")) {
 			registerProject(versionString, "fabric")
-			registerProject(versionString, "neoforge")
 		}
-		registerProject("1.21.8", "neoforge")
+		registerProject("26.1", "neoforge")
 		vcsVersion = "26.3-fabric"
 	}
 }
